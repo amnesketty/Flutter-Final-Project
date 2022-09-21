@@ -1,3 +1,3 @@
 class Endpoints {
-  String get flights => 'flights';
+  String get login => 'Auth/login';
 }
