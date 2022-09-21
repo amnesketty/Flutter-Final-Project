@@ -1,0 +1,1 @@
+const baseUrl = 'https://lounga.herokuapp.com/';
