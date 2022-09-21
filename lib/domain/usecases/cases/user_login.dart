@@ -13,7 +13,7 @@ class UserLogin extends UseCase<User, dynamic> {
     final streamController = StreamController<User>();
 
     try {
-      final user = await repository.login("hafidz", "1345678");
+      final user = await repository.login("hafidz", "12345678");
       streamController.add(user);
       streamController.close();
     } catch (e, stackTrace) {

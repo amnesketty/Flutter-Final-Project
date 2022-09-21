@@ -42,6 +42,4 @@ class _UserLoginObserver extends Observer<User> {
     User? user = response;
     presenter.onSuccessUserLogin(user);
   }
-
-
 }
