@@ -6,6 +6,8 @@ import 'package:lounga/app/pages/flight_get/flight_get_page.dart';
 import 'package:lounga/app/pages/login/login_page.dart';
 
 import 'app/pages/flight_find/flight_find_page.dart';
+import 'app/pages/hotel_find/hotel_find_page.dart';
+import 'app/pages/hotel_get/hotel_get_page.dart';
 
 void main() {
   AppModule.init();
