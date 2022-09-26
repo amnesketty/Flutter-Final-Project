@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lounga/app/pages/hotel_get/hotel_get_controller.dart';
-import 'package:lounga/domain/entities/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';

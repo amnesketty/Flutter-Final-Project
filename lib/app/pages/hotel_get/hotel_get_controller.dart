@@ -1,6 +1,5 @@
 import 'package:lounga/app/pages/hotel_get/hotel_get_presenter.dart';
 import 'package:lounga/domain/entities/hotel.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class HotelGetController extends Controller {

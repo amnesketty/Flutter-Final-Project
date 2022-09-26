@@ -1,6 +1,5 @@
 import 'package:lounga/app/pages/hotel_find/hotel_find_presenter.dart';
 import 'package:lounga/domain/entities/hotel.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class HotelFindController extends Controller {

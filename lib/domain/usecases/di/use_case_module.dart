@@ -9,8 +9,10 @@ class UseCaseModule {
   static registerClasses() {
     final injector = Injector.appInstance;
     injector.registerDependency<UserLogin>(() => UserLogin(injector.get()));
+
     injector.registerDependency<FlightGet>(() => FlightGet(injector.get()));
     injector.registerDependency<FlightFind>(() => FlightFind(injector.get()));
+    
     injector.registerDependency<HotelGet>(() => HotelGet(injector.get()));
     injector.registerDependency<HotelFind>(() => HotelFind(injector.get()));
   }
