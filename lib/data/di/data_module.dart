@@ -1,9 +1,10 @@
 import 'package:lounga/data/misc/constants.dart';
 import 'package:lounga/data/misc/endpoints.dart';
+import 'package:lounga/data/repositories/data_flights_repository.dart';
 import 'package:lounga/data/repositories/data_users_repository.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:injector/injector.dart';
+import 'package:lounga/domain/repositories/flights_repository.dart';
 import 'package:lounga/domain/repositories/users_repository.dart';
 
 class DataModule {
@@ -19,7 +20,10 @@ class DataModule {
 
       return dio;
     });
-    injector.registerDependency<UserRepository>(
-      () => DataUserRepository(endpoints: injector.get(), dio: injector.get()));
+    injector.registerDependency<UserRepository>(() =>
+        DataUserRepository(endpoints: injector.get(), dio: injector.get()));
+
+    injector.registerDependency<FlightRepository>(() =>
+        DataFlightRepository(endpoints: injector.get(), dio: injector.get()));
   }
 }

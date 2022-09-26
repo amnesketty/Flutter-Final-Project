@@ -7,8 +7,10 @@ class Flight {
       seatLayout,
       seatPitch,
       destinationFrom,
-      destinationTo;
-  final DateTime departureDate, departureTime, arrivalTime;
+      destinationTo,
+      departureDate,
+      departureTime,
+      arrivalTime;
 
   Flight({
     required this.id,
