@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:injector/injector.dart';
 //import 'package:lounga/data/di/data_module.dart';
 //import 'package:lounga/app/pages/login/login_page.dart';
 import 'package:lounga/app/di/app_module.dart';
+import 'package:lounga/app/pages/flight_get/flight_get_page.dart';
 import 'package:lounga/app/pages/login/login_page.dart';
+
+import 'app/pages/flight_find/flight_find_page.dart';
+import 'app/pages/hotel_find/hotel_find_page.dart';
+import 'app/pages/hotel_get/hotel_get_page.dart';
 
 void main() {
   AppModule.init();
@@ -11,7 +15,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key : key);
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -30,7 +34,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      //home: LoginPage(),
+      home: FlightFindPage(),
     );
   }
 }

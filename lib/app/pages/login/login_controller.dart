@@ -1,6 +1,5 @@
 import 'package:lounga/app/pages/login/login_presenter.dart';
 import 'package:lounga/domain/entities/user.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class LoginController extends Controller {
@@ -11,9 +10,14 @@ class LoginController extends Controller {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  User? _user = User(firstName: "test", lastName: "test", email: "test", phone: "test", token: "test");
+  User? _user = User(
+      firstName: "test",
+      lastName: "test",
+      email: "test",
+      phone: "test",
+      token: "test");
   User? get user => _user;
-  
+
   @override
   void initListeners() {
     _initObserver();
@@ -25,7 +29,7 @@ class LoginController extends Controller {
     _presenter.loginUser();
   }
 
-  void _initObserver(){
+  void _initObserver() {
     _presenter.onErrorUserLogin = (e) {};
     _presenter.onFinishUserLogin = () {
       _hideLoading();
@@ -39,6 +43,7 @@ class LoginController extends Controller {
     _isLoading = true;
     refreshUI();
   }
+
   void _hideLoading() {
     _isLoading = false;
     refreshUI();
