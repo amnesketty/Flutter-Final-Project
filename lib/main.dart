@@ -5,6 +5,9 @@ import 'package:injector/injector.dart';
 import 'package:lounga/app/di/app_module.dart';
 import 'package:lounga/app/pages/login/login_page.dart';
 
+import 'app/pages/hotel_find/hotel_find_page.dart';
+import 'app/pages/hotel_get/hotel_get_page.dart';
+
 void main() {
   AppModule.init();
   runApp(const MyApp());
@@ -30,7 +33,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      // home: LoginPage(),
+      // home: HotelGetPage(),
+      home: HotelFindPage(),
     );
   }
 }
