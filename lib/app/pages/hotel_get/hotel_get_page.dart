@@ -31,7 +31,7 @@ class _HotelGetViewState extends ViewState<HotelGetPage, HotelGetController> {
           itemCount: controller.hotels.length,
           itemBuilder: (BuildContext _, int index) {
             final hotels = controller.hotels[index];
-            return Text(hotels.name);
+            return Text(hotels.photosHotel[0].image.toString());
           }
         )),
   );
