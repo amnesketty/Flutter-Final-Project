@@ -33,18 +33,17 @@ class AppModule {
     );
     injector.registerDependency<FlightFindController>(
       () => FlightFindController(injector.get()),
+    );
     injector.registerDependency<HotelGetPresenter>(
       () => HotelGetPresenter(hotelGetUseCase: injector.get()),
     );
     injector.registerDependency<HotelGetController>(
-      () => HotelGetController(injector.get())
-    );
+        () => HotelGetController(injector.get()));
     injector.registerDependency<HotelFindPresenter>(
       () => HotelFindPresenter(hotelFindUseCase: injector.get()),
     );
     injector.registerDependency<HotelFindController>(
-      () => HotelFindController(injector.get())
-    );
+        () => HotelFindController(injector.get()));
   }
 
   static init() {
