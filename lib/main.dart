@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 //import 'package:lounga/data/di/data_module.dart';
 //import 'package:lounga/app/pages/login/login_page.dart';
 import 'package:lounga/app/di/app_module.dart';
+import 'package:lounga/app/pages/flight_find/flight_find_controller.dart';
+import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
 import 'package:lounga/app/pages/flight_get/flight_get_page.dart';
-import 'package:lounga/app/pages/login/login_page.dart';
-
-import 'app/pages/flight_find/flight_find_page.dart';
 import 'app/pages/hotel_find/hotel_find_page.dart';
-import 'app/pages/hotel_get/hotel_get_page.dart';
 
 void main() {
   AppModule.init();
@@ -36,8 +34,7 @@ class MyApp extends StatelessWidget {
       ),
       //home: LoginPage(),
       //home: HotelGetPage(),
-      home: HotelFindPage(),
-
+      home: FlightGetPage(),
     );
   }
 }
