@@ -31,7 +31,8 @@ class _HotelFindViewState extends ViewState<HotelFindPage, HotelFindController> 
           itemCount: controller.hotels.length,
           itemBuilder: (BuildContext _, int index) {
             final hotels = controller.hotels[index];
-            return Text(hotels.name);
+            final rooms = hotels.roomsHotel.length.toString();
+            return Text(rooms);
           }
         )),
   );

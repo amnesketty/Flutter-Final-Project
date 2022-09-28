@@ -6,6 +6,7 @@ class Hotel {
   final int id, rating;
   final FacilitiesHotel facilitiesHotel;
   final List<PhotosHotel> photosHotel;
+  final List<RoomsHotel> roomsHotel;
 
   Hotel({
     required this.id,
@@ -15,7 +16,8 @@ class Hotel {
     required this.city,
     required this.rating,
     required this.facilitiesHotel,
-    required this.photosHotel
+    required this.photosHotel,
+    required this.roomsHotel
   });
 
   factory Hotel.fromResponse(Map<String, dynamic> response) {
@@ -27,14 +29,19 @@ class Hotel {
     final rating = response['rating'] ?? 0;
     final Map<String, dynamic> facilitiesHotelMap = response['facilitiesHotel'];
     final facilitiesHotel = FacilitiesHotel.fromJson(facilitiesHotelMap);
-
     final List<dynamic> photosList = response['photos'];
     final List<PhotosHotel> photos =  photosList
       .map(
         (dynamic response) => PhotosHotel.fromJson(response),
       ).toList();
 
-    return Hotel(name: name, phone: phone, address: address, city: city, rating: rating, id: id, facilitiesHotel: facilitiesHotel, photosHotel: photos);
+    final List<dynamic> roomsList = response['rooms'];
+    final List<RoomsHotel> rooms = roomsList
+      .map(
+        (dynamic response) => RoomsHotel.fromJson(response),
+      ).toList();
+
+    return Hotel(name: name, phone: phone, address: address, city: city, rating: rating, id: id, facilitiesHotel: facilitiesHotel, photosHotel: photos, roomsHotel: rooms);
   }
 }
 
@@ -83,4 +90,24 @@ class PhotosHotel {
 
     return PhotosHotel(image: image, hotelId: hotelId);
   }
+}
+
+class RoomsHotel {
+  final int hotelId, price;
+  final String  type;
+
+  RoomsHotel({
+    required this.hotelId,
+    required this.price,
+    required this.type
+  });
+
+  factory RoomsHotel.fromJson(Map<String, dynamic> roomsHotelJson) {
+    final hotelId = roomsHotelJson['hotelId'] ?? 0;
+    final price = roomsHotelJson['price'] ?? 0;
+    final type = roomsHotelJson['type'] ?? '';
+
+    return RoomsHotel(hotelId: hotelId, price: price, type: type);
+  }
+
 }

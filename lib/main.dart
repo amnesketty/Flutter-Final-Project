@@ -35,7 +35,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: LoginPage(),
-      home: HotelGetPage(),
+      //home: HotelGetPage(),
+      home: HotelFindPage(),
+
     );
   }
 }

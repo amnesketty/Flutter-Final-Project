@@ -14,7 +14,7 @@ class HotelFind extends UseCase<List<Hotel>, dynamic> {
     final streamController = StreamController<List<Hotel>>();
 
     try {
-      final hotel = await repository.findHotel("jakarta", "2022-09-25T08:07:31.773Z", 1, 1);
+      final hotel = await repository.findHotel("jakarta", "2022-09-15T14:27:33.575Z", 1, 1);
       streamController.add(hotel);
       streamController.close();
     } catch (e, stackTrace) {
