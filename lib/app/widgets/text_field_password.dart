@@ -1,12 +1,18 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
-class TextFieldCustome extends StatelessWidget {
+class TextFieldPassword extends StatelessWidget {
   final textEditingController;
   final textLabel;
+  final bool visible;
+  final VoidCallback refresh;
 
-  const TextFieldCustome({
+  const TextFieldPassword({
     required this.textEditingController,
-    required this.textLabel
+    required this.textLabel,
+    required this.visible,
+    required this.refresh
   });
 
   @override
@@ -20,12 +26,14 @@ class TextFieldCustome extends StatelessWidget {
       ),
       child: TextField(
         controller: textEditingController,
-        keyboardType: textLabel == 'Email' ? TextInputType.emailAddress : TextInputType.text,
+        obscureText: visible == true? false : true,
         decoration: InputDecoration(
           fillColor: Colors.white,
           border: const OutlineInputBorder(),
           hintText: textLabel,
-          //suffixIcon: IconButton(onPressed: (){}, icon: null)
+          suffixIcon: IconButton(onPressed: refresh,
+          //(){refresh;},
+          icon: visible == true ? Icon(Icons.visibility) : Icon(Icons.visibility_off))
         ),
         style: TextStyle(
           fontSize: 16

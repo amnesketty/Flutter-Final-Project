@@ -1,3 +1,5 @@
+import 'package:lounga/app/pages/register/register_controller.dart';
+import 'package:lounga/app/pages/register/register_presenter.dart';
 import 'package:lounga/domain/usecases/di/use_case_module.dart';
 import 'package:lounga/data/di/data_module.dart';
 import 'package:injector/injector.dart';
@@ -22,6 +24,10 @@ class AppModule {
       () => LoginPresenter(userLoginUseCase: injector.get()));
     injector.registerDependency<LoginController>(
       () => LoginController(injector.get()));
+    injector.registerDependency<RegisterPresenter>(
+      () => RegisterPresenter(userRegisterUsecase: injector.get()));
+    injector.registerDependency<RegisterController>(
+      () => RegisterController(injector.get()));
 
     injector.registerDependency<FlightGetPresenter>(
       () => FlightGetPresenter(flightGetUseCase: injector.get()));

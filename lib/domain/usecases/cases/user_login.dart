@@ -25,11 +25,6 @@ class UserLogin extends UseCase<User, UserLoginParams> {
   }
 }
 
-// class UserLoginResponse {
-//   final User user;
-//   UserLoginResponse(this.user);
-// }
-
 class UserLoginParams {
   final String username;
   final String password;
