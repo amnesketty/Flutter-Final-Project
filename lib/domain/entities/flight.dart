@@ -44,8 +44,8 @@ class Flight {
     final departureTime = response['departureTime'] ?? '';
     final arrivalTime = response['arrivalTime'] ?? '';
     final seatCapacity = response['seatCapacity'] ?? 0;
-    final amountPassenger = response['seatCapacity'] ?? 0;
-    final price = response['seatCapacity'] ?? 0;
+    final amountPassenger = response['amountPassenger'] ?? 0;
+    final price = response['price'] ?? 0;
     final id = response['id'] ?? 0;
     final Map<String, dynamic> facilitiesFlightMap =
         response['facilitiesFlight'];

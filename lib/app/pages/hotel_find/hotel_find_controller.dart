@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:lounga/app/pages/hotel_find/hotel_find_presenter.dart';
 import 'package:lounga/domain/entities/hotel.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+
+import '../hotel_booking/hotel_detail_page.dart';
 
 class HotelFindController extends Controller {
   final HotelFindPresenter _presenter;
@@ -32,6 +35,11 @@ class HotelFindController extends Controller {
     _presenter.onSuccessHotelFind = (List<Hotel> data) {
       _hotels= data;
     };
+  }
+
+  void navigateToHotelDetail(Hotel hotel) {
+    final context = getContext();
+    Navigator.pushNamed(context, HotelDetailPage.route, arguments: hotel);
   }
 
   void _showLoading() {
