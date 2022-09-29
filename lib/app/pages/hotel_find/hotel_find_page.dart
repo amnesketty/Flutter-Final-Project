@@ -26,7 +26,7 @@ class _HotelFindViewState extends ViewState<HotelFindPage, HotelFindController> 
     key: globalKey,
     appBar: AppBar(
       backgroundColor: const Color(0XFFE67E22),
-      title: const Text('List of Booked Hotels'),
+      title: const Text('List of Hotels'),
     ),
     backgroundColor: const Color(0XFFD3D3D3),
     body: ControlledWidgetBuilder<HotelFindController>(
