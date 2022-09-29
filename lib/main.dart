@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       ),
       //home: LoginPage(),
       //home: HotelGetPage(),
-      home: HotelFindPage(),
+      home: LoginPage(),
 
     );
   }
