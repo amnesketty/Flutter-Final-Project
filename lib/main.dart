@@ -35,12 +35,7 @@ class MyApp extends StatelessWidget {
       ),
       //home: LoginPage(),
       //home: HotelGetPage(),
-<<<<<<< HEAD
       home: LoginPage(),
-
-=======
-      home: FlightGetPage(),
->>>>>>> 1ba83d377f80b8c3037f7652ad45255e7aa0e2b3
     );
   }
 }
