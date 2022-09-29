@@ -36,7 +36,7 @@ class DataHotelRepository implements HotelRepository {
   @override
   Future<List<Hotel>> findHotel(String city, String bookingDate, int totalRoom, int duration) async {
     // TODO: implement findHotel
-    dio.options.headers['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwibmFtZSI6InNhbHNhIiwibmJmIjoxNjY0Mjg4NDg0LCJleHAiOjE2NjQyOTIwODQsImlhdCI6MTY2NDI4ODQ4NH0.M8EWIwVLHU3emH0HFJ0TwBUulsvDKEVGVNYURuN6FQs";
+    dio.options.headers['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwibmFtZSI6InNhbHNhIiwibmJmIjoxNjY0MzY2NTcyLCJleHAiOjE2NjQzNzAxNzIsImlhdCI6MTY2NDM2NjU3Mn0._JMk7kKDzd7bVtmKAJZhli9JrtK9uM9Zeydskc35S7Y";
     try {
       final response = await dio.post(
         endpoints.findHotel,
@@ -47,9 +47,9 @@ class DataHotelRepository implements HotelRepository {
           'duration': duration,
           }
       );
-      print(response);
+      // print(response);
       final findHotelResponse = response.data['data'] as List<dynamic>;
-      print(findHotelResponse[0]);
+      // print(findHotelResponse[0]);
       final hotels = findHotelResponse
         .map(
           (dynamic response) => Hotel.fromResponse(response),
