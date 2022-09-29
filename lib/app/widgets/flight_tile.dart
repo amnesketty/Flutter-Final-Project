@@ -13,10 +13,10 @@ class FlightTile extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => ListTile(
-        onTap: () => onFlightClicked(flight),
-        // leading: Image.network(user.image),
-        title: Text(flight.aircraft),
-        subtitle: Text(flight.aircraftsType),
+  Widget build(BuildContext context) => Column(
+      // children: () => onFlightClicked(flight),
+      // // leading: Image.network(user.image),
+      // title: Text(flight.aircraft),
+      // subtitle: Text(flight.aircraftsType),
       );
 }

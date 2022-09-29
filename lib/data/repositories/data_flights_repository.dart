@@ -36,7 +36,7 @@ class DataFlightRepository implements FlightRepository {
       String destinationTo, String departureDate) async {
     // TODO: implement findFlight
     dio.options.headers['Authorization'] =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwibmFtZSI6InNhbHNhIiwibmJmIjoxNjY0Mjg4NDg0LCJleHAiOjE2NjQyOTIwODQsImlhdCI6MTY2NDI4ODQ4NH0.M8EWIwVLHU3emH0HFJ0TwBUulsvDKEVGVNYURuN6FQs';
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIyIiwibmFtZSI6Im5pbmRpIiwibmJmIjoxNjY0MzQzNzY4LCJleHAiOjE2NjQzNDczNjgsImlhdCI6MTY2NDM0Mzc2OH0.EUDT_cnbAuwELKVvlDuVFeyegDmwC0sWHHUQ3mdpt-Y';
     try {
       final response = await dio.post(endpoints.findFlights, data: {
         "seatClass": seatClass,

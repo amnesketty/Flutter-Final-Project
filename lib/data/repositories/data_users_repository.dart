@@ -12,20 +12,16 @@ class DataUserRepository implements UserRepository {
   @override
   Future<User> login(String username, String password) async {
     try {
-      final response = await dio.post(
-        endpoints.login,
-        data: {
-          "username" : username,
-          "password" : password
-        });
+      final response = await dio.post(endpoints.login,
+          data: {"username": username, "password": password});
       //print(response.data['data']);
       final userResponse = response.data['data'] as Map<String, dynamic>;
       User user = User(
-        firstName: userResponse['firstName'],
-        lastName: userResponse['lastName'],
-        email: userResponse['email'],
-        phone: userResponse['phone'],
-        token: userResponse['token']);
+          firstName: userResponse['firstName'],
+          lastName: userResponse['lastName'],
+          email: userResponse['email'],
+          phone: userResponse['phone'],
+          token: userResponse['token']);
       //print(userResponse);
       print(user);
       return user;

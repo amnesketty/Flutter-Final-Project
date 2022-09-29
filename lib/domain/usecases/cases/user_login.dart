@@ -3,17 +3,17 @@ import 'package:lounga/domain/repositories/users_repository.dart';
 import 'package:lounga/domain/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-class UserLogin extends UseCase<User, dynamic> {
+class UserLogin extends UseCase<User, UserLoginParams> {
   final UserRepository repository;
 
   UserLogin(this.repository);
 
   @override
-  Future<Stream<User>> buildUseCaseStream(params) async {
+  Future<Stream<User>> buildUseCaseStream(UserLoginParams? params) async {
     final streamController = StreamController<User>();
 
     try {
-      final user = await repository.login("hafidz", "12345678");
+      final user = await repository.login(params!.username, params.password);
       streamController.add(user);
       streamController.close();
     } catch (e, stackTrace) {
@@ -23,4 +23,15 @@ class UserLogin extends UseCase<User, dynamic> {
 
     return streamController.stream;
   }
+}
+
+// class UserLoginResponse {
+//   final User user;
+//   UserLoginResponse(this.user);
+// }
+
+class UserLoginParams {
+  final String username;
+  final String password;
+  UserLoginParams(this.username, this.password);
 }
