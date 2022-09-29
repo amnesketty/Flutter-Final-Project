@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:lounga/app/pages/login/login_presenter.dart';
 import 'package:lounga/domain/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -18,25 +19,39 @@ class LoginController extends Controller {
       token: "test");
   User? get user => _user;
 
+  TextEditingController _controllerUsername = TextEditingController();
+  TextEditingController get controllerUsername => _controllerUsername;
+  TextEditingController _controllerPassword = TextEditingController();
+  TextEditingController get controllerPassword => _controllerPassword;
+
   @override
   void initListeners() {
     _initObserver();
-    _loginUser();
+    //_loginUser();
   }
 
-  void _loginUser() {
+  void _loginUser(String username, String password) {
     _showLoading();
-    _presenter.loginUser();
+    _presenter.loginUser(username, password);
   }
 
   void _initObserver() {
-    _presenter.onErrorUserLogin = (e) {};
+    _presenter.onErrorUserLogin = (e) {
+      _hideLoading();
+    };
     _presenter.onFinishUserLogin = () {
       _hideLoading();
     };
     _presenter.onSuccessUserLogin = (User? data) {
       _user = data;
     };
+  }
+
+  void loginNow(String username, String password) {
+    //_initObserver();
+    _showLoading();
+    _presenter.loginUser(username, password);
+    //_loginUser(username, password);
   }
 
   void _showLoading() {
@@ -52,6 +67,8 @@ class LoginController extends Controller {
   @override
   void onDisposed() {
     super.onDisposed();
+    _controllerUsername.dispose();
+    _controllerPassword.dispose();
     _presenter.dispose();
   }
 }

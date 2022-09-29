@@ -11,15 +11,14 @@ class LoginPresenter extends Presenter {
 
   LoginPresenter({required this.userLoginUseCase});
 
-  void loginUser() {
-    userLoginUseCase.execute(_UserLoginObserver(this));
+  void loginUser(String username, String password) {
+    userLoginUseCase.execute(_UserLoginObserver(this), UserLoginParams(username, password));
   }
 
   @override
   void dispose() {
     userLoginUseCase.dispose();
   }
-
 }
 
 class _UserLoginObserver extends Observer<User> {

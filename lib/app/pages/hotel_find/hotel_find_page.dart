@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 
+import '../../../domain/entities/hotel.dart';
 import '../../widgets/hotel_tile.dart';
 
 class HotelFindPage extends View {
@@ -22,7 +23,7 @@ class _HotelFindViewState extends ViewState<HotelFindPage, HotelFindController> 
 
   @override
   Widget get view => Scaffold(
-    //key: globalKey,
+    key: globalKey,
     appBar: AppBar(
       backgroundColor: const Color(0XFFE67E22),
       title: const Text('List of Booked Hotels'),
@@ -39,7 +40,12 @@ class _HotelFindViewState extends ViewState<HotelFindPage, HotelFindController> 
             final hotel = controller.hotels[index];
             final room = hotel.roomsHotel.first.price.toString();
             // return Text(rooms);
-            return HotelTile(hotel: hotel);
+            return HotelTile(
+              hotel: hotel,
+              onHotelClicked: (Hotel hotel) {
+                controller.navigateToHotelDetail(hotel);
+              },
+              );
           }
         )),
   );
