@@ -7,6 +7,7 @@ import 'package:lounga/app/navigator.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_controller.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
 import 'package:lounga/app/pages/flight_get/flight_get_page.dart';
+import 'app/pages/flight_search/flight_search_page.dart';
 import 'app/pages/hotel_find/hotel_find_page.dart';
 import 'app/pages/login/login_page.dart';
 
@@ -24,15 +25,14 @@ class MyApp extends StatelessWidget {
     final appNavigator = Injector.appInstance.get<AppNavigator>();
 
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-      
-        primarySwatch: Colors.blue,
-      ),
-      //home: LoginPage(),
-      //home: HotelGetPage(),
-      home: HotelFindPage(),
-      onGenerateRoute: appNavigator.onGenerateRoutes
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        //home: LoginPage(),
+        //home: HotelGetPage(),
+        home: FlightFindPage(),
+        //home: HotelFindPage(),
+        onGenerateRoute: appNavigator.onGenerateRoutes);
   }
 }
