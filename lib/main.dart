@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
         ),
         //home: LoginPage(),
         //home: HotelGetPage(),
-        home: FlightFindPage(),
-        //home: HotelFindPage(),
+        //home: FlightFindPage(),
+        home: HotelFindPage(),
         onGenerateRoute: appNavigator.onGenerateRoutes);
   }
 }

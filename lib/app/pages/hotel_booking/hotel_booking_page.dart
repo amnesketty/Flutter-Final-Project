@@ -33,9 +33,16 @@ class _HotelBookingViewState
       appBar: AppBar(
         backgroundColor: const Color(0XFFE67E22),
         centerTitle: true,
-        title: Text(widget.hotel.name),
+        title: Text('FILL IN DETAILS'),
       ),
       backgroundColor: const Color(0XFFFFFFFF),
       body: Column(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 1,
+            height: MediaQuery.of(context).size.height * 0.27,
+            color: const Color(0XFFE67E22)
+          )
+        ],
       ));
 }
