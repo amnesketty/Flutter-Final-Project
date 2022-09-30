@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 import 'package:lounga/app/widgets/text_field.dart';
-
 import '../../widgets/text_field_password.dart';
 
 class RegisterPage extends View {
+  static const route = '/register-page';
+
   RegisterPage({Key? key}) : super(key: key);
 
   @override
@@ -56,10 +57,10 @@ class _RegisterViewState extends ViewState<RegisterPage, RegisterController> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                     TextFieldCustome(textEditingController: controller.controllerUsername, textLabel: 'Phone'),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+
                     const Text('Password', style: TextStyle(color: Colors.white, fontSize: 18),),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                     TextFieldPassword(textEditingController: controller.controllerPassword, textLabel: 'Password', visible: controller.visibilityPassword, refresh: () => controller.showPassword(),),
-                                        
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     const Text('Confirm Password', style: TextStyle(color: Colors.white, fontSize: 18),),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
@@ -67,7 +68,7 @@ class _RegisterViewState extends ViewState<RegisterPage, RegisterController> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     Center(
                       child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 30),
+                        margin: EdgeInsets.symmetric(vertical: 20),
                         height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: ElevatedButton(
@@ -88,7 +89,16 @@ class _RegisterViewState extends ViewState<RegisterPage, RegisterController> {
                           ),
                           child: const Text("SIGN UP", style: TextStyle(color: Colors.white, fontSize: 20),)),
                       ),
-                    ),                    
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("Already have an account? ", style: TextStyle(color: Colors.white),),
+                        TextButton(onPressed: (){                        
+                          controller.navigateToLoginPage();
+                        }, child: const Text("SIGN IN", style: TextStyle(color: Colors.white),))
+                      ],
+                    ),
                   ],
                 ),
                 controller.isLoading ? 

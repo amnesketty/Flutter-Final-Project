@@ -14,6 +14,7 @@ import '../pages/flight_find/flight_find_presenter.dart';
 import '../pages/flight_get/flight_get_controller.dart';
 import '../pages/flight_get/flight_get_presenter.dart';
 
+import '../pages/home/home_controller.dart';
 import '../pages/hotel_booking/hotel_booking_controller.dart';
 import '../pages/flight_search/flight_search_controller.dart';
 import '../pages/flight_search/flight_search_presenter.dart';
@@ -33,7 +34,8 @@ class AppModule {
       () => RegisterPresenter(userRegisterUsecase: injector.get()));
     injector.registerDependency<RegisterController>(
       () => RegisterController(injector.get()));
-        () => LoginController(injector.get());
+    injector.registerDependency<HomeController>(
+      () => HomeController());
 
     injector.registerDependency<FlightGetPresenter>(
         () => FlightGetPresenter(flightGetUseCase: injector.get()));
