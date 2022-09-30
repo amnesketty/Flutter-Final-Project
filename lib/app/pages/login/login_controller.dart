@@ -30,10 +30,10 @@ class LoginController extends Controller {
     //_loginUser();
   }
 
-  void _loginUser(String username, String password) {
-    _showLoading();
-    _presenter.loginUser(username, password);
-  }
+  // void _loginUser(String username, String password) {
+  //   _showLoading();
+  //   _presenter.loginUser(username, password);
+  // }
 
   void _initObserver() {
     _presenter.onErrorUserLogin = (e) {

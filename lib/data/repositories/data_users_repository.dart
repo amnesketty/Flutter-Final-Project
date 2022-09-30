@@ -14,7 +14,6 @@ class DataUserRepository implements UserRepository {
     try {
       final response = await dio.post(endpoints.login,
           data: {"username": username, "password": password});
-      //print(response.data['data']);
       final userResponse = response.data['data'] as Map<String, dynamic>;
       User user = User(
           firstName: userResponse['firstName'],
@@ -22,11 +21,27 @@ class DataUserRepository implements UserRepository {
           email: userResponse['email'],
           phone: userResponse['phone'],
           token: userResponse['token']);
-      //print(userResponse);
-      print(user);
       return user;
     } catch (e) {
-      print(e);
+      rethrow;
+    }
+  }
+  
+  @override
+  Future<int> register(String firstName, String lastName, String username, String email, String phone, String password) async {
+    try {
+      final response = await dio.post(endpoints.login,
+          data: {
+            "firstName": firstName,
+            "lastName": lastName,
+            "username": username,
+            "email": email,
+            "phone": phone,
+            "password": password
+            });
+      final userResponse = response.data['data'] as int;
+      return userResponse;
+    } catch (e) {
       rethrow;
     }
   }
