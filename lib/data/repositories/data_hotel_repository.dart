@@ -61,4 +61,10 @@ class DataHotelRepository implements HotelRepository {
       rethrow;
     }
   }
+  
+  @override
+  Future<int> bookingHotel(String bookingDate, int totalRoom, int price, int hotelId, int roomId) {
+    // TODO: implement bookingHotel
+    throw UnimplementedError();
+  }
 }

@@ -19,7 +19,7 @@ class HotelFindController extends Controller {
   @override
   void initListeners() {
     _initObserver();
-    _findHotel();
+    //_findHotel();
   }
 
   void _findHotel() {

@@ -10,6 +10,7 @@ class FlightSearchPage extends View {
   FlightSearchPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() {
     final flightSearchController =
         Injector.appInstance.get<FlightSearchController>();

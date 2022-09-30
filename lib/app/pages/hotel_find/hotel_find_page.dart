@@ -8,7 +8,9 @@ import '../../../domain/entities/hotel.dart';
 import '../../widgets/hotel_tile.dart';
 
 class HotelFindPage extends View {
-  const HotelFindPage({Key? key}) : super(key: key);
+  static const route = '/hotel-find';
+  final List<Hotel> hotels;
+  const HotelFindPage(this.hotels, {Key? key}) : super(key: key);
   
   @override
   // ignore: no_logic_in_create_state
@@ -35,9 +37,9 @@ class _HotelFindViewState extends ViewState<HotelFindPage, HotelFindController> 
         ? const Center(child: CupertinoActivityIndicator())
         : ListView.builder(
           //shrinkWrap: true,
-          itemCount: controller.hotels.length,            
+          itemCount: widget.hotels.length,            
           itemBuilder: (BuildContext _, int index) {
-            final hotel = controller.hotels[index];
+            final hotel = widget.hotels[index];
             final room = hotel.roomsHotel.first.price.toString();
             // return Text(rooms);
             return HotelTile(

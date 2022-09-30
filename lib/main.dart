@@ -9,6 +9,7 @@ import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
 import 'package:lounga/app/pages/flight_get/flight_get_page.dart';
 import 'app/pages/flight_search/flight_search_page.dart';
 import 'app/pages/hotel_find/hotel_find_page.dart';
+import 'app/pages/hotel_search/hotel_search_page.dart';
 import 'app/pages/login/login_page.dart';
 import 'app/pages/register/register_page.dart';
 
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         //home: LoginPage(),
         //home: HotelGetPage(),
         //home: FlightFindPage(),
-        home: HotelFindPage(),
+        // home: HotelFindPage(),
+        home: HotelSearchPage(),
         onGenerateRoute: appNavigator.onGenerateRoutes);
   }
 }
