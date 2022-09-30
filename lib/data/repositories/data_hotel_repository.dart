@@ -36,7 +36,7 @@ class DataHotelRepository implements HotelRepository {
   @override
   Future<List<Hotel>> findHotel(String city, String bookingDate, int totalRoom, int duration) async {
     // TODO: implement findHotel
-    dio.options.headers['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwibmFtZSI6InNhbHNhIiwibmJmIjoxNjY0NDE3MzExLCJleHAiOjE2NjUwMjIxMTEsImlhdCI6MTY2NDQxNzMxMX0.ujcmgNbIglPjGVvKfOSsXL1goQTwphWruKAfcz6PLcg";
+    dio.options.headers['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwibmFtZSI6InNhbHNhIiwibmJmIjoxNjY0NDQwOTUzLCJleHAiOjE2NjUwNDU3NTMsImlhdCI6MTY2NDQ0MDk1M30.Jf0ChgYGrGA8xLgRhjRgWhAYswlKTcLD0NsJd6YynHE";
     try {
       final response = await dio.post(
         endpoints.findHotel,
