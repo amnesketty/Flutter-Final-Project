@@ -4,10 +4,16 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 import 'package:lounga/app/widgets/flight_tile.dart';
 
+import '../../../domain/entities/user.dart';
 import 'flight_find_controller.dart';
 
 class FlightFindPage extends View {
-  FlightFindPage({Key? key}) : super(key: key);
+  static const route = '/flight-find-page';
+
+  final User user;
+
+
+  FlightFindPage(this.user, {Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

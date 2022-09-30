@@ -5,6 +5,8 @@ import 'package:injector/injector.dart';
 import 'package:lounga/app/widgets/text_field.dart';
 
 class LoginPage extends View {
+  static const route = '/login-page';
+
   LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -44,7 +46,7 @@ class _LoginViewState extends ViewState<LoginPage, LoginController> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                     Center(
                       child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 30),
+                        margin: EdgeInsets.symmetric(vertical: 20),
                         height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: ElevatedButton(
@@ -59,7 +61,16 @@ class _LoginViewState extends ViewState<LoginPage, LoginController> {
                           ),
                           child: const Text("SIGN IN", style: TextStyle(color: Colors.white, fontSize: 20),)),
                       ),
-                    ),                    
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("Doesn't have an account? ", style: TextStyle(color: Colors.white),),
+                        TextButton(onPressed: () {
+                          controller.navigateToRegisterPage();
+                        }, child: const Text("SIGN UP", style: TextStyle(color: Colors.white),))
+                      ],
+                    ),
                   ],
                 ),
                 controller.isLoading ? 

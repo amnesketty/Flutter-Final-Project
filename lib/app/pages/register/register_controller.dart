@@ -3,6 +3,8 @@ import 'package:lounga/app/pages/register/register_presenter.dart';
 import 'package:lounga/domain/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
+import '../login/login_page.dart';
+
 class RegisterController extends Controller {
   final RegisterPresenter _presenter;
 
@@ -68,6 +70,11 @@ class RegisterController extends Controller {
   void showConfirmPassword() {
     _visibilityConfirmPassword = !_visibilityConfirmPassword;
     refreshUI();
+  }
+
+  void navigateToLoginPage() {
+    final context = getContext();
+    Navigator.pushReplacementNamed(context, LoginPage.route);
   }
 
   void _showLoading() {
