@@ -33,9 +33,9 @@ class TextFieldPassword extends StatelessWidget {
           hintText: textLabel,
           suffixIcon: IconButton(onPressed: refresh,
           //(){refresh;},
-          icon: visible == true ? Icon(Icons.visibility) : Icon(Icons.visibility_off))
+          icon: visible == true ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off))
         ),
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16
         ),
         //cursorColor: Color(0XFFE67E22),

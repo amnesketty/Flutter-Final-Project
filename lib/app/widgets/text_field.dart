@@ -27,7 +27,7 @@ class TextFieldCustome extends StatelessWidget {
           hintText: textLabel,
           //suffixIcon: IconButton(onPressed: (){}, icon: null)
         ),
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16
         ),
         //cursorColor: Color(0XFFE67E22),
