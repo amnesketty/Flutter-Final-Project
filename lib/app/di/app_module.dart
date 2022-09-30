@@ -1,3 +1,7 @@
+import 'package:lounga/app/pages/hotel_search/hotel_search_controller.dart';
+import 'package:lounga/app/pages/hotel_search/hotel_search_presenter.dart';
+import 'package:lounga/app/pages/register/register_controller.dart';
+import 'package:lounga/app/pages/register/register_presenter.dart';
 import 'package:lounga/app/navigator.dart';
 import 'package:lounga/app/pages/hotel_booking/hotel_detail_controller.dart';
 import 'package:lounga/domain/usecases/di/use_case_module.dart';
@@ -13,6 +17,8 @@ import '../pages/flight_find/flight_find_presenter.dart';
 import '../pages/flight_get/flight_get_controller.dart';
 import '../pages/flight_get/flight_get_presenter.dart';
 
+import '../pages/home/home_controller.dart';
+import '../pages/hotel_booking/hotel_booking_controller.dart';
 import '../pages/flight_search/flight_search_controller.dart';
 import '../pages/flight_search/flight_search_presenter.dart';
 import '../pages/hotel_find/hotel_find_controller.dart';
@@ -27,6 +33,11 @@ class AppModule {
         () => LoginPresenter(userLoginUseCase: injector.get()));
     injector.registerDependency<LoginController>(
         () => LoginController(injector.get()));
+    injector.registerDependency<RegisterPresenter>(
+        () => RegisterPresenter(userRegisterUsecase: injector.get()));
+    injector.registerDependency<RegisterController>(
+        () => RegisterController(injector.get()));
+    injector.registerDependency<HomeController>(() => HomeController());
 
     injector.registerDependency<FlightGetPresenter>(
         () => FlightGetPresenter(flightGetUseCase: injector.get()));
@@ -47,12 +58,19 @@ class AppModule {
         () => HotelGetPresenter(hotelGetUseCase: injector.get()));
     injector.registerDependency<HotelGetController>(
         () => HotelGetController(injector.get()));
+    injector.registerDependency<HotelSearchPresenter>(
+        () => HotelSearchPresenter(hotelSearchUseCase: injector.get()));
+    injector.registerDependency<HotelSearchController>(
+        () => HotelSearchController(injector.get()));
     injector.registerDependency<HotelFindPresenter>(
         () => HotelFindPresenter(hotelFindUseCase: injector.get()));
     injector.registerDependency<HotelFindController>(
         () => HotelFindController(injector.get()));
     injector.registerDependency<HotelDetailController>(
         () => HotelDetailController());
+    () => HotelDetailController();
+    injector.registerDependency<HotelBookingController>(
+        () => HotelBookingController(injector.get()));
 
     injector.registerSingleton<AppNavigator>(() => AppNavigator());
   }

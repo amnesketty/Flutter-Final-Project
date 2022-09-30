@@ -3,6 +3,8 @@ import 'package:lounga/app/pages/login/login_presenter.dart';
 import 'package:lounga/domain/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
+import '../register/register_page.dart';
+
 class LoginController extends Controller {
   final LoginPresenter _presenter;
 
@@ -30,10 +32,10 @@ class LoginController extends Controller {
     //_loginUser();
   }
 
-  void _loginUser(String username, String password) {
-    _showLoading();
-    _presenter.loginUser(username, password);
-  }
+  // void _loginUser(String username, String password) {
+  //   _showLoading();
+  //   _presenter.loginUser(username, password);
+  // }
 
   void _initObserver() {
     _presenter.onErrorUserLogin = (e) {
@@ -52,6 +54,11 @@ class LoginController extends Controller {
     _showLoading();
     _presenter.loginUser(username, password);
     //_loginUser(username, password);
+  }
+
+  void navigateToRegisterPage() {
+    final context = getContext();
+    Navigator.pushReplacementNamed(context, RegisterPage.route);
   }
 
   void _showLoading() {

@@ -4,17 +4,17 @@ import 'package:lounga/domain/repositories/hotel_repository.dart';
 import 'package:lounga/domain/entities/hotel.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-class HotelFind extends UseCase<List<Hotel>, dynamic> {
+class HotelFind extends UseCase<List<Hotel>, HotelFindParams> {
   final HotelRepository repository;
 
   HotelFind(this.repository);
 
   @override
-  Future<Stream<List<Hotel>>> buildUseCaseStream(params) async {
+  Future<Stream<List<Hotel>>> buildUseCaseStream(HotelFindParams? params) async {
     final streamController = StreamController<List<Hotel>>();
 
     try {
-      final hotel = await repository.findHotel("jakarta", "2022-09-15T14:27:33.575Z", 1, 1);
+      final hotel = await repository.findHotel(params!.city, params.bookingDate, params.totalRoom, params.duration);
       streamController.add(hotel);
       streamController.close();
     } catch (e, stackTrace) {
@@ -24,4 +24,12 @@ class HotelFind extends UseCase<List<Hotel>, dynamic> {
 
     return streamController.stream;
   }
+}
+
+class HotelFindParams {
+  final String city;
+  final String bookingDate;
+  final int totalRoom;
+  final int duration;
+  HotelFindParams(this.city, this.bookingDate, this.totalRoom, this.duration);
 }
