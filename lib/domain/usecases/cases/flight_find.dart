@@ -3,18 +3,23 @@ import 'package:lounga/domain/entities/flight.dart';
 import 'package:lounga/domain/repositories/flights_repository.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-class FlightFind extends UseCase<List<Flight>, dynamic> {
+class FlightFind extends UseCase<List<Flight>, FlightFindParams> {
   final FlightRepository repository;
 
   FlightFind(this.repository);
 
   @override
-  Future<Stream<List<Flight>>> buildUseCaseStream(params) async {
+  Future<Stream<List<Flight>>> buildUseCaseStream(
+      FlightFindParams? params) async {
     final streamController = StreamController<List<Flight>>();
 
     try {
-      final flight = await repository.findFlight("Economy", "Yogyakarta (YIA)",
-          "Medan (KNO)", "2022-09-14T04:58:38.715Z");
+      final flight = await repository.findFlight(
+          params!.seatClass,
+          params.destinationFrom,
+          params.destinationTo,
+          params.departureDate,
+          params.amountPassengers);
       streamController.add(flight);
       streamController.close();
     } catch (e, stackTrace) {
@@ -24,4 +29,14 @@ class FlightFind extends UseCase<List<Flight>, dynamic> {
 
     return streamController.stream;
   }
+}
+
+class FlightFindParams {
+  final String seatClass;
+  final String destinationFrom;
+  final String destinationTo;
+  final String departureDate;
+  final int amountPassengers;
+  FlightFindParams(this.seatClass, this.destinationFrom, this.destinationTo,
+      this.departureDate, this.amountPassengers);
 }

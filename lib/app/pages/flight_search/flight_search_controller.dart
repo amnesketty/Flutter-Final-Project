@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
 import 'package:lounga/domain/entities/flight.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'flight_search_presenter.dart';
@@ -13,17 +14,37 @@ class FlightSearchController extends Controller {
 
   List<Flight> _flights = [];
   List<Flight> get flights => _flights;
+
   TextEditingController dateCtl = TextEditingController();
+  TextEditingController _controllerseatClass = TextEditingController();
+  TextEditingController get controllerseatClass => _controllerseatClass;
+  TextEditingController _controllerdestinationFrom = TextEditingController();
+  TextEditingController get controllerdestinationFrom =>
+      _controllerdestinationFrom;
+  TextEditingController _controllerdestinationTo = TextEditingController();
+  TextEditingController get controllerdestinationTo => _controllerdestinationTo;
+  TextEditingController _controllerdepartureDate = TextEditingController();
+  TextEditingController get controllerdepartureDate => _controllerdepartureDate;
+  TextEditingController _controlleramountPassenger = TextEditingController();
+  TextEditingController get controlleramountPassenger =>
+      _controlleramountPassenger;
 
   @override
   void initListeners() {
     _initObserver();
-    _searchFlight();
+    // _searchFlight();
   }
 
-  void _searchFlight() {
+  Future<void> searchFlight(String seatClass, String destinationFrom,
+      String destinationTo, String departureDate, int amountPassenger) async {
     _showLoading();
-    _presenter.searchFlight();
+    _presenter.searchFlight(seatClass, destinationFrom, destinationTo,
+        departureDate, amountPassenger);
+    do {
+      await Future.delayed(const Duration(milliseconds: 10));
+    } while (_isLoading);
+    final context = getContext();
+    Navigator.pushNamed(context, FlightFindPage.route, arguments: _flights);
   }
 
   void _initObserver() {
@@ -34,6 +55,11 @@ class FlightSearchController extends Controller {
     _presenter.onSuccessFlightSearch = (List<Flight> data) {
       _flights = data;
     };
+  }
+
+  void navigateToFlightFind() {
+    final context = getContext();
+    Navigator.pushNamed(context, FlightFindPage.route, arguments: _flights);
   }
 
   void _showLoading() {
@@ -49,6 +75,11 @@ class FlightSearchController extends Controller {
   @override
   void onDisposed() {
     super.onDisposed();
+    _controllerseatClass.dispose();
+    _controllerdestinationFrom.dispose();
+    _controllerdestinationTo.dispose();
+    _controllerdepartureDate.dispose();
+    _controlleramountPassenger.dispose();
     _presenter.dispose();
   }
 }

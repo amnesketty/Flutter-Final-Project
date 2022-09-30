@@ -4,5 +4,5 @@ abstract class FlightRepository {
   Future<List<Flight>> getAllFlight();
 
   Future<List<Flight>> findFlight(String seatClass, String destinationFrom,
-      String destinationTo, String departureDate);
+      String destinationTo, String departureDate, int amountPassengers);
 }

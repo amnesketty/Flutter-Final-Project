@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:lounga/domain/entities/flight.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import '../flight_booking/flight_detail_page.dart';
 import 'flight_find_presenter.dart';
 
 class FlightFindController extends Controller {
@@ -16,12 +18,14 @@ class FlightFindController extends Controller {
   @override
   void initListeners() {
     _initObserver();
-    _findFlight();
+    //_findFlight();
   }
 
-  void _findFlight() {
+  void findFlight(String seatClass, String destinationFrom,
+      String destinationTo, String departureDate, int amountPassenger) {
     _showLoading();
-    _presenter.findFlight();
+    _presenter.findFlight(seatClass, destinationFrom, destinationTo,
+        departureDate, amountPassenger);
   }
 
   void _initObserver() {
@@ -32,6 +36,11 @@ class FlightFindController extends Controller {
     _presenter.onSuccessFlightFind = (List<Flight> data) {
       _flights = data;
     };
+  }
+
+  void navigateToFlightDetail(Flight flight) {
+    final context = getContext();
+    Navigator.pushNamed(context, FlightDetailPage.route, arguments: flight);
   }
 
   void _showLoading() {
@@ -47,6 +56,10 @@ class FlightFindController extends Controller {
   @override
   void onDisposed() {
     super.onDisposed();
+    // _controllerseatClass.dispose();
+    // _controllerdestinationFrom.dispose();
+    // _controllerdestinationTo.dispose();
+    // _controllerdepartureDate.dispose();
     _presenter.dispose();
   }
 }

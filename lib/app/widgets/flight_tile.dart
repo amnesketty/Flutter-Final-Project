@@ -4,12 +4,12 @@ import '../../domain/entities/flight.dart';
 
 class FlightTile extends StatelessWidget {
   final Flight flight;
-  // final Function(Flight) onFlightClicked;
+  final Function(Flight) onFlightClicked;
 
   const FlightTile({
     super.key,
     required this.flight,
-    //required this.onFlightClicked,
+    required this.onFlightClicked,
   });
 
   @override
@@ -17,7 +17,7 @@ class FlightTile extends StatelessWidget {
         children: [
           const SizedBox(height: 10),
           Container(
-              height: MediaQuery.of(context).size.height * 0.2,
+              height: MediaQuery.of(context).size.height * 0.225,
               margin: const EdgeInsets.only(left: 8.0, right: 8.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -96,9 +96,7 @@ class FlightTile extends StatelessWidget {
                           SizedBox(
                             width: 10,
                           ),
-                          Icon(
-                            Icons.arrow_right_alt_sharp,
-                          ),
+                          Icon(Icons.arrow_right_alt_outlined),
                           SizedBox(
                             width: 10,
                           ),
@@ -134,14 +132,20 @@ class FlightTile extends StatelessWidget {
                                       fontSize: 15))
                         ],
                       ),
-                      const Spacer(),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Row(
                         children: [
                           Icon(Icons.luggage),
                           SizedBox(
-                            width: 300,
+                            width: 280,
                           ),
-                          Icon(Icons.keyboard_arrow_right_sharp)
+                          IconButton(
+                              icon: Icon(Icons.keyboard_arrow_right_sharp),
+                              onPressed: () {
+                                onFlightClicked(flight);
+                              })
                         ],
                       ),
                     ],

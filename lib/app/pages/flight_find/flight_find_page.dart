@@ -4,10 +4,16 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 import 'package:lounga/app/widgets/flight_tile.dart';
 
+import '../../../domain/entities/flight.dart';
 import 'flight_find_controller.dart';
 
 class FlightFindPage extends View {
-  FlightFindPage({Key? key}) : super(key: key);
+  static const route = '/flight-find';
+
+  final List<Flight> flights;
+  const FlightFindPage(this.flights, {Key? key}) : super(key: key);
+
+  // FlightFindPage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -36,11 +42,17 @@ class _FlightFindViewState
                     ? const Center(child: CupertinoActivityIndicator())
                     : ListView.builder(
                         //shrinkWrap: true,
-                        itemCount: controller.flights.length,
+                        // itemCount: controller.flights.length,
+                        itemCount: widget.flights.length,
                         itemBuilder: (BuildContext _, int index) {
-                          final flight = controller.flights[index];
+                          final flight = widget.flights[index];
                           // return Text(rooms);
-                          return FlightTile(flight: flight);
+                          return FlightTile(
+                            flight: flight,
+                            onFlightClicked: (Flight flight) {
+                              controller.navigateToFlightDetail(flight);
+                            },
+                          );
                         })),
       );
 }
