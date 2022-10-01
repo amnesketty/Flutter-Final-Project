@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:lounga/app/pages/hotel_booking/hotel_detail_controller.dart';
+
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
@@ -30,7 +31,7 @@ class _HotelBookingViewState
   _HotelBookingViewState(super.controller);
   @override
   Widget get view => Scaffold(
-      //key: globalKey,
+      key: globalKey,
       appBar: AppBar(
         backgroundColor: const Color(0XFFE67E22),
         centerTitle: true,
@@ -42,8 +43,91 @@ class _HotelBookingViewState
           children: [
             Container(
               width: MediaQuery.of(context).size.width * 1,
-              height: MediaQuery.of(context).size.height * 0.27,
-              color: const Color(0XFFE67E22)
+              height: MediaQuery.of(context).size.height * 0.2,
+              color: const Color(0XFFE67E22),
+              child: 
+                Row(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.04),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // ignore: prefer_const_literals_to_create_immutables
+                      children: [
+                        SizedBox(height: 15),
+                        Text('Your Booking Summary', style: 
+                          TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w900)),
+                        SizedBox(height: 5),
+                        Row(children: [
+                          Icon(Icons.airline_seat_individual_suite_rounded),
+                          SizedBox(width:5),
+                          Text(widget.hotel.name, style: 
+                            TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w900)),
+                        ]),
+                        SizedBox(height: 5),
+                        // ignore: prefer_const_literals_to_create_immutables
+                        Row(children: [
+                          Text('Check-in', style: 
+                            TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900)),
+                          SizedBox(width: MediaQuery.of(context).size.width * 0.2),
+                          Text('Saturday, 31-Dec-2022 (14:00)', style: 
+                            TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900))
+                        ]),
+                        SizedBox(height: 5),
+                        // ignore: prefer_const_literals_to_create_immutables
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                          Text('Check-out', style: 
+                            TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900)),
+                          // Spacer(),
+                          SizedBox(width: MediaQuery.of(context).size.width * 0.2),
+                          Text('Sunday, 1-Jan-2023 (12:00)', style: 
+                            TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900))
+                        ]),
+                        SizedBox(height: 5),
+                        Row(children: [
+                          Text('1x', style: 
+                            TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900)),
+                          SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+                          Text(widget.hotel.roomsHotel.first.type, style: 
+                            TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900))
+                        ]),
+                        SizedBox(height: 5),
+                        Row(children: [
+                          Text('1x', style: 
+                            TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900)),
+                          SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+                          Text('Room(s)', style: 
+                            TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900))
+                        ]),
+                      ],
+
+                    )
+                
+              ],)
+
+              
             ),
             Container(
               margin: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
@@ -86,7 +170,7 @@ class _HotelBookingViewState
                       )), 
                     const SizedBox(height: 7),
                     TextFieldCustome(textEditingController: controller.controllerPhone, textLabel: "Phone"),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: TextButton(

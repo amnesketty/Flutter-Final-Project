@@ -7,17 +7,17 @@ class HotelBookingPresenter extends Presenter {
   late Function(dynamic error) onErrorHotelBooking;
   late Function() onFinishHotelBooking;
 
-  final HotelBooking hotelBookingUsecase;
+  final HotelBooking hotelBookingUseCase;
 
-  HotelBookingPresenter({required this.hotelBookingUsecase});
+  HotelBookingPresenter({required this.hotelBookingUseCase});
 
   void hotelBooking(String bookingDate, int totalRoom, int price, int hotelId, int roomId) {
-    hotelBookingUsecase.execute(_HotelBookingObserver(this), HotelBookingParams(bookingDate, totalRoom, price, hotelId, roomId));
+    hotelBookingUseCase.execute(_HotelBookingObserver(this), HotelBookingParams(bookingDate, totalRoom, price, hotelId, roomId));
   }
 
   @override
   void dispose() {
-    hotelBookingUsecase.dispose();
+    hotelBookingUseCase.dispose();
   }
 }
 
