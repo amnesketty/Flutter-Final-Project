@@ -61,4 +61,18 @@ class DataFlightRepository implements FlightRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<int> bookingFlight(
+      String bookingDate,
+      String airline,
+      String destinationFrom,
+      String destinationTo,
+      String departureTime,
+      String arrivalTime,
+      String seatClass,
+      int flightId) {
+    // TODO: implement bookingFlight
+    throw UnimplementedError();
+  }
 }
