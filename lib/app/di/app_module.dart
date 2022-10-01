@@ -11,6 +11,8 @@ import 'package:injector/injector.dart';
 import 'package:lounga/app/pages/login/login_controller.dart';
 import 'package:lounga/app/pages/login/login_presenter.dart';
 
+import '../pages/flight_booking/flight_booking_controller.dart';
+import '../pages/flight_booking/flight_booking_presenter.dart';
 import '../pages/flight_booking/flight_detail_controller.dart';
 import '../pages/flight_find/flight_find_controller.dart';
 import '../pages/flight_find/flight_find_presenter.dart';
@@ -53,6 +55,8 @@ class AppModule {
         () => FlightSearchController(injector.get()));
     injector.registerDependency<FlightDetailController>(
         () => FlightDetailController());
+    injector.registerDependency<FlightBookingController>(
+        () => FlightBookingController(injector.get()));
 
     injector.registerDependency<HotelGetPresenter>(
         () => HotelGetPresenter(hotelGetUseCase: injector.get()));
