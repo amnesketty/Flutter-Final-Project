@@ -21,12 +21,12 @@ class FlightFindController extends Controller {
     //_findFlight();
   }
 
-  void findFlight(String seatClass, String destinationFrom,
-      String destinationTo, String departureDate, int amountPassenger) {
-    _showLoading();
-    _presenter.findFlight(seatClass, destinationFrom, destinationTo,
-        departureDate, amountPassenger);
-  }
+  // void findFlight(String seatClass, String destinationFrom,
+  //     String destinationTo, String departureDate, int amountPassenger) {
+  //   _showLoading();
+  //   _presenter.findFlight(seatClass, destinationFrom, destinationTo,
+  //       departureDate, amountPassenger);
+  // }
 
   void _initObserver() {
     _presenter.onErrorFlightFind = (e) {};

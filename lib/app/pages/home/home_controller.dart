@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
+import 'package:lounga/app/pages/flight_search/flight_search_page.dart';
 import 'package:lounga/domain/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
@@ -29,8 +30,8 @@ class HomeController extends Controller {
     refreshUI();
   }
 
-  void navigateToFindFlight(User user) {
+  void navigateToSearchFlight(User user) {
     final context = getContext();
-    Navigator.pushNamed(context, FlightFindPage.route, arguments: user);
+    Navigator.pushNamed(context, FlightSearchPage.route, arguments: user);
   }
 }

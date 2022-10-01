@@ -46,7 +46,9 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
                   ),
                   backgroundColor: Colors.white
                 ),
-                onPressed: () {},
+                onPressed: () {                  
+                  controller.navigateToSearchFlight(widget.user);
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -61,7 +63,8 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.3,
               child: ElevatedButton (
-                onPressed: () {},
+                onPressed: () {
+                },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5)
