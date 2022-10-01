@@ -5,13 +5,15 @@ import 'package:injector/injector.dart';
 import 'package:lounga/app/widgets/flight_tile.dart';
 
 import '../../../domain/entities/flight.dart';
+import '../../../domain/entities/user.dart';
 import 'flight_find_controller.dart';
 
 class FlightFindPage extends View {
   static const route = '/flight-find';
 
   final List<Flight> flights;
-  const FlightFindPage(this.flights, {Key? key}) : super(key: key);
+  final User user;
+  const FlightFindPage(this.flights, this.user, {Key? key}) : super(key: key);
 
   // FlightFindPage({Key? key}) : super(key: key);
 

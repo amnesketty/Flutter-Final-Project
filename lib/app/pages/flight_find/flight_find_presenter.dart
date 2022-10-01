@@ -11,13 +11,13 @@ class FlightFindPresenter extends Presenter {
 
   FlightFindPresenter({required this.flightFindUseCase});
 
-  void findFlight(String seatClass, String destinationFrom,
-      String destinationTo, String departureDate, int amountPassenger) {
-    flightFindUseCase.execute(
-        _FlightFindObserver(this),
-        FlightFindParams(seatClass, destinationFrom, destinationTo,
-            departureDate, amountPassenger));
-  }
+  // void findFlight(String seatClass, String destinationFrom,
+  //     String destinationTo, String departureDate, int amountPassenger) {
+  //   flightFindUseCase.execute(
+  //       _FlightFindObserver(this),
+  //       FlightFindParams(seatClass, destinationFrom, destinationTo,
+  //           departureDate, amountPassenger));
+  // }
 
   @override
   void dispose() {

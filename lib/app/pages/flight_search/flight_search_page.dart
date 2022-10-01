@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
+import '../../../domain/entities/user.dart';
 import 'flight_search_controller.dart';
 
 class FlightSearchPage extends View {
-  FlightSearchPage({Key? key}) : super(key: key);
+  static const route = '/flight-search';
+  final User user;
+  
+  FlightSearchPage(this.user, {Key? key}) : super(key: key);
 
   @override
   // ignore: no_logic_in_create_state
@@ -28,7 +32,7 @@ class _FlightSearchViewState
         key: globalKey,
         appBar: AppBar(
           title: const Text('Flights - One Way Trip'),
-          leading: Icon(Icons.arrow_back),
+          //leading: Icon(Icons.arrow_back),
           // actions: [Text("One Way Trip")],
           backgroundColor: const Color(0XFFE67E22),
         ),
@@ -141,29 +145,21 @@ class _FlightSearchViewState
                               controller.controllerdestinationTo.text,
                               controller.controllerdepartureDate.text,
                               int.parse(
-                                  controller.controlleramountPassenger.text));
+                                  controller.controlleramountPassenger.text),
+                              widget.user    
+                              );
                         },
                         child: Container(
                           alignment: Alignment.center,
                           padding:
                               const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0),
-                          child: TextButton(
-                              onPressed: () {
-                                controller.searchFlight(
-                                    controller.controllerseatClass.text,
-                                    controller.controllerdestinationFrom.text,
-                                    controller.controllerdestinationTo.text,
-                                    controller.controllerdepartureDate.text,
-                                    int.parse(controller
-                                        .controlleramountPassenger.text));
-                              },
                               child: const Text(
                                 'Search',
                                 style: TextStyle(
                                     color: Color(0xFFFFFFFF),
                                     fontWeight: FontWeight.w700,
                                     fontSize: 17),
-                              )),
+                              ),
                         ),
                       ),
                     ),

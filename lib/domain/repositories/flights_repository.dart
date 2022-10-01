@@ -15,4 +15,5 @@ abstract class FlightRepository {
       String arrivalTime,
       String seatClass,
       int flightId);
+      String destinationTo, String departureDate, int amountPassengers, String token);
 }

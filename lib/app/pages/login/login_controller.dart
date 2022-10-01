@@ -3,6 +3,7 @@ import 'package:lounga/app/pages/login/login_presenter.dart';
 import 'package:lounga/domain/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
+import '../home/home_page.dart';
 import '../register/register_page.dart';
 
 class LoginController extends Controller {
@@ -14,11 +15,11 @@ class LoginController extends Controller {
   bool get isLoading => _isLoading;
 
   User? _user = User(
-      firstName: "test",
-      lastName: "test",
-      email: "test",
-      phone: "test",
-      token: "test");
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      token: "");
   User? get user => _user;
 
   TextEditingController _controllerUsername = TextEditingController();
@@ -29,13 +30,7 @@ class LoginController extends Controller {
   @override
   void initListeners() {
     _initObserver();
-    //_loginUser();
   }
-
-  // void _loginUser(String username, String password) {
-  //   _showLoading();
-  //   _presenter.loginUser(username, password);
-  // }
 
   void _initObserver() {
     _presenter.onErrorUserLogin = (e) {
@@ -49,11 +44,16 @@ class LoginController extends Controller {
     };
   }
 
-  void loginNow(String username, String password) {
-    //_initObserver();
+  Future<void> loginNow(String username, String password) async {
     _showLoading();
     _presenter.loginUser(username, password);
-    //_loginUser(username, password);
+    do {
+      await Future.delayed(const Duration(milliseconds: 100));
+    } while (_isLoading);
+    if (_user?.token != "") {
+      final context = getContext();
+      Navigator.pushNamed(context, HomePage.route, arguments: _user);
+    }
   }
 
   void navigateToRegisterPage() {

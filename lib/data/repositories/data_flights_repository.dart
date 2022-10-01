@@ -33,10 +33,10 @@ class DataFlightRepository implements FlightRepository {
 
   @override
   Future<List<Flight>> findFlight(String seatClass, String destinationFrom,
-      String destinationTo, String departureDate, int amountPassengers) async {
+      String destinationTo, String departureDate, int amountPassengers, String token) async {
     // TODO: implement findFlight
     dio.options.headers['Authorization'] =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIyIiwibmFtZSI6Im5pbmRpIiwibmJmIjoxNjY0NTI5NDI4LCJleHAiOjE2NjUxMzQyMjgsImlhdCI6MTY2NDUyOTQyOH0.xQkiqcacZSnxV-pAbH1-Rcs8geZo309YmEgxUCRE81w';
+        'Bearer $token';
     try {
       final response = await dio.post(endpoints.findFlights, data: {
         "seatClass": seatClass,
