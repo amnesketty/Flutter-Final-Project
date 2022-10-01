@@ -3,8 +3,13 @@ import 'package:lounga/domain/entities/flight.dart';
 abstract class FlightRepository {
   Future<List<Flight>> getAllFlight();
 
-  Future<List<Flight>> findFlight(String seatClass, String destinationFrom,
-      String destinationTo, String departureDate, int amountPassengers);
+  Future<List<Flight>> findFlight(
+      String seatClass,
+      String destinationFrom,
+      String destinationTo,
+      String departureDate,
+      int amountPassengers,
+      String token);
 
   Future<int> bookingFlight(
       String bookingDate,
@@ -15,5 +20,4 @@ abstract class FlightRepository {
       String arrivalTime,
       String seatClass,
       int flightId);
-      String destinationTo, String departureDate, int amountPassengers, String token);
 }
