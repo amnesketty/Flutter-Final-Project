@@ -19,7 +19,8 @@ class FlightFind extends UseCase<List<Flight>, FlightFindParams> {
           params.destinationFrom,
           params.destinationTo,
           params.departureDate,
-          params.amountPassengers);
+          params.amountPassengers,
+          params.token);
       streamController.add(flight);
       streamController.close();
     } catch (e, stackTrace) {
@@ -37,6 +38,7 @@ class FlightFindParams {
   final String destinationTo;
   final String departureDate;
   final int amountPassengers;
+  final String token;
   FlightFindParams(this.seatClass, this.destinationFrom, this.destinationTo,
-      this.departureDate, this.amountPassengers);
+      this.departureDate, this.amountPassengers, this.token);
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
 import 'package:lounga/domain/entities/flight.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import '../../../domain/entities/user.dart';
 import 'flight_search_presenter.dart';
 
 class FlightSearchController extends Controller {
@@ -11,6 +12,8 @@ class FlightSearchController extends Controller {
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+
+  late User _user;
 
   List<Flight> _flights = [];
   List<Flight> get flights => _flights;
@@ -36,15 +39,16 @@ class FlightSearchController extends Controller {
   }
 
   Future<void> searchFlight(String seatClass, String destinationFrom,
-      String destinationTo, String departureDate, int amountPassenger) async {
+      String destinationTo, String departureDate, int amountPassenger, User user) async {
+    _user = user;
     _showLoading();
     _presenter.searchFlight(seatClass, destinationFrom, destinationTo,
-        departureDate, amountPassenger);
+        departureDate, amountPassenger, user.token);
     do {
       await Future.delayed(const Duration(milliseconds: 10));
     } while (_isLoading);
     final context = getContext();
-    Navigator.pushNamed(context, FlightFindPage.route, arguments: _flights);
+    Navigator.pushNamed(context, FlightFindPage.route, arguments: FlightsArgument(_flights, _user));
   }
 
   void _initObserver() {
@@ -82,4 +86,10 @@ class FlightSearchController extends Controller {
     _controlleramountPassenger.dispose();
     _presenter.dispose();
   }
+}
+
+class FlightsArgument {
+  List<Flight> flights;
+  User user;
+  FlightsArgument(this.flights, this.user);
 }
