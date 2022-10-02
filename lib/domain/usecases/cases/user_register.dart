@@ -19,7 +19,6 @@ class UserRegister extends UseCase<int, UserRegisterParams> {
       logger.severe('StackTrace: $stackTrace');
       streamController.addError(e, stackTrace);
     }
-
     return streamController.stream;
   }
 }

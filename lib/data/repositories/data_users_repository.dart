@@ -29,8 +29,9 @@ class DataUserRepository implements UserRepository {
   
   @override
   Future<int> register(String firstName, String lastName, String username, String email, String phone, String password) async {
+    print("TEST 123");
     try {
-      final response = await dio.post(endpoints.login,
+      final response = await dio.post(endpoints.register,
           data: {
             "firstName": firstName,
             "lastName": lastName,
@@ -40,6 +41,7 @@ class DataUserRepository implements UserRepository {
             "password": password
             });
       final userResponse = response.data['data'] as int;
+      print(userResponse);
       return userResponse;
     } catch (e) {
       rethrow;

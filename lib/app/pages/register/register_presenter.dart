@@ -5,7 +5,7 @@ class RegisterPresenter extends Presenter {
   late Function(int?) onSuccessUserLogin;
   late Function(dynamic error) onErrorUserLogin;
   late Function() onFinishUserLogin;
-
+  
   final UserRegister userRegisterUsecase;
 
   RegisterPresenter({required this.userRegisterUsecase});
