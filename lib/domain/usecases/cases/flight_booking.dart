@@ -21,7 +21,8 @@ class FlightBooking extends UseCase<int, FlightBookingParams> {
           params.departureTime,
           params.arrivalTime,
           params.seatClass,
-          params.flightId);
+          params.flightId,
+          params.token);
       streamController.add(bookingFlightId);
       streamController.close();
     } catch (e, stackTrace) {
@@ -42,6 +43,7 @@ class FlightBookingParams {
   final String arrivalTime;
   final String seatClass;
   final int flightId;
+  final String token;
   FlightBookingParams(
       this.bookingDate,
       this.airline,
@@ -50,5 +52,6 @@ class FlightBookingParams {
       this.departureTime,
       this.arrivalTime,
       this.seatClass,
-      this.flightId);
+      this.flightId,
+      this.token);
 }

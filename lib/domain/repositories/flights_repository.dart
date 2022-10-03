@@ -19,5 +19,13 @@ abstract class FlightRepository {
       String departureTime,
       String arrivalTime,
       String seatClass,
-      int flightId);
+      int flightId,
+      String token);
+
+  Future<int> addPassenger(
+      String title,
+      String name,
+      String idCard,
+      int bookingFlightId
+);
 }

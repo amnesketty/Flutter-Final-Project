@@ -97,3 +97,33 @@ class FacilitiesFlight {
         entertainment: entertainment);
   }
 }
+
+class BookingFlight {
+  final int id, status, amountPassenger, totalPrice;
+  final String bookingDate, bookingFlightNo;
+
+  BookingFlight(
+      {required this.id,
+      required this.status,
+      required this.amountPassenger,
+      required this.totalPrice,
+      required this.bookingDate,
+      required this.bookingFlightNo});
+
+  factory BookingFlight.fromResponse(Map<String, dynamic> response) {
+    final status = response['status'] ?? '';
+    final amountPassenger = response['amountPassenger'] ?? '';
+    final totalPrice = response['totalPrice'] ?? '';
+    final bookingDate = response['bookingDate'] ?? '';
+    final bookingFlightNo = response['bookingFlightNo'] ?? '';
+    final id = response['id'] ?? 0;
+
+    return BookingFlight(
+        id: id,
+        status: status,
+        amountPassenger: amountPassenger,
+        totalPrice: totalPrice,
+        bookingDate: bookingDate,
+        bookingFlightNo: bookingFlightNo);
+  }
+}

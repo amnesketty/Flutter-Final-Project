@@ -1,4 +1,5 @@
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:lounga/domain/usecases/cases/passenger_add.dart';
 import '../../../domain/usecases/cases/flight_booking.dart';
 
 class FlightBookingPresenter extends Presenter {
@@ -6,9 +7,15 @@ class FlightBookingPresenter extends Presenter {
   late Function(dynamic error) onErrorFlightBooking;
   late Function() onFinishFlightBooking;
 
-  final FlightBooking flightBookingUseCase;
+  late Function(int?) onSuccessPassengerAdd;
+  late Function(dynamic error) onErrorPassengerAdd;
+  late Function() onFinishPassengerAdd;
 
-  FlightBookingPresenter({required this.flightBookingUseCase});
+  final FlightBooking flightBookingUseCase;
+  final PassengerAdd passengerAddUseCase;
+
+  FlightBookingPresenter({required this.flightBookingUseCase, required this.passengerAddUseCase});
+
 
   void flightBooking(
       String bookingDate,
@@ -18,16 +25,24 @@ class FlightBookingPresenter extends Presenter {
       String departureTime,
       String arrivalTime,
       String seatClass,
-      int flightId) {
+      int flightId,
+      String token) {
     flightBookingUseCase.execute(
         _FlightBookingObserver(this),
         FlightBookingParams(bookingDate, airline, destinationFrom,
-            destinationTo, departureTime, arrivalTime, seatClass, flightId));
+            destinationTo, departureTime, arrivalTime, seatClass, flightId, token));
+  }
+
+  void passengerAdd(
+      String title, String name, String idCard, int bookingFlightId, String token) {
+    passengerAddUseCase.execute(_PassengerAddObserver(this),
+        PassengerAddParams(title, name, idCard, bookingFlightId, token));
   }
 
   @override
   void dispose() {
     flightBookingUseCase.dispose();
+    passengerAddUseCase.dispose();
   }
 }
 
@@ -50,5 +65,27 @@ class _FlightBookingObserver extends Observer<int> {
   void onNext(int? response) {
     int? user = response;
     presenter.onSuccessFlightBooking(user);
+  }
+}
+
+class _PassengerAddObserver extends Observer<int> {
+  final FlightBookingPresenter presenter;
+
+  _PassengerAddObserver(this.presenter);
+
+  @override
+  void onComplete() {
+    presenter.onFinishPassengerAdd();
+  }
+
+  @override
+  void onError(e) {
+    presenter.onErrorPassengerAdd(e);
+  }
+
+  @override
+  void onNext(int? response) {
+    int? user = response;
+    presenter.onSuccessPassengerAdd(user);
   }
 }

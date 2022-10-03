@@ -1,11 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:lounga/app/pages/flight_booking/flight_booking_presenter.dart';
+import 'package:lounga/app/pages/flight_search/flight_search_page.dart';
+import 'package:lounga/domain/entities/passenger.dart';
+import 'package:lounga/domain/entities/user.dart';
+
+import '../../../domain/entities/flight.dart';
+import '../flight_search/flight_search_controller.dart';
 
 class FlightBookingController extends Controller {
   final FlightBookingPresenter _presenter;
 
   FlightBookingController(this._presenter);
+
+  int _valueDropdownTitle = 1;
+  int get valueDropdownTitle => _valueDropdownTitle;
+
+  late User _user;
+
+  int? _bookingFlightId;
+  int? get bookingFlightId => _bookingFlightId;
+
+  List<Passenger> _passengers = [];
+  List<Passenger> get passengers => _passengers;
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -19,7 +36,7 @@ class FlightBookingController extends Controller {
 
   @override
   void initListeners() {
-    // _initObserver();
+    _initObserver();
   }
 
   // void bookingNow(
@@ -41,6 +58,59 @@ class FlightBookingController extends Controller {
   //   _presenter.addPassenger(title, name, idCard, bookingFlightId);
   // }
 
+  Future<void> bookFlight(String title, String name, String idCard,
+      Flight flight, User user, String departureDate) async {
+    //_user = user;
+    _showLoading();
+    _presenter.flightBooking(
+        departureDate,
+        flight.airline,
+        flight.destinationFrom,
+        flight.destinationTo,
+        flight.departureTime,
+        flight.arrivalTime,
+        flight.seatClass,
+        flight.id,
+        user.token);
+    do {
+      await Future.delayed(const Duration(milliseconds: 10));
+    } while (_isLoading);
+    _presenter.passengerAdd(title, name, idCard, _bookingFlightId!, user.token);
+    //final context = getContext();
+    //Navigator.pushNamed(context, FlightSearchPage.route, arguments: PassengersArgument(_passengers, _user));
+  }
+
+  void _initObserver() {
+    _presenter.onErrorFlightBooking = (e) {
+      _hideLoading();
+    };
+    _presenter.onErrorPassengerAdd = (e) {
+      _hideLoading();
+    };
+
+    _presenter.onFinishFlightBooking = () {
+      _hideLoading();
+    };
+
+    _presenter.onFinishPassengerAdd = () {
+      _hideLoading();
+    };
+    _presenter.onSuccessPassengerAdd = (int? data) {
+      //_passengers = data;
+      _hideLoading();
+    };
+    _presenter.onSuccessFlightBooking = (int? data) {
+      _bookingFlightId = data;
+      _hideLoading();
+    };
+  }
+
+  void navigateToFlightSearch(Flight flight) {
+    final context = getContext();
+    Navigator.pushNamed(context, FlightSearchPage.route,
+        arguments: _passengers);
+  }
+
   void _showLoading() {
     _isLoading = true;
     refreshUI();
@@ -48,6 +118,11 @@ class FlightBookingController extends Controller {
 
   void _hideLoading() {
     _isLoading = false;
+    refreshUI();
+  }
+
+  void onChangedDropdownTitle(int value) {
+    _valueDropdownTitle = value;
     refreshUI();
   }
 
@@ -59,4 +134,10 @@ class FlightBookingController extends Controller {
     _controllerIdCard.dispose();
     _presenter.dispose();
   }
+}
+
+class PassengersArgument {
+  List<Passenger> passengers;
+  User user;
+  PassengersArgument(this.passengers, this.user);
 }

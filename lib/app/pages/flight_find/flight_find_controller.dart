@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:lounga/app/pages/flight_booking/flight_booking_page.dart';
 import 'package:lounga/domain/entities/flight.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import '../flight_booking/flight_detail_page.dart';
+import '../../../domain/entities/user.dart';
 import 'flight_find_presenter.dart';
 
 class FlightFindController extends Controller {
@@ -38,9 +39,9 @@ class FlightFindController extends Controller {
     };
   }
 
-  void navigateToFlightDetail(Flight flight) {
+  void navigateToFlightBooking(Flight flight, User user, String departureDate) {
     final context = getContext();
-    Navigator.pushNamed(context, FlightDetailPage.route, arguments: flight);
+    Navigator.pushNamed(context, FlightBookingPage.route, arguments: FlightFindArgument(flight, user, departureDate));
   }
 
   void _showLoading() {
@@ -62,4 +63,11 @@ class FlightFindController extends Controller {
     // _controllerdepartureDate.dispose();
     _presenter.dispose();
   }
+}
+
+class FlightFindArgument {
+  Flight flight;
+  User user;
+  String departureDate;
+  FlightFindArgument(this.flight, this.user, this.departureDate);
 }

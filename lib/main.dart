@@ -5,7 +5,6 @@ import 'package:injector/injector.dart';
 import 'package:lounga/app/di/app_module.dart';
 import 'package:lounga/app/navigator.dart';
 import 'package:lounga/app/pages/flight_booking/flight_booking_page.dart';
-import 'package:lounga/app/pages/flight_booking/flight_detail_page.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_controller.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
 import 'package:lounga/app/pages/flight_get/flight_get_page.dart';

@@ -13,7 +13,8 @@ class FlightFindPage extends View {
 
   final List<Flight> flights;
   final User user;
-  const FlightFindPage(this.flights, this.user, {Key? key}) : super(key: key);
+  final String departureDate;
+  const FlightFindPage(this.flights, this.user, this.departureDate, {Key? key}) : super(key: key);
 
   // FlightFindPage({Key? key}) : super(key: key);
 
@@ -33,7 +34,6 @@ class _FlightFindViewState
   Widget get view => Scaffold(
         key: globalKey,
         appBar: AppBar(
-          leading: const Icon(Icons.arrow_back),
           backgroundColor: const Color(0XFFE67E22),
           title: const Text('List of Booked Flights'),
         ),
@@ -52,7 +52,7 @@ class _FlightFindViewState
                           return FlightTile(
                             flight: flight,
                             onFlightClicked: (Flight flight) {
-                              controller.navigateToFlightDetail(flight);
+                              controller.navigateToFlightBooking(flight, widget.user, widget.departureDate);
                             },
                           );
                         })),

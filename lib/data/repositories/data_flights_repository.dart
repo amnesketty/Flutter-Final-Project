@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:lounga/domain/entities/flight.dart';
+import 'package:lounga/domain/entities/passenger.dart';
 import '../../domain/repositories/flights_repository.dart';
 import '../misc/endpoints.dart';
 
@@ -32,11 +33,15 @@ class DataFlightRepository implements FlightRepository {
   }
 
   @override
-  Future<List<Flight>> findFlight(String seatClass, String destinationFrom,
-      String destinationTo, String departureDate, int amountPassengers, String token) async {
+  Future<List<Flight>> findFlight(
+      String seatClass,
+      String destinationFrom,
+      String destinationTo,
+      String departureDate,
+      int amountPassengers,
+      String token) async {
     // TODO: implement findFlight
-    dio.options.headers['Authorization'] =
-        'Bearer $token';
+    dio.options.headers['Authorization'] = 'Bearer $token';
     try {
       final response = await dio.post(endpoints.findFlights, data: {
         "seatClass": seatClass,
@@ -62,6 +67,31 @@ class DataFlightRepository implements FlightRepository {
     }
   }
 
+  Future<int> addPassenger(
+      String title, String name, String idCard, int bookingFlightId) async {
+    // TODO: implement findFlight
+    dio.options.headers['Authorization'] =
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0IiwibmFtZSI6InJveSIsIm5iZiI6MTY2NDc3MDc1MywiZXhwIjoxNjY1Mzc1NTUzLCJpYXQiOjE2NjQ3NzA3NTN9.9I6JeQcHuivz2seEfF8HPB41fjhUcymw4IoENFniQJo';
+    try {
+      final response = await dio.post(endpoints.addPassengers,
+          data: {"title": title, "name": name, "idCard": idCard});
+      //print(response.data['data']);
+      final addPassengersResponse = response.data['data'] as List<dynamic>;
+      final passengers = addPassengersResponse
+          .map(
+            (dynamic response) => Passenger.fromResponse(response),
+          )
+          .toList();
+      final passengerId = passengers.first.id;
+      //print(userResponse);
+      print(passengerId);
+      return passengerId;
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
   @override
   Future<int> bookingFlight(
       String bookingDate,
@@ -71,8 +101,27 @@ class DataFlightRepository implements FlightRepository {
       String departureTime,
       String arrivalTime,
       String seatClass,
-      int flightId) {
-    // TODO: implement bookingFlight
-    throw UnimplementedError();
+      int flightId,
+      String token) async {
+    // TODO: implement findFlight
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    try {
+      final response = await dio.post(endpoints.bookingFlight, data: {
+        "bookingDate": bookingDate,
+        "airline": airline,
+        "destinationFrom": destinationFrom,
+        "destinationTo": destinationTo,
+        "departureTime": departureTime,
+        "arrivalTime": arrivalTime,
+        "seatClass": seatClass
+      });
+      final bookingFlightsResponse =
+          response.data['data'] as Map<String, dynamic>;
+      int bookingFlightsId = bookingFlightsResponse['id'];
+      return bookingFlightsId;
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
   }
 }

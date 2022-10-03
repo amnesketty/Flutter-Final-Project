@@ -38,8 +38,13 @@ class FlightSearchController extends Controller {
     // _searchFlight();
   }
 
-  Future<void> searchFlight(String seatClass, String destinationFrom,
-      String destinationTo, String departureDate, int amountPassenger, User user) async {
+  Future<void> searchFlight(
+      String seatClass,
+      String destinationFrom,
+      String destinationTo,
+      String departureDate,
+      int amountPassenger,
+      User user) async {
     _user = user;
     _showLoading();
     _presenter.searchFlight(seatClass, destinationFrom, destinationTo,
@@ -48,7 +53,8 @@ class FlightSearchController extends Controller {
       await Future.delayed(const Duration(milliseconds: 10));
     } while (_isLoading);
     final context = getContext();
-    Navigator.pushNamed(context, FlightFindPage.route, arguments: FlightsArgument(_flights, _user));
+    Navigator.pushNamed(context, FlightFindPage.route,
+        arguments: FlightsArgument(_flights, _user, departureDate));
   }
 
   void _initObserver() {
@@ -91,5 +97,6 @@ class FlightSearchController extends Controller {
 class FlightsArgument {
   List<Flight> flights;
   User user;
-  FlightsArgument(this.flights, this.user);
+  String departureDate;
+  FlightsArgument(this.flights, this.user, this.departureDate);
 }
