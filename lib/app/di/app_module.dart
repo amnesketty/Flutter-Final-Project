@@ -1,3 +1,4 @@
+import 'package:lounga/app/pages/home/home_presenter.dart';
 import 'package:lounga/app/pages/flight_booking/flight_booking_presenter.dart';
 import 'package:lounga/app/pages/hotel_booking/hotel_booking_presenter.dart';
 import 'package:lounga/app/pages/hotel_search/hotel_search_controller.dart';
@@ -5,7 +6,7 @@ import 'package:lounga/app/pages/hotel_search/hotel_search_presenter.dart';
 import 'package:lounga/app/pages/register/register_controller.dart';
 import 'package:lounga/app/pages/register/register_presenter.dart';
 import 'package:lounga/app/navigator.dart';
-import 'package:lounga/app/pages/hotel_booking/hotel_detail_controller.dart';
+import 'package:lounga/app/pages/hotel_detail/hotel_detail_controller.dart';
 import 'package:lounga/domain/usecases/di/use_case_module.dart';
 import 'package:lounga/data/di/data_module.dart';
 import 'package:injector/injector.dart';
@@ -31,6 +32,7 @@ import 'package:lounga/app/pages/hotel_get/hotel_get_presenter.dart';
 class AppModule {
   static registerClasses() {
     final injector = Injector.appInstance;
+    //USER
     injector.registerDependency<LoginPresenter>(
         () => LoginPresenter(userLoginUseCase: injector.get()));
     injector.registerDependency<LoginController>(
@@ -39,8 +41,12 @@ class AppModule {
         () => RegisterPresenter(userRegisterUsecase: injector.get()));
     injector.registerDependency<RegisterController>(
         () => RegisterController(injector.get()));
-    injector.registerDependency<HomeController>(() => HomeController());
+    injector.registerDependency<HomeController>(
+        () => HomeController(injector.get()));
+    injector.registerDependency<HomePresenter>(
+        () => HomePresenter(userTransactionCase: injector.get()));
 
+    //FLIGHT
     injector.registerDependency<FlightGetPresenter>(
         () => FlightGetPresenter(flightGetUseCase: injector.get()));
     injector.registerDependency<FlightGetController>(
@@ -58,6 +64,7 @@ class AppModule {
     injector.registerDependency<FlightBookingPresenter>(
         () => FlightBookingPresenter(flightBookingUseCase: injector.get(), passengerAddUseCase: injector.get()));
 
+    //HOTEL
     injector.registerDependency<HotelGetPresenter>(
         () => HotelGetPresenter(hotelGetUseCase: injector.get()));
     injector.registerDependency<HotelGetController>(
@@ -75,7 +82,7 @@ class AppModule {
     injector.registerDependency<HotelBookingController>(
         () => HotelBookingController(injector.get()));
     injector.registerDependency<HotelBookingPresenter>(
-        () => HotelBookingPresenter(hotelBookingUseCase: injector.get()));
+        () => HotelBookingPresenter(hotelBookingUseCase: injector.get(), hotelGuestUseCase: injector.get()));
 
     injector.registerSingleton<AppNavigator>(() => AppNavigator());
   }

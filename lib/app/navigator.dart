@@ -5,7 +5,13 @@ import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
 import 'package:lounga/app/pages/flight_search/flight_search_controller.dart';
 import 'package:lounga/app/pages/flight_search/flight_search_page.dart';
 import 'package:lounga/app/pages/home/home_page.dart';
+<<<<<<< HEAD
 import 'package:lounga/app/pages/hotel_booking/hotel_detail_page.dart';
+=======
+import 'package:lounga/app/pages/hotel_detail/hotel_detail_page.dart';
+import 'package:lounga/app/pages/hotel_search/hotel_search_page.dart';
+import 'package:lounga/domain/entities/flight.dart';
+>>>>>>> ce0843fcb8d251a9e34209c47c4f751d00b173f2
 import 'package:lounga/app/pages/hotel_booking/hotel_booking_page.dart';
 import 'package:lounga/app/pages/hotel_find/hotel_find_page.dart';
 import 'package:lounga/app/pages/login/login_page.dart';

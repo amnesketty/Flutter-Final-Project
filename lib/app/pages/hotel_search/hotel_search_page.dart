@@ -7,10 +7,14 @@ import 'package:injector/injector.dart';
 import 'package:lounga/app/widgets/hotel_tile.dart';
 
 import '../../../domain/entities/hotel.dart';
+import '../../../domain/entities/user.dart';
 import 'hotel_search_controller.dart';
 
 class HotelSearchPage extends View {
-  const HotelSearchPage({Key? key}) : super(key: key);
+  static const route = '/hotel-search';
+  final User user;
+
+  const HotelSearchPage(this.user, {Key? key}) : super(key: key);
 
   @override
   // ignore: no_logic_in_create_state
@@ -30,7 +34,7 @@ class _HotelSearchViewState
         key: globalKey,
         appBar: AppBar(
           title: const Text('HOTELS'),
-          leading: const Icon(Icons.arrow_back),
+          // leading: const Icon(Icons.arrow_back),
           // actions: [Text("One Way Trip")],
           backgroundColor: const Color(0XFFE67E22),
         ),
@@ -169,6 +173,7 @@ class _HotelSearchViewState
                               controller.controllerBookingDate.text, 
                               int.parse(controller.controllerRoom.text), 
                               int.parse(controller.controllerDuration.text),
+                              widget.user
                               );
                             },
                             style: TextButton.styleFrom(

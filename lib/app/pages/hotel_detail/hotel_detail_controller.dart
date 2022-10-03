@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lounga/domain/entities/hotel.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-import 'hotel_booking_page.dart';
+import '../hotel_booking/hotel_booking_page.dart';
 
 class HotelDetailController extends Controller {
   

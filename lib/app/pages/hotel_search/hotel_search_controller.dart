@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lounga/domain/entities/hotel.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import '../../../domain/entities/user.dart';
 import '../hotel_find/hotel_find_page.dart';
 import 'hotel_search_presenter.dart';
 
@@ -12,8 +13,12 @@ class HotelSearchController extends Controller {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  late User _user;
+
   List<Hotel> _hotel = [];
   List<Hotel> get hotels => _hotel;
+
+  TextEditingController dateCtl = TextEditingController();
   TextEditingController _controllerCity = TextEditingController();
   TextEditingController get controllerCity => _controllerCity;
   TextEditingController _controllerBookingDate = TextEditingController();
@@ -27,23 +32,19 @@ class HotelSearchController extends Controller {
   @override
   void initListeners() {
     _initObserver();
-    // _searchFlight();
+    // _searchHotel();
   }
 
-  void navigateToHotelFind(Hotel hotel) {
-    final context = getContext();
-    Navigator.pushNamed(context, HotelFindPage.route, arguments: hotel);
-  }
-
-  Future<void> searchHotels (String city, String bookingDate, int totalRoom, int duration) async {
+  Future<void> searchHotels (String city, String bookingDate, int totalRoom, int duration, User user) async {
+    _user = user;
     _showLoading();
-    _presenter.searchHotel(city, bookingDate, totalRoom, duration);
+    _presenter.searchHotel(city, bookingDate, totalRoom, duration, user.token);
     do {
       await Future.delayed(const Duration(milliseconds: 1));
     }
     while(_isLoading == true);
     final context = getContext();
-    Navigator.pushNamed(context, HotelFindPage.route, arguments: _hotel);
+    Navigator.pushNamed(context, HotelFindPage.route, arguments: HotelsArgument(_hotel, _user));
   }
 
   void _initObserver() {
@@ -54,6 +55,11 @@ class HotelSearchController extends Controller {
     _presenter.onSuccessHotelSearch = (List<Hotel> data) {
       _hotel = data;
     };
+  }
+
+  void navigateToHotelFind() {
+    final context = getContext();
+    Navigator.pushNamed(context, HotelFindPage.route, arguments: _hotel);
   }
 
   void _showLoading() {
@@ -75,4 +81,10 @@ class HotelSearchController extends Controller {
     _controllerDuration.dispose();
     _presenter.dispose();
   }
+}
+
+class HotelsArgument {
+  List<Hotel> hotels;
+  User user;
+  HotelsArgument(this.hotels, this.user);
 }

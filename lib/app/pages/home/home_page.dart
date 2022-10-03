@@ -2,8 +2,11 @@ import 'package:lounga/app/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
+import 'package:lounga/app/pages/home/profile_page.dart';
+import 'package:lounga/app/pages/home/transaction_page.dart';
 
 import '../../../domain/entities/user.dart';
+import 'home_page_main.dart';
 
 class HomePage extends View {
   static const route = '/home-page';
@@ -23,6 +26,12 @@ class HomePage extends View {
 class _HomeViewState extends ViewState<HomePage, HomeController> {
   _HomeViewState(super.controller);
 
+  // final List<Widget> _widgetOptions = <Widget> [
+  //     HomePageMain(),
+  //     TransactionPage(),
+  //     ProfilePage(),
+  // ];
+
   @override
   Widget get view => Scaffold(
     key: globalKey,
@@ -33,7 +42,8 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
     backgroundColor: const Color(0XFFD3D3D3),
     body: ControlledWidgetBuilder<HomeController>(
       builder: (BuildContext _, HomeController controller) =>
-        Column(
+        controller.bottomNavigationValue == 0 ?
+          Column(
           children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -64,6 +74,7 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
               height: MediaQuery.of(context).size.height * 0.3,
               child: ElevatedButton (
                 onPressed: () {
+                  controller.navigateToSearchHotel(widget.user);
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -79,25 +90,27 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
                 )
               )
             ),
-        ]),
+        ])
+        : controller.bottomNavigationValue == 1 ? TransactionPage(controller.userTransaction)
+        : ProfilePage()
       ),
     bottomNavigationBar: 
       ControlledWidgetBuilder<HomeController>(
       builder: (BuildContext _, HomeController controller) =>
         BottomNavigationBar(items: <BottomNavigationBarItem> [
         BottomNavigationBarItem(icon: controller.bottomNavigationValue == 0 ?
-          Icon(Icons.home)
-          : Icon(Icons.home_outlined),
+          const Icon(Icons.home)
+          : const Icon(Icons.home_outlined),
         label: 'Home',
         ),
         BottomNavigationBarItem(icon: controller.bottomNavigationValue == 1 ?
-          Icon(Icons.receipt_long)
-          : Icon(Icons.receipt_long_outlined),
+          const Icon(Icons.receipt_long)
+          : const Icon(Icons.receipt_long_outlined),
         label: 'My Order',
         ),
         BottomNavigationBarItem(icon: controller.bottomNavigationValue == 2 ?
-          Icon(Icons.person)
-          : Icon(Icons.person_outline),
+          const Icon(Icons.person)
+          : const Icon(Icons.person_outline),
         label: 'My Account',
         ),
         ],
@@ -107,26 +120,8 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
       unselectedItemColor: Colors.grey,
       showUnselectedLabels: true,
       showSelectedLabels: true,
-      onTap: (index) => controller.bottomNavigationMove(index)
+      onTap: (index) => controller.bottomNavigationMove(index, widget.user.token)
       ),      
     ),
-        // controller.isLoading
-        // ? const Center(child: CupertinoActivityIndicator())
-        // : ListView.builder(
-        //   //shrinkWrap: true,
-        //   itemCount: controller.hotels.length,            
-        //   itemBuilder: (BuildContext _, int index) {
-        //     final hotel = controller.hotels[index];
-        //     final room = hotel.roomsHotel.first.price.toString();
-        //     // return Text(rooms);
-        //     return HotelTile(
-        //       hotel: hotel,
-        //       onHotelClicked: (Hotel hotel) {
-        //         controller.navigateToHotelDetail(hotel);
-        //       },
-        //       );
-        //   }
-        // )
-        
   );
 }

@@ -31,5 +31,6 @@ class HotelFindParams {
   final String bookingDate;
   final int totalRoom;
   final int duration;
-  HotelFindParams(this.city, this.bookingDate, this.totalRoom, this.duration);
+  final String token;
+  HotelFindParams(this.city, this.bookingDate, this.totalRoom, this.duration, this.token);
 }

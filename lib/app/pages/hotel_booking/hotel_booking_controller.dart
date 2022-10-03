@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lounga/domain/entities/hotel.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:lounga/domain/usecases/cases/hotel_booking.dart';
 
 import 'hotel_booking_presenter.dart';
 
@@ -11,6 +12,9 @@ class HotelBookingController extends Controller {
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+
+  int? _bookingHotelId = 0;
+  int? get bookingHotelId => _bookingHotelId;
 
   final TextEditingController _controllerContactName = TextEditingController();
   TextEditingController get controllerContactName => _controllerContactName;
@@ -24,26 +28,37 @@ class HotelBookingController extends Controller {
     // _initObserver();
   }
 
-  // void _initObserver() {
-  //   _presenter.onErrorHotelBooking = (e) {
-  //     _hideLoading();
-  //   };
-  //   _presenter.onFinishHotelBooking = () {
-  //     _hideLoading();
-  //   };
-  //   _presenter.onSuccessHotelBooking = (int? data) {
-  //     _userId = data;
-  //   };
-  // }
+  void _initObserver() {
+    _presenter.onErrorHotelBooking = (e) {
+      _hideLoading();
+    };
+    _presenter.onFinishHotelBooking = () {
+      _hideLoading();
+    };
+    _presenter.onSuccessHotelBooking = (int? data) {
+      _bookingHotelId = data;
+      _hideLoading();
+    };
 
-  // void bookingNow(String bookingDate, int totalRoom, int price, int hotelId, int roomId) {
-  //    _showLoading();
-  // _presenter.bookingNow(bookingDate, totalRoom, price, hotelId, roomId);
-  // }
+    _presenter.onErrorHotelGuest = (e) {
+      _hideLoading();
+    };
+    _presenter.onFinishHotelGuest = () {
+      _hideLoading();
+    };
+    _presenter.onSuccessHotelGuest = (bool? data) {
+      _hideLoading();
+    };
+  }
 
-  // void addGuest(String name, String email, String phone, int bookingHotelId) {
-  //   _presenter.addGuest(name, email, phone, bookingHotelId);
-  // }
+  void bookingNow(String bookingDate, int totalRoom, int price, int hotelId, int roomId) {
+     _showLoading();
+    _presenter.hotelBooking(bookingDate, totalRoom, price, hotelId, roomId);
+  }
+
+  void addGuest(String name, String email, String phone) {
+    _presenter.hotelGuest(name, email, phone, _bookingHotelId!);
+  }
 
   void _showLoading() {
     _isLoading = true;
