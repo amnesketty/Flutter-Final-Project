@@ -6,4 +6,5 @@ class Endpoints {
   String get findHotel => 'BookingHotel/FindHotel';
   String get bookingHotel => 'BookingHotel/AddBookingHotel';
   String get register => 'Auth/register';
+  String get userTransaction => 'Auth/transaction-history';
 }

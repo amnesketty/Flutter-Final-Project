@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 import 'package:lounga/app/widgets/text_field.dart';
+import 'package:lounga/app/widgets/text_field_password.dart';
 
 class LoginPage extends View {
   static const route = '/login-page';
@@ -42,7 +43,7 @@ class _LoginViewState extends ViewState<LoginPage, LoginController> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),                
                     const Text('Password', style: TextStyle(color: Colors.white, fontSize: 18),),                
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                    TextFieldCustome(textEditingController: controller.controllerPassword, textLabel: 'Password'),
+                    TextFieldPassword(textEditingController: controller.controllerPassword, textLabel: 'Password', visible: controller.visibilityPassword, refresh: () { controller.showPassword(); }, ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                     Center(
                       child: Container(

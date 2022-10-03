@@ -103,7 +103,7 @@ class _RegisterViewState extends ViewState<RegisterPage, RegisterController> {
                 ),
                 controller.isLoading ? 
                 Container(
-                  height: MediaQuery.of(context).size.height - MediaQuery.of(context).size.height * 0.09,
+                  height: MediaQuery.of(context).size.height,
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.2)
                   ),
