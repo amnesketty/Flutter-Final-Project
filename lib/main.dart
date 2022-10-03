@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        // home: LoginPage(),
+        home: LoginPage(),
         //home: HotelGetPage(),
-        home: HotelSearchPage(),
+        // home: HotelSearchPage(),
         // ignore: prefer_const_constructors
         // home: FlightBookingPage(),
         onGenerateRoute: appNavigator.onGenerateRoutes);

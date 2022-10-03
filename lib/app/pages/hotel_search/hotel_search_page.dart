@@ -34,7 +34,7 @@ class _HotelSearchViewState
         key: globalKey,
         appBar: AppBar(
           title: const Text('HOTELS'),
-          leading: const Icon(Icons.arrow_back),
+          // leading: const Icon(Icons.arrow_back),
           // actions: [Text("One Way Trip")],
           backgroundColor: const Color(0XFFE67E22),
         ),
@@ -173,6 +173,7 @@ class _HotelSearchViewState
                               controller.controllerBookingDate.text, 
                               int.parse(controller.controllerRoom.text), 
                               int.parse(controller.controllerDuration.text),
+                              widget.user
                               );
                             },
                             style: TextButton.styleFrom(

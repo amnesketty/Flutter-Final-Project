@@ -22,10 +22,10 @@ class HotelFindController extends Controller {
     //_findHotel();
   }
 
-  void _findHotel() {
-    _showLoading();
-    _presenter.findHotel();
-  }
+  // void _findHotel() {
+  //   _showLoading();
+  //   _presenter.findHotel();
+  // }
 
   void _initObserver(){
     _presenter.onErrorHotelFind = (e) {};
