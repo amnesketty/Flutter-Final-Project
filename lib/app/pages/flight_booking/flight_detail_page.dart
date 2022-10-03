@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
+import 'package:lounga/domain/usecases/cases/flight_booking.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../../domain/entities/flight.dart';
+import 'flight_booking_controller.dart';
 import 'flight_detail_controller.dart';
 
 class FlightDetailPage extends View {
@@ -27,7 +29,7 @@ class _FlightDetailViewState
   _FlightDetailViewState(super.controller);
   @override
   Widget get view => Scaffold(
-        //key: globalKey,
+        key: globalKey,
         appBar: AppBar(
           backgroundColor: const Color(0XFFE67E22),
           centerTitle: true,
@@ -424,11 +426,6 @@ class _FlightDetailViewState
                   SizedBox(
                     height: 20,
                   ),
-                  // Container(
-                  //   height: MediaQuery.of(context).size.height * 0.005,
-                  //   width: MediaQuery.of(context).size.width * 1,
-                  //   color: Colors.red,
-                  // )
                 ],
               ),
               height: 153,
@@ -463,22 +460,30 @@ class _FlightDetailViewState
                     ],
                   ),
                   Spacer(),
+                  // ControlledWidgetBuilder<FlightBookingController>(
+                  //     builder: (BuildContext context,
+                  //             FlightBookingController controller) =>
                   Container(
-                    margin: EdgeInsets.only(right: 10, top: 5, bottom: 5),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: const Color(0XFFE67E22),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        'Select',
-                        style: TextStyle(
-                            color: Color(0xFFFFFFFF),
-                            fontWeight: FontWeight.w700,
-                            fontSize: 17),
-                      ),
-                    ),
-                  )
+                      margin: EdgeInsets.only(right: 2, top: 2, bottom: 2),
+                      child: ControlledWidgetBuilder<FlightDetailController>(
+                        builder: (BuildContext context,
+                                FlightDetailController controller) =>
+                            ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: const Color(0XFFE67E22),
+                          ),
+                          onPressed: () {
+                            controller.navigateToFlightBooking(widget.flight);
+                          },
+                          child: const Text(
+                            'Select',
+                            style: TextStyle(
+                                color: Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17),
+                          ),
+                        ),
+                      ))
                 ],
               ),
             )

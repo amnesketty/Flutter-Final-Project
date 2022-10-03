@@ -69,7 +69,7 @@ class _FlightBookingViewState
                             TextFieldCustome(
                                 textEditingController:
                                     controller.controllerTitle,
-                                textLabel: "Title"),
+                                textLabel: "Mr/Mrs/Ms"),
                             const SizedBox(height: 10),
                             const Text("Name",
                                 style: TextStyle(
@@ -80,7 +80,7 @@ class _FlightBookingViewState
                             TextFieldCustome(
                                 textEditingController:
                                     controller.controllerName,
-                                textLabel: "Name"),
+                                textLabel: "Contact's Name"),
                             const SizedBox(height: 10),
                             const Text("Id Card",
                                 style: TextStyle(
@@ -91,10 +91,10 @@ class _FlightBookingViewState
                             TextFieldCustome(
                                 textEditingController:
                                     controller.controllerIdCard,
-                                textLabel: "Phone"),
+                                textLabel: "Id Card Number"),
                             SizedBox(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.2),
+                                    MediaQuery.of(context).size.height * 0.1),
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: TextButton(

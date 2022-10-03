@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:lounga/app/pages/flight_booking/flight_booking_presenter.dart';
 
 class FlightBookingController extends Controller {
-  final FlightBookingController _presenter;
+  final FlightBookingPresenter _presenter;
 
   FlightBookingController(this._presenter);
 
@@ -21,36 +22,24 @@ class FlightBookingController extends Controller {
     // _initObserver();
   }
 
-  // void _initObserver() {
-  //   _presenter.onErrorHotelBooking = (e) {
-  //     _hideLoading();
-  //   };
-  //   _presenter.onFinishHotelBooking = () {
-  //     _hideLoading();
-  //   };
-  //   _presenter.onSuccessHotelBooking = (int? data) {
-  //     _userId = data;
-  //   };
+  // void bookingNow(
+  //     String bookingDate,
+  //     String airline,
+  //     String destinationFrom,
+  //     String destinationTo,
+  //     String departureTime,
+  //     String arrivalTime,
+  //     String seatClass,
+  //     int flightId) {
+  //   _showLoading();
+  //   _presenter.bookingNow(bookingDate, airline, destinationFrom, destinationTo,
+  //       departureTime, arrivalTime, seatClass, flightId);
   // }
 
-  void bookingNow(
-      String bookingDate,
-      String airline,
-      String destinationFrom,
-      String destinationTo,
-      String departureTime,
-      String arrivalTime,
-      String seatClass,
-      int flightId) {
-    _showLoading();
-    _presenter.bookingNow(bookingDate, airline, destinationFrom, destinationTo,
-        departureTime, arrivalTime, seatClass, flightId);
-  }
-
-  void addPassenger(
-      String title, String name, String idCard, int bookingFlightId) {
-    _presenter.addPassenger(title, name, idCard, bookingFlightId);
-  }
+  // void addPassenger(
+  //     String title, String name, String idCard, int bookingFlightId) {
+  //   _presenter.addPassenger(title, name, idCard, bookingFlightId);
+  // }
 
   void _showLoading() {
     _isLoading = true;
