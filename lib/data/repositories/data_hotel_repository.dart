@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:lounga/domain/entities/hotel.dart';
+import '../../domain/entities/hotel_bookings.dart';
 import '../../domain/repositories/hotel_repository.dart';
 import '../misc/endpoints.dart';
 
@@ -63,8 +64,47 @@ class DataHotelRepository implements HotelRepository {
   }
   
   @override
-  Future<int> bookingHotel(String bookingDate, int totalRoom, int price, int hotelId, int roomId) {
+  Future<int> bookingHotel(String bookingDate, int totalRoom, int price, int hotelId, int roomId) async {
     // TODO: implement bookingHotel
-    throw UnimplementedError();
+    dio.options.headers['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwibmFtZSI6InNhbHNhIiwibmJmIjoxNjY0NDQwOTUzLCJleHAiOjE2NjUwNDU3NTMsImlhdCI6MTY2NDQ0MDk1M30.Jf0ChgYGrGA8xLgRhjRgWhAYswlKTcLD0NsJd6YynHE";
+    try {
+      final response = await dio.post(
+        endpoints.bookingHotel,
+        data: {
+          'bookingDate': bookingDate,
+          'totalRoom': totalRoom,
+          'price': price,
+          }
+      );
+      // print(response);
+      final bookingHotelResponse = response.data['data']['id'] as int;
+      print(bookingHotelResponse);
+      return bookingHotelResponse;
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+  Future<bool> addGuest(String name, String email, String phone, int bookingHotelId) async {
+    dio.options.headers['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwibmFtZSI6InNhbHNhIiwibmJmIjoxNjY0NDQwOTUzLCJleHAiOjE2NjUwNDU3NTMsImlhdCI6MTY2NDQ0MDk1M30.Jf0ChgYGrGA8xLgRhjRgWhAYswlKTcLD0NsJd6YynHE";
+    try {
+      final response = await dio.post(
+        endpoints.addGuest,
+        data: {
+          'name': name,
+          'email': email,
+          'phone': phone,
+          'bookingHotelId': bookingHotelId,
+          }
+      );
+      // print(response);
+      final addGuestResponse = response.data['success'] as bool;
+      print(addGuestResponse);
+      return addGuestResponse;
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
   }
 }

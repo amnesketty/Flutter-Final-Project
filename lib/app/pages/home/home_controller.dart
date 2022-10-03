@@ -4,7 +4,7 @@ import 'package:lounga/app/pages/flight_search/flight_search_page.dart';
 import 'package:lounga/domain/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-import '../hotel_booking/hotel_detail_page.dart';
+import '../hotel_detail/hotel_detail_page.dart';
 
 class HomeController extends Controller {
   // final HotelFindPresenter _presenter;

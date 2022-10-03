@@ -3,7 +3,7 @@ import 'package:lounga/app/pages/hotel_find/hotel_find_presenter.dart';
 import 'package:lounga/domain/entities/hotel.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-import '../hotel_booking/hotel_detail_page.dart';
+import '../hotel_detail/hotel_detail_page.dart';
 
 class HotelFindController extends Controller {
   final HotelFindPresenter _presenter;
