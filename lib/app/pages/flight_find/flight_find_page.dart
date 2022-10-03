@@ -33,7 +33,7 @@ class _FlightFindViewState
   Widget get view => Scaffold(
         key: globalKey,
         appBar: AppBar(
-          leading: Icon(Icons.arrow_back),
+          leading: const Icon(Icons.arrow_back),
           backgroundColor: const Color(0XFFE67E22),
           title: const Text('List of Booked Flights'),
         ),

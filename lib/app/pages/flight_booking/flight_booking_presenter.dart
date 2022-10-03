@@ -6,10 +6,9 @@ class FlightBookingPresenter extends Presenter {
   late Function(dynamic error) onErrorFlightBooking;
   late Function() onFinishFlightBooking;
 
-  final FlightBooking flightBookingUsecase;
+  final FlightBooking flightBookingUseCase;
 
-  FlightBookingPresenter(
-      {required this.flightBookingUsecase, required flightBookingUseCase});
+  FlightBookingPresenter({required this.flightBookingUseCase});
 
   void flightBooking(
       String bookingDate,
@@ -20,7 +19,7 @@ class FlightBookingPresenter extends Presenter {
       String arrivalTime,
       String seatClass,
       int flightId) {
-    flightBookingUsecase.execute(
+    flightBookingUseCase.execute(
         _FlightBookingObserver(this),
         FlightBookingParams(bookingDate, airline, destinationFrom,
             destinationTo, departureTime, arrivalTime, seatClass, flightId));
@@ -28,7 +27,7 @@ class FlightBookingPresenter extends Presenter {
 
   @override
   void dispose() {
-    flightBookingUsecase.dispose();
+    flightBookingUseCase.dispose();
   }
 }
 
