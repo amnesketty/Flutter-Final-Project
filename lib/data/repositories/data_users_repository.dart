@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:lounga/domain/entities/user_transaction.dart';
 import 'package:lounga/domain/repositories/users_repository.dart';
 import '../../domain/entities/user.dart';
 import '../misc/endpoints.dart';
@@ -29,9 +30,9 @@ class DataUserRepository implements UserRepository {
   
   @override
   Future<int> register(String firstName, String lastName, String username, String email, String phone, String password) async {
-    print("TEST 123");
     try {
-      final response = await dio.post(endpoints.register,
+      final response = await dio.post(
+        endpoints.register,
           data: {
             "firstName": firstName,
             "lastName": lastName,
@@ -41,10 +42,27 @@ class DataUserRepository implements UserRepository {
             "password": password
             });
       final userResponse = response.data['data'] as int;
-      print(userResponse);
       return userResponse;
     } catch (e) {
       rethrow;
     }
+  }
+
+  @override
+  Future<UserTransaction> getUserTransaction(String token) async {
+    dio.options.headers['Authorization'] =
+        'Bearer $token';
+    try {
+      final response = await dio.post(
+        endpoints.userTransaction
+      );
+      final userTransactionResponse = response.data['data'] as UserTransaction;
+      print(userTransactionResponse.username);
+      return userTransactionResponse;
+    } catch (e) {
+      rethrow;
+    }
+    // TODO: implement getUserTransaction
+    throw UnimplementedError();
   }
 }

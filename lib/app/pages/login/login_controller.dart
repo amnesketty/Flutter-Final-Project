@@ -22,6 +22,9 @@ class LoginController extends Controller {
       token: "");
   User? get user => _user;
 
+  bool _visibilityPassword = false;
+  bool get visibilityPassword => _visibilityPassword;
+
   TextEditingController _controllerUsername = TextEditingController();
   TextEditingController get controllerUsername => _controllerUsername;
   TextEditingController _controllerPassword = TextEditingController();
@@ -59,6 +62,11 @@ class LoginController extends Controller {
   void navigateToRegisterPage() {
     final context = getContext();
     Navigator.pushReplacementNamed(context, RegisterPage.route);
+  }
+
+    void showPassword() {
+    _visibilityPassword = !_visibilityPassword;
+    refreshUI();
   }
 
   void _showLoading() {
