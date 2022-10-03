@@ -1,6 +1,7 @@
 import 'package:lounga/domain/usecases/cases/flight_booking.dart';
 import 'package:lounga/domain/usecases/cases/flight_find.dart';
 import 'package:lounga/domain/usecases/cases/flight_get.dart';
+import 'package:lounga/domain/usecases/cases/hotel_booking.dart';
 import 'package:lounga/domain/usecases/cases/hotel_find.dart';
 import 'package:lounga/domain/usecases/cases/user_login.dart';
 import 'package:injector/injector.dart';
@@ -19,5 +20,6 @@ class UseCaseModule {
 
     injector.registerDependency<HotelGet>(() => HotelGet(injector.get()));
     injector.registerDependency<HotelFind>(() => HotelFind(injector.get()));
+    injector.registerDependency<HotelBooking>(() => HotelBooking(injector.get()));
   }
 }

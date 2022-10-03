@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:lounga/domain/entities/hotel.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
+import 'hotel_booking_presenter.dart';
+
 class HotelBookingController extends Controller {
-  final HotelBookingController _presenter;
+  final HotelBookingPresenter _presenter;
 
   HotelBookingController(this._presenter);
 
@@ -17,8 +19,6 @@ class HotelBookingController extends Controller {
   final TextEditingController _controllerPhone = TextEditingController();
   TextEditingController get controllerPhone => _controllerPhone;
   
-
-
   @override
   void initListeners() {
     // _initObserver();
@@ -36,14 +36,14 @@ class HotelBookingController extends Controller {
   //   };
   // }
 
-  void bookingNow(String bookingDate, int totalRoom, int price, int hotelId, int roomId) {
-     _showLoading();
-  _presenter.bookingNow(bookingDate, totalRoom, price, hotelId, roomId);
-  }
+  // void bookingNow(String bookingDate, int totalRoom, int price, int hotelId, int roomId) {
+  //    _showLoading();
+  // _presenter.bookingNow(bookingDate, totalRoom, price, hotelId, roomId);
+  // }
 
-  void addGuest(String name, String email, String phone, int bookingHotelId) {
-    _presenter.addGuest(name, email, phone, bookingHotelId);
-  }
+  // void addGuest(String name, String email, String phone, int bookingHotelId) {
+  //   _presenter.addGuest(name, email, phone, bookingHotelId);
+  // }
 
   void _showLoading() {
     _isLoading = true;
@@ -54,8 +54,6 @@ class HotelBookingController extends Controller {
     _isLoading = false;
     refreshUI();
   }
-  
-
 
   @override
     void onDisposed() {

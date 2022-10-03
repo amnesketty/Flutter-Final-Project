@@ -1,4 +1,5 @@
 import 'package:lounga/app/pages/flight_booking/flight_booking_presenter.dart';
+import 'package:lounga/app/pages/hotel_booking/hotel_booking_presenter.dart';
 import 'package:lounga/app/pages/hotel_search/hotel_search_controller.dart';
 import 'package:lounga/app/pages/hotel_search/hotel_search_presenter.dart';
 import 'package:lounga/app/pages/register/register_controller.dart';
@@ -74,9 +75,10 @@ class AppModule {
         () => HotelFindController(injector.get()));
     injector.registerDependency<HotelDetailController>(
         () => HotelDetailController());
-    () => HotelDetailController();
     injector.registerDependency<HotelBookingController>(
         () => HotelBookingController(injector.get()));
+    injector.registerDependency<HotelBookingPresenter>(
+        () => HotelBookingPresenter(hotelBookingUseCase: injector.get()));
 
     injector.registerSingleton<AppNavigator>(() => AppNavigator());
   }

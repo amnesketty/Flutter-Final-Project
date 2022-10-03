@@ -55,7 +55,7 @@ class _RegisterViewState extends ViewState<RegisterPage, RegisterController> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     const Text('Phone', style: TextStyle(color: Colors.white, fontSize: 18),),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                    TextFieldCustome(textEditingController: controller.controllerUsername, textLabel: 'Phone'),
+                    TextFieldCustome(textEditingController: controller.controllerPhone, textLabel: 'Phone'),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                     const Text('Password', style: TextStyle(color: Colors.white, fontSize: 18),),
