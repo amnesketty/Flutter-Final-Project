@@ -5,12 +5,16 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 
 import '../../../domain/entities/hotel.dart';
+import '../../../domain/entities/user.dart';
 import '../../widgets/hotel_tile.dart';
 
 class HotelFindPage extends View {
   static const route = '/hotel-find';
   final List<Hotel> hotels;
-  const HotelFindPage(this.hotels, {Key? key}) : super(key: key);
+  final User user;
+  final String bookingDate;
+  final int totalRoom;
+  const HotelFindPage(this.hotels, this.user, this.bookingDate, this.totalRoom, {Key? key}) : super(key: key);
   
   @override
   // ignore: no_logic_in_create_state
@@ -45,7 +49,8 @@ class _HotelFindViewState extends ViewState<HotelFindPage, HotelFindController> 
             return HotelTile(
               hotel: hotel,
               onHotelClicked: (Hotel hotel) {
-                controller.navigateToHotelDetail(hotel);
+                controller.navigateToHotelDetail(
+                  hotel, widget.user, widget.bookingDate, widget.totalRoom);
               },
               );
           }

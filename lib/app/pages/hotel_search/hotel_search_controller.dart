@@ -40,11 +40,12 @@ class HotelSearchController extends Controller {
     _showLoading();
     _presenter.searchHotel(city, bookingDate, totalRoom, duration, user.token);
     do {
-      await Future.delayed(const Duration(milliseconds: 1));
+      await Future.delayed(const Duration(milliseconds: 100));
     }
     while(_isLoading == true);
     final context = getContext();
-    Navigator.pushNamed(context, HotelFindPage.route, arguments: HotelsArgument(_hotel, _user));
+    Navigator.pushNamed(context, HotelFindPage.route, arguments: 
+      HotelsArgument(_hotel, _user, bookingDate, totalRoom ));
   }
 
   void _initObserver() {
@@ -57,10 +58,10 @@ class HotelSearchController extends Controller {
     };
   }
 
-  void navigateToHotelFind() {
-    final context = getContext();
-    Navigator.pushNamed(context, HotelFindPage.route, arguments: _hotel);
-  }
+  // void navigateToHotelFind() {
+  //   final context = getContext();
+  //   Navigator.pushNamed(context, HotelFindPage.route, arguments: _hotel);
+  // }
 
   void _showLoading() {
     _isLoading = true;
@@ -86,5 +87,7 @@ class HotelSearchController extends Controller {
 class HotelsArgument {
   List<Hotel> hotels;
   User user;
-  HotelsArgument(this.hotels, this.user);
+  String bookingDate;
+  int totalRoom;
+  HotelsArgument(this.hotels, this.user, this.bookingDate, this.totalRoom);
 }

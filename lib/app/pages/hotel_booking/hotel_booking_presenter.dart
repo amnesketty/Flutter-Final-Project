@@ -17,13 +17,13 @@ class HotelBookingPresenter extends Presenter {
 
   HotelBookingPresenter({required this.hotelBookingUseCase, required this.hotelGuestUseCase});
 
-  void hotelBooking(String bookingDate, int totalRoom, int price, int hotelId, int roomId) {
-    hotelBookingUseCase.execute(_HotelBookingObserver(this), HotelBookingParams(bookingDate, totalRoom, price, hotelId, roomId));
+  void hotelBooking(String bookingDate, int totalRoom, int price, int hotelId, int roomId, String token) {
+    hotelBookingUseCase.execute(_HotelBookingObserver(this), HotelBookingParams(bookingDate, totalRoom, price, hotelId, roomId, token));
   }
 
-  void hotelGuest(String name, String email, String phone, int hotelBookingId) {
-    hotelGuestUseCase.execute(_HotelGuestObserver(this), HotelGuestParams(name, email, phone, hotelBookingId));
-  }
+  // void hotelGuest(String name, String email, String phone, int hotelBookingId) {
+  //   hotelGuestUseCase.execute(_HotelGuestObserver(this), HotelGuestParams(name, email, phone, hotelBookingId));
+  // }
 
   @override
   void dispose() {
