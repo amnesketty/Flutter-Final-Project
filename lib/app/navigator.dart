@@ -27,20 +27,28 @@ class AppNavigator {
       case HotelDetailPage.route:
         final arguments = settings.arguments as HotelFindArgument;
         return MaterialPageRoute(
-            builder: (BuildContext _) => HotelDetailPage(arguments.hotel, arguments.user, arguments.bookingDate, arguments.totalRoom));
+            builder: (BuildContext _) => HotelDetailPage(arguments.hotel,
+                arguments.user, arguments.bookingDate, arguments.totalRoom));
       case FlightFindPage.route:
         final arguments = settings.arguments as FlightsArgument;
         return MaterialPageRoute(
-            builder: (BuildContext _) =>
-                FlightFindPage(arguments.flights, arguments.user, arguments.departureDate));
+            builder: (BuildContext _) => FlightFindPage(
+                arguments.flights, arguments.user, arguments.departureDate));
       case HotelBookingPage.route:
         final arguments = settings.arguments as HotelDetailArgument;
         return MaterialPageRoute(
-            builder: (BuildContext _) => HotelBookingPage(arguments.hotel, arguments.user, arguments.bookingDate, arguments.totalRoom, arguments.price, arguments.roomId));
+            builder: (BuildContext _) => HotelBookingPage(
+                arguments.hotel,
+                arguments.user,
+                arguments.bookingDate,
+                arguments.totalRoom,
+                arguments.price,
+                arguments.roomId));
       case HotelFindPage.route:
         final arguments = settings.arguments as HotelsArgument;
         return MaterialPageRoute(
-            builder: (BuildContext _) => HotelFindPage(arguments.hotels, arguments.user, arguments.bookingDate, arguments.totalRoom));
+            builder: (BuildContext _) => HotelFindPage(arguments.hotels,
+                arguments.user, arguments.bookingDate, arguments.totalRoom));
       case LoginPage.route:
         return MaterialPageRoute(builder: (BuildContext _) => LoginPage());
       case RegisterPage.route:
@@ -69,7 +77,8 @@ class AppNavigator {
       case FlightBookingPage.route:
         final arguments = settings.arguments as FlightFindArgument;
         return MaterialPageRoute(
-            builder: (BuildContext _) => FlightBookingPage(arguments.flight, arguments.user, arguments.departureDate));
+            builder: (BuildContext _) => FlightBookingPage(
+                arguments.flight, arguments.user, arguments.departureDate));
       case HotelSearchPage.route:
         final arguments = settings.arguments as User;
         return MaterialPageRoute(
