@@ -113,16 +113,17 @@ class PhotosHotel {
 }
 
 class RoomsHotel {
-  final int hotelId, price;
+  final int id, hotelId, price;
   final String type;
 
-  RoomsHotel({required this.hotelId, required this.price, required this.type});
+  RoomsHotel({required this.id, required this.hotelId, required this.price, required this.type});
 
   factory RoomsHotel.fromJson(Map<String, dynamic> roomsHotelJson) {
+    final id = roomsHotelJson['id'] ?? 0;
     final hotelId = roomsHotelJson['hotelId'] ?? 0;
     final price = roomsHotelJson['price'] ?? 0;
     final type = roomsHotelJson['type'] ?? '';
 
-    return RoomsHotel(hotelId: hotelId, price: price, type: type);
+    return RoomsHotel(id: id, hotelId: hotelId, price: price, type: type);
   }
 }

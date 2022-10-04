@@ -11,9 +11,9 @@ class HotelFindPresenter extends Presenter {
 
   HotelFindPresenter({required this.hotelFindUseCase});
 
-  void findHotel() {
-    hotelFindUseCase.execute(_HotelFindObserver(this));
-  }
+  // void findHotel() {
+  //   hotelFindUseCase.execute(_HotelFindObserver(this));
+  // }
 
   @override
   void dispose() {

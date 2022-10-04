@@ -4,8 +4,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
+import 'package:intl/intl.dart';
 
 import '../../../domain/entities/hotel.dart';
+import '../../../domain/entities/user.dart';
 import '../../widgets/hotel_tile.dart';
 import '../../widgets/text_field.dart';
 import 'hotel_booking_controller.dart';
@@ -14,8 +16,13 @@ class HotelBookingPage extends View {
   static const route = '/hotel-booking';
 
   final Hotel hotel;
+  final User user;
+  final String bookingDate;
+  final int totalRoom;
+  final int price;
+  final int roomId;
 
-  const HotelBookingPage(this.hotel, {Key? key}) : super(key: key);
+  const HotelBookingPage(this.hotel, this.user, this.bookingDate, this.totalRoom, this.price, this.roomId, {Key? key}) : super(key: key);
 
   @override
   // ignore: no_logic_in_create_state
@@ -80,7 +87,11 @@ class _HotelBookingViewState
                                 color: Colors.white,
                                 fontWeight: FontWeight.w900)),
                             Spacer(),
-                            Text('Saturday, 31-Dec-2022 (14:00)', style: 
+                            Text(
+                              //widget.bookingDate, 
+                              DateFormat.yMMMEd().format(
+                              DateTime.parse(widget.bookingDate)),
+                              style: 
                               TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w900))
@@ -181,17 +192,18 @@ class _HotelBookingViewState
                         builder: (BuildContext context, HotelBookingController controller) =>
                           TextButton(
                             onPressed: () {
-                              // controller.bookingNow(
-                              //   bookingDate,
-                              //   totalRoom,
-                              //   price,
-                              //   hotelId,
-                              //   roomId)
-                              controller.addGuest(
-                                controller.controllerContactName.text,
-                                controller.controllerEmail.text,
-                                controller.controllerPhone.text,
-                                );
+                              controller.bookingNow(
+                                widget.bookingDate,
+                                widget.totalRoom,
+                                widget.price,
+                                widget.hotel.id,
+                                widget.roomId,
+                                widget.user);
+                              // controller.addGuest(
+                              //   controller.controllerContactName.text,
+                              //   controller.controllerEmail.text,
+                              //   controller.controllerPhone.text,
+                              //   );
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: const Color(0XFFE67E22)),

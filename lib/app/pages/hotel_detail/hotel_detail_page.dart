@@ -5,14 +5,18 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 
 import '../../../domain/entities/hotel.dart';
+import '../../../domain/entities/user.dart';
 import '../../widgets/hotel_tile.dart';
 
 class HotelDetailPage extends View {
   static const route = '/hotel-detail';
 
   final Hotel hotel;
+  final User user;
+  final String bookingDate;
+  final int totalRoom;
 
-  const HotelDetailPage(this.hotel, {Key? key}) : super(key: key);
+  const HotelDetailPage(this.hotel, this.user, this.bookingDate, this.totalRoom, {Key? key}) : super(key: key);
 
   @override
   // ignore: no_logic_in_create_state
@@ -129,7 +133,7 @@ class _HotelDetailViewState
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     // ignore: prefer_const_literals_to_create_immutables
                                     children: [
-                                      const Text('Deluxe Room',
+                                      Text(widget.hotel.roomsHotel.first.type,
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.w800)),
@@ -145,7 +149,9 @@ class _HotelDetailViewState
                                   const Spacer(),
                                   TextButton(
                                       onPressed: () {
-                                        controller.navigateToHotelBooking(widget.hotel);
+                                        controller.navigateToHotelBooking(
+                                          widget.hotel, widget.user, widget.bookingDate,
+                                          widget.totalRoom, widget.hotel.roomsHotel.first.price, widget.hotel.roomsHotel.first.id);
                                       },
                                       style: TextButton.styleFrom(
                                           backgroundColor: const Color(0XFFE67E22)),

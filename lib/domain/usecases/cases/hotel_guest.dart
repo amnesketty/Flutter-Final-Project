@@ -8,17 +8,15 @@ import '../../entities/hotel_bookings.dart';
 
 class HotelGuest extends UseCase<bool, HotelGuestParams> {
   final HotelRepository repository;
-  final HotelBookings hotelBooking;
 
-  HotelGuest(this.repository, this.hotelBooking);
+  HotelGuest(this.repository);
 
   @override
   Future<Stream<bool>> buildUseCaseStream(HotelGuestParams? params) async {
     final streamController = StreamController<bool>();
 
     try {
-      final bookingHotelId = await hotelBooking.id;
-      final hotelGuest = await repository.addGuest(params!.name, params.email, params.phone, bookingHotelId);
+      final hotelGuest = await repository.addGuest(params!.name, params.email, params.phone, params.bookingHotelId);
       streamController.add(hotelGuest);
       streamController.close();
     } catch (e, stackTrace) {
@@ -34,6 +32,6 @@ class HotelGuestParams {
   final String name;
   final String email;
   final String phone;
-  final int hotelBookingId;
-  HotelGuestParams(this.name, this.email, this.phone, this.hotelBookingId);
+  final int bookingHotelId;
+  HotelGuestParams(this.name, this.email, this.phone, this.bookingHotelId);
 }

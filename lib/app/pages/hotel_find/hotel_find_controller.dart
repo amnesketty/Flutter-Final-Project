@@ -3,6 +3,7 @@ import 'package:lounga/app/pages/hotel_find/hotel_find_presenter.dart';
 import 'package:lounga/domain/entities/hotel.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
+import '../../../domain/entities/user.dart';
 import '../hotel_detail/hotel_detail_page.dart';
 
 class HotelFindController extends Controller {
@@ -37,9 +38,9 @@ class HotelFindController extends Controller {
     };
   }
 
-  void navigateToHotelDetail(Hotel hotel) {
+  void navigateToHotelDetail(Hotel hotel, User user, String bookingDate, int totalRoom) {
     final context = getContext();
-    Navigator.pushNamed(context, HotelDetailPage.route, arguments: hotel);
+    Navigator.pushNamed(context, HotelDetailPage.route, arguments: HotelFindArgument(hotel, user, bookingDate, totalRoom));
   }
 
   void _showLoading() {
@@ -56,4 +57,12 @@ class HotelFindController extends Controller {
     super.onDisposed();
     _presenter.dispose();
   }
+}
+
+class HotelFindArgument {
+  Hotel hotel;
+  User user;
+  String bookingDate;
+  int totalRoom;
+  HotelFindArgument(this.hotel, this.user, this.bookingDate, this.totalRoom);
 }
