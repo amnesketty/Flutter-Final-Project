@@ -4,7 +4,7 @@ class Endpoints {
   String get login => 'Auth/login';
   String get getAllFlights => 'Flight/GetAllFlight';
   String get findFlights => 'BookingFlight/FindFlight';
-  String get addPassengers => 'BookingFlight/AddPassengers';
+  String get addPassenger => 'BookingFlight/AddPassenger';
   String get bookingFlight => 'BookingFlight/AddBookingFlight';
   String get getHotel => 'Hotel/gethotel';
   String get findHotel => 'BookingHotel/FindHotel';
