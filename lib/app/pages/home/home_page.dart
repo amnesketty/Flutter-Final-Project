@@ -92,7 +92,7 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
             ),
         ])
         : controller.bottomNavigationValue == 1 ? TransactionPage(controller.userTransaction)
-        : ProfilePage()
+        : ProfilePage(widget.user)
       ),
     bottomNavigationBar: 
       ControlledWidgetBuilder<HomeController>(

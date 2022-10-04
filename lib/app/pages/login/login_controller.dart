@@ -19,7 +19,8 @@ class LoginController extends Controller {
       lastName: "",
       email: "",
       phone: "",
-      token: "");
+      token: "",
+      avatarImage: "");
   User? get user => _user;
 
   bool _visibilityPassword = false;

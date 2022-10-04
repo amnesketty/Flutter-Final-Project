@@ -106,7 +106,11 @@ class _HotelBookingViewState
                                 color: Colors.white,
                                 fontWeight: FontWeight.w900)),
                             Spacer(),
-                            Text('Sunday, 1-Jan-2023 (12:00)', style: 
+                            Text(
+                              // 'Sunday, 1-Jan-2023 (12:00)',
+                              DateFormat.yMMMEd().format(
+                              DateTime.parse(widget.bookingDate).add(const Duration(days: 1))), 
+                              style: 
                               TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w900))

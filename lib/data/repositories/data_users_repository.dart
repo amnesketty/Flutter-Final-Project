@@ -21,7 +21,8 @@ class DataUserRepository implements UserRepository {
           lastName: userResponse['lastName'],
           email: userResponse['email'],
           phone: userResponse['phone'],
-          token: userResponse['token']);
+          token: userResponse['token'],
+          avatarImage: userResponse['avatarImage']);
       return user;
     } catch (e) {
       rethrow;
