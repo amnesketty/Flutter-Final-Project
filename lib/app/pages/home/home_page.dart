@@ -91,7 +91,7 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
               )
             ),
         ])
-        : controller.bottomNavigationValue == 1 ? TransactionPage(controller.userTransaction)
+        : controller.bottomNavigationValue == 1 ? TransactionPage(controller.userTransaction!)
         : ProfilePage(widget.user)
       ),
     bottomNavigationBar: 
@@ -120,7 +120,9 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
       unselectedItemColor: Colors.grey,
       showUnselectedLabels: true,
       showSelectedLabels: true,
-      onTap: (index) => controller.bottomNavigationMove(index, widget.user.token)
+      onTap: (index) {
+        controller.bottomNavigationMove(index, widget.user.token);
+        }
       ),      
     ),
   );

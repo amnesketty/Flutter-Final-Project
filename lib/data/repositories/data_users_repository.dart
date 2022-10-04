@@ -54,16 +54,28 @@ class DataUserRepository implements UserRepository {
     dio.options.headers['Authorization'] =
         'Bearer $token';
     try {
-      final response = await dio.post(
+      final response = await dio.get(
         endpoints.userTransaction
       );
-      final userTransactionResponse = response.data['data'] as UserTransaction;
-      print(userTransactionResponse.username);
-      return userTransactionResponse;
+      final userTransactionResponse = response.data['data'] as Map<String,dynamic>;
+
+      final userTransactionResponseBookingHotels = userTransactionResponse['bookingHotels'] as List<dynamic>;
+      final userTransactionBookingHotels = userTransactionResponseBookingHotels
+        .map(
+          (dynamic response) => TransactionHotels.fromJson(response)).toList();
+
+      final userTransactionResponseBookingFlights = userTransactionResponse['bookingFlights'] as List<dynamic>;
+      final userTransactionBookingFlights = userTransactionResponseBookingFlights
+        .map(
+          (dynamic response) => TransactionFlights.fromJson(response)).toList();
+
+      final finalResponse = UserTransaction(
+        username: userTransactionResponse['username'],
+        bookingHotels: userTransactionBookingHotels,
+        bookingFlights: userTransactionBookingFlights);
+      return finalResponse;
     } catch (e) {
       rethrow;
     }
-    // TODO: implement getUserTransaction
-    throw UnimplementedError();
   }
 }
