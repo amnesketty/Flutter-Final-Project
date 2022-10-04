@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lounga/app/pages/flight_booking/flight_booking_page.dart';
+import 'package:lounga/app/pages/flight_detail/flight_detail_page.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_controller.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
 import 'package:lounga/app/pages/flight_search/flight_search_controller.dart';
@@ -22,6 +23,7 @@ import '../domain/entities/user.dart';
 class AppNavigator {
   Route<dynamic>? onGenerateRoutes(RouteSettings settings) {
     switch (settings.name) {
+//AUTHENTICATION
       case HotelDetailPage.route:
         final arguments = settings.arguments as HotelFindArgument;
         return MaterialPageRoute(
@@ -47,10 +49,23 @@ class AppNavigator {
         final arguments = settings.arguments as User;
         return MaterialPageRoute(
             builder: (BuildContext _) => HomePage(arguments));
+
+//HOTEL SERVICE
+
+//FLIGHT SERVICE
       case FlightSearchPage.route:
         final arguments = settings.arguments as User;
         return MaterialPageRoute(
             builder: (BuildContext _) => FlightSearchPage(arguments));
+      case FlightFindPage.route:
+        final arguments = settings.arguments as FlightsArgument;
+        return MaterialPageRoute(
+            builder: (BuildContext _) => FlightFindPage(
+                arguments.flights, arguments.user, arguments.departureDate));
+      case FlightDetailPage.route:
+        final arguments = settings.arguments as Flight;
+        return MaterialPageRoute(
+            builder: (BuildContext _) => FlightDetailPage(arguments));
       case FlightBookingPage.route:
         final arguments = settings.arguments as FlightFindArgument;
         return MaterialPageRoute(

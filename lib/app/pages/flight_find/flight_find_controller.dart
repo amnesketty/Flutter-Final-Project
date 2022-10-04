@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lounga/app/pages/flight_booking/flight_booking_page.dart';
+import 'package:lounga/app/pages/flight_detail/flight_detail_page.dart';
 import 'package:lounga/domain/entities/flight.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import '../../../domain/entities/user.dart';
@@ -22,13 +23,6 @@ class FlightFindController extends Controller {
     //_findFlight();
   }
 
-  // void findFlight(String seatClass, String destinationFrom,
-  //     String destinationTo, String departureDate, int amountPassenger) {
-  //   _showLoading();
-  //   _presenter.findFlight(seatClass, destinationFrom, destinationTo,
-  //       departureDate, amountPassenger);
-  // }
-
   void _initObserver() {
     _presenter.onErrorFlightFind = (e) {};
     _presenter.onFinishFlightFind = () {
@@ -39,9 +33,9 @@ class FlightFindController extends Controller {
     };
   }
 
-  void navigateToFlightBooking(Flight flight, User user, String departureDate) {
+  void navigateToFlightDetail(Flight flight) {
     final context = getContext();
-    Navigator.pushNamed(context, FlightBookingPage.route, arguments: FlightFindArgument(flight, user, departureDate));
+    Navigator.pushNamed(context, FlightDetailPage.route, arguments: flight);
   }
 
   void _showLoading() {
@@ -57,10 +51,6 @@ class FlightFindController extends Controller {
   @override
   void onDisposed() {
     super.onDisposed();
-    // _controllerseatClass.dispose();
-    // _controllerdestinationFrom.dispose();
-    // _controllerdestinationTo.dispose();
-    // _controllerdepartureDate.dispose();
     _presenter.dispose();
   }
 }

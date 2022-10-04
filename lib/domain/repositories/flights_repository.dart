@@ -26,6 +26,7 @@ abstract class FlightRepository {
       String title,
       String name,
       String idCard,
-      int bookingFlightId
+      int bookingFlightId,
+      String token
 );
 }
