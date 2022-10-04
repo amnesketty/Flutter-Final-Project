@@ -40,39 +40,10 @@ class FlightBookingController extends Controller {
     _initObserver();
   }
 
-  // void bookingNow(
-  //     String bookingDate,
-  //     String airline,
-  //     String destinationFrom,
-  //     String destinationTo,
-  //     String departureTime,
-  //     String arrivalTime,
-  //     String seatClass,
-  //     int flightId) {
-  //   _showLoading();
-  //   _presenter.bookingNow(bookingDate, airline, destinationFrom, destinationTo,
-  //       departureTime, arrivalTime, seatClass, flightId);
-  // }
-
-  // void addPassenger(
-  //     String title, String name, String idCard, int bookingFlightId) {
-  //   _presenter.addPassenger(title, name, idCard, bookingFlightId);
-  // }
-
-  Future<void> bookFlight(String title, String name, String idCard,
-      Flight flight, User user, String departureDate) async {
+  Future<void> bookFlight(String title, String name, String idCard, Flight flight, User user, String departureDate, int amountPassenger, int price) async {
     //_user = user;
     _showLoading();
-    _presenter.flightBooking(
-        departureDate,
-        flight.airline,
-        flight.destinationFrom,
-        flight.destinationTo,
-        flight.departureTime,
-        flight.arrivalTime,
-        flight.seatClass,
-        flight.id,
-        user.token);
+    _presenter.flightBooking(departureDate, amountPassenger, amountPassenger*price, flight.id, user.token);
     do {
       await Future.delayed(const Duration(milliseconds: 100));
     } while (_isLoading);

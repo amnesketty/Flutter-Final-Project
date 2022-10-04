@@ -19,18 +19,12 @@ class FlightBookingPresenter extends Presenter {
 
   void flightBooking(
       String bookingDate,
-      String airline,
-      String destinationFrom,
-      String destinationTo,
-      String departureTime,
-      String arrivalTime,
-      String seatClass,
-      int flightId,
-      String token) {
+      int amountPassenger,
+      int totalPrice,
+      int flightId, String token) {
     flightBookingUseCase.execute(
         _FlightBookingObserver(this),
-        FlightBookingParams(bookingDate, airline, destinationFrom,
-            destinationTo, departureTime, arrivalTime, seatClass, flightId, token));
+        FlightBookingParams(bookingDate, amountPassenger,totalPrice, flightId,token));
   }
 
   void passengerAdd(

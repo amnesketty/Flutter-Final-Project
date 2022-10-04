@@ -14,7 +14,8 @@ class FlightFindPage extends View {
   final List<Flight> flights;
   final User user;
   final String departureDate;
-  const FlightFindPage(this.flights, this.user, this.departureDate, {Key? key})
+  final int amountPassenger;
+  const FlightFindPage(this.flights, this.user, this.departureDate, this.amountPassenger, {Key? key})
       : super(key: key);
 
   // FlightFindPage({Key? key}) : super(key: key);
@@ -51,7 +52,8 @@ class _FlightFindViewState
                           return FlightTile(
                             flight: flight,
                             onFlightClicked: (Flight flight) {
-                              controller.navigateToFlightDetail(flight, widget.user, widget.departureDate);
+                              controller.navigateToFlightDetail(
+                                  flight, widget.user, widget.departureDate, widget.amountPassenger, price);
                             },
                           );
                         })),
