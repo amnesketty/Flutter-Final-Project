@@ -71,9 +71,9 @@ class AppNavigator {
             builder: (BuildContext _) => FlightFindPage(
                 arguments.flights, arguments.user, arguments.departureDate));
       case FlightDetailPage.route:
-        final arguments = settings.arguments as Flight;
+        final arguments = settings.arguments as FlightFindArgument;
         return MaterialPageRoute(
-            builder: (BuildContext _) => FlightDetailPage(arguments));
+            builder: (BuildContext _) => FlightDetailPage(arguments.flight, arguments.user, arguments.departureDate));
       case FlightBookingPage.route:
         final arguments = settings.arguments as FlightFindArgument;
         return MaterialPageRoute(

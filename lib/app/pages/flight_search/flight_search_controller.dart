@@ -67,11 +67,6 @@ class FlightSearchController extends Controller {
     };
   }
 
-  void navigateToFlightFind() {
-    final context = getContext();
-    Navigator.pushNamed(context, FlightFindPage.route, arguments: _flights);
-  }
-
   void _showLoading() {
     _isLoading = true;
     refreshUI();

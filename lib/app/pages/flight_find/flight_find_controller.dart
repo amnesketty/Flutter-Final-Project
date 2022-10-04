@@ -33,9 +33,9 @@ class FlightFindController extends Controller {
     };
   }
 
-  void navigateToFlightDetail(Flight flight) {
+  void navigateToFlightDetail(Flight flight, User user, String departureDate) {
     final context = getContext();
-    Navigator.pushNamed(context, FlightDetailPage.route, arguments: flight);
+    Navigator.pushNamed(context, FlightDetailPage.route, arguments: FlightFindArgument(flight, user, departureDate));
   }
 
   void _showLoading() {

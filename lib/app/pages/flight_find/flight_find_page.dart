@@ -47,10 +47,11 @@ class _FlightFindViewState
                         itemCount: widget.flights.length,
                         itemBuilder: (BuildContext _, int index) {
                           final flight = widget.flights[index];
+                          final price = widget.flights[index].price;
                           return FlightTile(
                             flight: flight,
                             onFlightClicked: (Flight flight) {
-                              controller.navigateToFlightDetail(flight);
+                              controller.navigateToFlightDetail(flight, widget.user, widget.departureDate);
                             },
                           );
                         })),

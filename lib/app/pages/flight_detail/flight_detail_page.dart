@@ -4,12 +4,15 @@ import 'package:injector/injector.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../../domain/entities/flight.dart';
+import '../../../domain/entities/user.dart';
 import 'flight_detail_controller.dart';
 
 class FlightDetailPage extends View {
   static const route = '/flight-detail';
   final Flight flight;
-  const FlightDetailPage(this.flight, {Key? key}) : super(key: key);
+  final User user;
+  final String departureDate;
+  const FlightDetailPage(this.flight, this.user, this.departureDate, {Key? key}) : super(key: key);
   @override
   // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() {
@@ -423,7 +426,7 @@ class _FlightDetailViewState
                   ),
                 ],
               ),
-              height: 153,
+              height: 100,
               color: Colors.white,
             ),
             SizedBox(
@@ -468,7 +471,7 @@ class _FlightDetailViewState
                             primary: const Color(0XFFE67E22),
                           ),
                           onPressed: () {
-                            controller.navigateToFlightBooking(widget.flight);
+                            controller.navigateToFlightBooking(widget.flight, widget.user, widget.departureDate);
                           },
                           child: const Text(
                             'Select',
