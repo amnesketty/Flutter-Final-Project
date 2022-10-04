@@ -51,18 +51,6 @@ class AppNavigator {
             builder: (BuildContext _) => HomePage(arguments));
 
 //HOTEL SERVICE
-      case HotelDetailPage.route:
-        final arguments = settings.arguments as Hotel;
-        return MaterialPageRoute(
-            builder: (BuildContext _) => HotelDetailPage(arguments));
-      case HotelBookingPage.route:
-        final arguments = settings.arguments as Hotel;
-        return MaterialPageRoute(
-            builder: (BuildContext _) => HotelBookingPage(arguments));
-      case HotelFindPage.route:
-        final arguments = settings.arguments as List<Hotel>;
-        return MaterialPageRoute(
-            builder: (BuildContext _) => HotelFindPage(arguments));
 
 //FLIGHT SERVICE
       case FlightSearchPage.route:
