@@ -35,7 +35,7 @@ class _FlightBookingViewState
   final int _value = 1;
   @override
   Widget get view => Scaffold(
-      //key: globalKey,
+      key: globalKey,
       appBar: AppBar(
         backgroundColor: const Color(0XFFE67E22),
         shadowColor: Colors.transparent,

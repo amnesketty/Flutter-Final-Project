@@ -68,23 +68,19 @@ class DataFlightRepository implements FlightRepository {
   }
 
   Future<int> addPassenger(
-      String title, String name, String idCard, int bookingFlightId) async {
+      String title, String name, String idCard, int bookingFlightId, String token) async {
     // TODO: implement findFlight
-    dio.options.headers['Authorization'] =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0IiwibmFtZSI6InJveSIsIm5iZiI6MTY2NDc3MDc1MywiZXhwIjoxNjY1Mzc1NTUzLCJpYXQiOjE2NjQ3NzA3NTN9.9I6JeQcHuivz2seEfF8HPB41fjhUcymw4IoENFniQJo';
+    dio.options.headers['Authorization'] = 'Bearer $token';
     try {
-      final response = await dio.post(endpoints.addPassengers,
-          data: {"title": title, "name": name, "idCard": idCard});
+      final response = await dio.post(endpoints.addPassenger,
+          data: {
+            "title": title,
+            "name": name,
+            "idCard": idCard,
+            "bookingFlightId": bookingFlightId});
       //print(response.data['data']);
-      final addPassengersResponse = response.data['data'] as List<dynamic>;
-      final passengers = addPassengersResponse
-          .map(
-            (dynamic response) => Passenger.fromResponse(response),
-          )
-          .toList();
-      final passengerId = passengers.first.id;
-      //print(userResponse);
-      print(passengerId);
+      final addPassengersResponse = response.data['data'] as Map<String, dynamic>;
+      int passengerId = addPassengersResponse['id'];
       return passengerId;
     } catch (e) {
       print(e);

@@ -63,8 +63,8 @@ class _FlightBookingObserver extends Observer<int> {
 
   @override
   void onNext(int? response) {
-    int? user = response;
-    presenter.onSuccessFlightBooking(user);
+    int? data = response;
+    presenter.onSuccessFlightBooking(data);
   }
 }
 
@@ -85,7 +85,7 @@ class _PassengerAddObserver extends Observer<int> {
 
   @override
   void onNext(int? response) {
-    int? user = response;
-    presenter.onSuccessPassengerAdd(user);
+    int? data = response;
+    presenter.onSuccessPassengerAdd(data);
   }
 }

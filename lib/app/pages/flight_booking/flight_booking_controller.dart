@@ -7,6 +7,7 @@ import 'package:lounga/domain/entities/user.dart';
 
 import '../../../domain/entities/flight.dart';
 import '../flight_search/flight_search_controller.dart';
+import '../home/home_page.dart';
 
 class FlightBookingController extends Controller {
   final FlightBookingPresenter _presenter;
@@ -73,11 +74,15 @@ class FlightBookingController extends Controller {
         flight.id,
         user.token);
     do {
+      await Future.delayed(const Duration(milliseconds: 100));
+    } while (_isLoading);
+    print("Nilai booking flight id : $_bookingFlightId");
+    _presenter.passengerAdd(title, name, idCard, _bookingFlightId!, user.token);
+    do {
       await Future.delayed(const Duration(milliseconds: 10));
     } while (_isLoading);
-    _presenter.passengerAdd(title, name, idCard, _bookingFlightId!, user.token);
-    //final context = getContext();
-    //Navigator.pushNamed(context, FlightSearchPage.route, arguments: PassengersArgument(_passengers, _user));
+    final context = getContext();
+    Navigator.pushReplacementNamed(context, HomePage.route, arguments: user);
   }
 
   void _initObserver() {
@@ -105,11 +110,11 @@ class FlightBookingController extends Controller {
     };
   }
 
-  void navigateToFlightSearch(Flight flight) {
-    final context = getContext();
-    Navigator.pushNamed(context, FlightSearchPage.route,
-        arguments: _passengers);
-  }
+  // void navigateToFlightSearch(Flight flight) {
+  //   final context = getContext();
+  //   Navigator.pushNamed(context, FlightSearchPage.route,
+  //       arguments: _passengers);
+  // }
 
   void _showLoading() {
     _isLoading = true;

@@ -70,7 +70,7 @@ class _HotelSearchViewState
                             keyboardType: TextInputType.emailAddress,
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
-                                labelText: 'City',
+                                hintText: 'City',
                                 labelStyle: 
                                   const TextStyle(color: Colors.black),
                                 focusedBorder: OutlineInputBorder(
@@ -92,7 +92,7 @@ class _HotelSearchViewState
                                 prefixIcon: Icon(Icons.calendar_month, color: Colors.black),
                                 prefixIconConstraints: BoxConstraints(maxWidth: 40),
                                 // icon: Icon(Icons.calendar_month),
-                                labelText: 'Booking Date',
+                                hintText: 'Booking Date',
                                 labelStyle: 
                                   const TextStyle(color: Colors.black),
                                 focusedBorder: OutlineInputBorder(
@@ -123,7 +123,7 @@ class _HotelSearchViewState
                                           prefixIcon: Icon(Icons.door_back_door, color: Colors.black),
                                           prefixIconConstraints: BoxConstraints(maxWidth: 40),
                                           // icon: Icon(Icons.calendar_month),
-                                          // labelText: '1 Room(s)',
+                                          hintText: '1 Room(s)',
                                           labelStyle: 
                                             const TextStyle(color: Colors.black),
                                           focusedBorder: OutlineInputBorder(
@@ -154,7 +154,7 @@ class _HotelSearchViewState
                                           prefixIcon: Icon(Icons.access_alarm_outlined, color: Colors.black),
                                           prefixIconConstraints: BoxConstraints(maxWidth: 40),
                                           // icon: Icon(Icons.calendar_month),
-                                          // labelText: '1 Night(s)',
+                                          hintText: '1 Night(s)',
                                           labelStyle: 
                                             const TextStyle(color: Colors.black),
                                           focusedBorder: OutlineInputBorder(
