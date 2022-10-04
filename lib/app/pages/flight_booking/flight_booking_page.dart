@@ -16,8 +16,9 @@ class FlightBookingPage extends View {
   final Flight flight;
   final User user;
   final String departureDate;
-
-  const FlightBookingPage(this.flight, this.user, this.departureDate,
+  final int amountPassenger;
+  final int price;
+  const FlightBookingPage(this.flight, this.user, this.departureDate, this.amountPassenger, this.price,
       {Key? key})
       : super(key: key);
 
@@ -243,7 +244,10 @@ class _FlightBookingViewState
                                         controller.controllerIdCard.text,
                                         widget.flight,
                                         widget.user,
-                                        widget.departureDate);
+                                        widget.departureDate,
+                                        widget.amountPassenger,
+                                        widget.price
+                                        );
                                   },
                                   style: TextButton.styleFrom(
                                       backgroundColor: const Color(0XFFE67E22)),

@@ -33,7 +33,7 @@ class AppNavigator {
         final arguments = settings.arguments as FlightsArgument;
         return MaterialPageRoute(
             builder: (BuildContext _) => FlightFindPage(
-                arguments.flights, arguments.user, arguments.departureDate));
+                arguments.flights, arguments.user, arguments.departureDate, arguments.amountPassenger));
       case HotelBookingPage.route:
         final arguments = settings.arguments as HotelDetailArgument;
         return MaterialPageRoute(
@@ -69,16 +69,16 @@ class AppNavigator {
         final arguments = settings.arguments as FlightsArgument;
         return MaterialPageRoute(
             builder: (BuildContext _) => FlightFindPage(
-                arguments.flights, arguments.user, arguments.departureDate));
+                arguments.flights, arguments.user, arguments.departureDate, arguments.amountPassenger));
       case FlightDetailPage.route:
         final arguments = settings.arguments as FlightFindArgument;
         return MaterialPageRoute(
-            builder: (BuildContext _) => FlightDetailPage(arguments.flight, arguments.user, arguments.departureDate));
+            builder: (BuildContext _) => FlightDetailPage(arguments.flight, arguments.user, arguments.departureDate, arguments.amountPassenger, arguments.price));
       case FlightBookingPage.route:
         final arguments = settings.arguments as FlightFindArgument;
         return MaterialPageRoute(
             builder: (BuildContext _) => FlightBookingPage(
-                arguments.flight, arguments.user, arguments.departureDate));
+                arguments.flight, arguments.user, arguments.departureDate, arguments.amountPassenger, arguments.price));
       case HotelSearchPage.route:
         final arguments = settings.arguments as User;
         return MaterialPageRoute(

@@ -12,7 +12,12 @@ class FlightDetailPage extends View {
   final Flight flight;
   final User user;
   final String departureDate;
-  const FlightDetailPage(this.flight, this.user, this.departureDate, {Key? key}) : super(key: key);
+  final int amountPassenger;
+  final int price;
+  const FlightDetailPage(this.flight, this.user, this.departureDate,
+      this.amountPassenger, this.price,
+      {Key? key})
+      : super(key: key);
   @override
   // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() {
@@ -410,7 +415,7 @@ class _FlightDetailViewState
                   ),
                   Row(
                     children: [
-                      Text('Passengers (x1)'),
+                      Text('Passengers (x${widget.amountPassenger})'),
                       Spacer(),
                       Text('Rp${widget.flight.price}')
                     ],
@@ -443,7 +448,7 @@ class _FlightDetailViewState
                   Row(
                     children: [
                       Text(
-                        'Rp${widget.flight.price}',
+                        'Rp${widget.flight.price * widget.amountPassenger}',
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -471,7 +476,12 @@ class _FlightDetailViewState
                             primary: const Color(0XFFE67E22),
                           ),
                           onPressed: () {
-                            controller.navigateToFlightBooking(widget.flight, widget.user, widget.departureDate);
+                            controller.navigateToFlightBooking(
+                                widget.flight,
+                                widget.user,
+                                widget.departureDate,
+                                widget.amountPassenger,
+                                widget.price);
                           },
                           child: const Text(
                             'Select',

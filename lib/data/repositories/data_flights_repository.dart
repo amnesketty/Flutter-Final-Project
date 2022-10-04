@@ -91,12 +91,8 @@ class DataFlightRepository implements FlightRepository {
   @override
   Future<int> bookingFlight(
       String bookingDate,
-      String airline,
-      String destinationFrom,
-      String destinationTo,
-      String departureTime,
-      String arrivalTime,
-      String seatClass,
+      int amountPassenger,
+      int totalPrice,
       int flightId,
       String token) async {
     // TODO: implement findFlight
@@ -104,12 +100,9 @@ class DataFlightRepository implements FlightRepository {
     try {
       final response = await dio.post(endpoints.bookingFlight, data: {
         "bookingDate": bookingDate,
-        "airline": airline,
-        "destinationFrom": destinationFrom,
-        "destinationTo": destinationTo,
-        "departureTime": departureTime,
-        "arrivalTime": arrivalTime,
-        "seatClass": seatClass
+        "amountPassenger": amountPassenger,
+        "totalPrice": totalPrice,
+        "flightId": flightId,
       });
       final bookingFlightsResponse =
           response.data['data'] as Map<String, dynamic>;

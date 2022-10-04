@@ -54,7 +54,7 @@ class FlightSearchController extends Controller {
     } while (_isLoading);
     final context = getContext();
     Navigator.pushNamed(context, FlightFindPage.route,
-        arguments: FlightsArgument(_flights, _user, departureDate));
+        arguments: FlightsArgument(_flights, _user, departureDate, amountPassenger));
   }
 
   void _initObserver() {
@@ -93,5 +93,6 @@ class FlightsArgument {
   List<Flight> flights;
   User user;
   String departureDate;
-  FlightsArgument(this.flights, this.user, this.departureDate);
+  int amountPassenger;
+  FlightsArgument(this.flights, this.user, this.departureDate, this.amountPassenger);
 }
