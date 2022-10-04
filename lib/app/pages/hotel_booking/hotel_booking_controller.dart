@@ -3,6 +3,7 @@ import 'package:lounga/domain/entities/hotel.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:lounga/domain/usecases/cases/hotel_booking.dart';
 
+import '../../../domain/entities/user.dart';
 import 'hotel_booking_presenter.dart';
 
 class HotelBookingController extends Controller {
@@ -25,7 +26,7 @@ class HotelBookingController extends Controller {
   
   @override
   void initListeners() {
-    // _initObserver();
+    _initObserver();
   }
 
   void _initObserver() {
@@ -51,14 +52,14 @@ class HotelBookingController extends Controller {
     };
   }
 
-  void bookingNow(String bookingDate, int totalRoom, int price, int hotelId, int roomId) {
+  void bookingNow(String bookingDate, int totalRoom, int price, int hotelId, int roomId, User user) {
      _showLoading();
-    _presenter.hotelBooking(bookingDate, totalRoom, price, hotelId, roomId);
+    _presenter.hotelBooking(bookingDate, totalRoom, price, hotelId, roomId, user.token);
   }
 
-  void addGuest(String name, String email, String phone) {
-    _presenter.hotelGuest(name, email, phone, _bookingHotelId!);
-  }
+  // void addGuest(String name, String email, String phone) {
+  //   _presenter.hotelGuest(name, email, phone, _bookingHotelId!);
+  // }
 
   void _showLoading() {
     _isLoading = true;

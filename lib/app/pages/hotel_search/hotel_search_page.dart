@@ -123,7 +123,7 @@ class _HotelSearchViewState
                                           prefixIcon: Icon(Icons.door_back_door, color: Colors.black),
                                           prefixIconConstraints: BoxConstraints(maxWidth: 40),
                                           // icon: Icon(Icons.calendar_month),
-                                          labelText: '1 Room(s)',
+                                          // labelText: '1 Room(s)',
                                           labelStyle: 
                                             const TextStyle(color: Colors.black),
                                           focusedBorder: OutlineInputBorder(
@@ -154,7 +154,7 @@ class _HotelSearchViewState
                                           prefixIcon: Icon(Icons.access_alarm_outlined, color: Colors.black),
                                           prefixIconConstraints: BoxConstraints(maxWidth: 40),
                                           // icon: Icon(Icons.calendar_month),
-                                          labelText: '1 Night(s)',
+                                          // labelText: '1 Night(s)',
                                           labelStyle: 
                                             const TextStyle(color: Colors.black),
                                           focusedBorder: OutlineInputBorder(
@@ -169,7 +169,8 @@ class _HotelSearchViewState
                           SizedBox(height:60),
                           TextButton(
                             onPressed: () {
-                              controller.searchHotels(controller.controllerCity.text, 
+                              controller.searchHotels(
+                              controller.controllerCity.text, 
                               controller.controllerBookingDate.text, 
                               int.parse(controller.controllerRoom.text), 
                               int.parse(controller.controllerDuration.text),

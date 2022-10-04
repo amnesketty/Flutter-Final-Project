@@ -14,7 +14,7 @@ class HotelFind extends UseCase<List<Hotel>, HotelFindParams> {
     final streamController = StreamController<List<Hotel>>();
 
     try {
-      final hotel = await repository.findHotel(params!.city, params.bookingDate, params.totalRoom, params.duration);
+      final hotel = await repository.findHotel(params!.city, params.bookingDate, params.totalRoom, params.duration, params.token);
       streamController.add(hotel);
       streamController.close();
     } catch (e, stackTrace) {

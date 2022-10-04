@@ -35,9 +35,9 @@ class DataHotelRepository implements HotelRepository {
   }
   
   @override
-  Future<List<Hotel>> findHotel(String city, String bookingDate, int totalRoom, int duration) async {
+  Future<List<Hotel>> findHotel(String city, String bookingDate, int totalRoom, int duration, String token) async {
     // TODO: implement findHotel
-    dio.options.headers['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwibmFtZSI6InNhbHNhIiwibmJmIjoxNjY0NDQwOTUzLCJleHAiOjE2NjUwNDU3NTMsImlhdCI6MTY2NDQ0MDk1M30.Jf0ChgYGrGA8xLgRhjRgWhAYswlKTcLD0NsJd6YynHE";
+    dio.options.headers['Authorization'] = 'Bearer $token';
     try {
       final response = await dio.post(
         endpoints.findHotel,
@@ -64,9 +64,9 @@ class DataHotelRepository implements HotelRepository {
   }
   
   @override
-  Future<int> bookingHotel(String bookingDate, int totalRoom, int price, int hotelId, int roomId) async {
+  Future<int> bookingHotel(String bookingDate, int totalRoom, int price, int hotelId, int roomId, String token) async {
     // TODO: implement bookingHotel
-    dio.options.headers['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwibmFtZSI6InNhbHNhIiwibmJmIjoxNjY0NDQwOTUzLCJleHAiOjE2NjUwNDU3NTMsImlhdCI6MTY2NDQ0MDk1M30.Jf0ChgYGrGA8xLgRhjRgWhAYswlKTcLD0NsJd6YynHE";
+    dio.options.headers['Authorization'] = 'Bearer $token';
     try {
       final response = await dio.post(
         endpoints.bookingHotel,

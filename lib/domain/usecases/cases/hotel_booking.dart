@@ -12,7 +12,7 @@ class HotelBooking extends UseCase<int, HotelBookingParams> {
     final streamController = StreamController<int>();
 
     try {
-      final bookingHotelId = await repository.bookingHotel(params!.bookingDate, params.totalRoom, params.price, params.hotelId, params.roomId);
+      final bookingHotelId = await repository.bookingHotel(params!.bookingDate, params.totalRoom, params.price, params.hotelId, params.roomId, params.token);
       streamController.add(bookingHotelId);
       streamController.close();
     } catch (e, stackTrace) {
@@ -30,5 +30,6 @@ class HotelBookingParams {
   final int price;
   final int hotelId;
   final int roomId;
-  HotelBookingParams(this.bookingDate, this.totalRoom, this.price, this.hotelId, this.roomId);
+  final String token;
+  HotelBookingParams(this.bookingDate, this.totalRoom, this.price, this.hotelId, this.roomId, this.token);
 }
