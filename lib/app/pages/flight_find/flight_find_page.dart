@@ -14,7 +14,8 @@ class FlightFindPage extends View {
   final List<Flight> flights;
   final User user;
   final String departureDate;
-  const FlightFindPage(this.flights, this.user, this.departureDate, {Key? key}) : super(key: key);
+  const FlightFindPage(this.flights, this.user, this.departureDate, {Key? key})
+      : super(key: key);
 
   // FlightFindPage({Key? key}) : super(key: key);
 
@@ -43,16 +44,13 @@ class _FlightFindViewState
                 controller.isLoading
                     ? const Center(child: CupertinoActivityIndicator())
                     : ListView.builder(
-                        //shrinkWrap: true,
-                        // itemCount: controller.flights.length,
                         itemCount: widget.flights.length,
                         itemBuilder: (BuildContext _, int index) {
                           final flight = widget.flights[index];
-                          // return Text(rooms);
                           return FlightTile(
                             flight: flight,
                             onFlightClicked: (Flight flight) {
-                              controller.navigateToFlightBooking(flight, widget.user, widget.departureDate);
+                              controller.navigateToFlightDetail(flight);
                             },
                           );
                         })),

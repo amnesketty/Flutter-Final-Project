@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lounga/app/pages/flight_booking/flight_booking_page.dart';
+import 'package:lounga/app/pages/flight_detail/flight_detail_page.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_controller.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
 import 'package:lounga/app/pages/flight_search/flight_search_controller.dart';
@@ -19,23 +20,7 @@ import '../domain/entities/user.dart';
 class AppNavigator {
   Route<dynamic>? onGenerateRoutes(RouteSettings settings) {
     switch (settings.name) {
-      case HotelDetailPage.route:
-        final arguments = settings.arguments as Hotel;
-        return MaterialPageRoute(
-            builder: (BuildContext _) => HotelDetailPage(arguments));
-      case FlightFindPage.route:
-        final arguments = settings.arguments as FlightsArgument;
-        return MaterialPageRoute(
-            builder: (BuildContext _) =>
-                FlightFindPage(arguments.flights, arguments.user, arguments.departureDate));
-      case HotelBookingPage.route:
-        final arguments = settings.arguments as Hotel;
-        return MaterialPageRoute(
-            builder: (BuildContext _) => HotelBookingPage(arguments));
-      case HotelFindPage.route:
-        final arguments = settings.arguments as List<Hotel>;
-        return MaterialPageRoute(
-            builder: (BuildContext _) => HotelFindPage(arguments));
+//AUTHENTICATION
       case LoginPage.route:
         return MaterialPageRoute(builder: (BuildContext _) => LoginPage());
       case RegisterPage.route:
@@ -44,15 +29,40 @@ class AppNavigator {
         final arguments = settings.arguments as User;
         return MaterialPageRoute(
             builder: (BuildContext _) => HomePage(arguments));
+
+//HOTEL SERVICE
+      case HotelDetailPage.route:
+        final arguments = settings.arguments as Hotel;
+        return MaterialPageRoute(
+            builder: (BuildContext _) => HotelDetailPage(arguments));
+      case HotelBookingPage.route:
+        final arguments = settings.arguments as Hotel;
+        return MaterialPageRoute(
+            builder: (BuildContext _) => HotelBookingPage(arguments));
+      case HotelFindPage.route:
+        final arguments = settings.arguments as List<Hotel>;
+        return MaterialPageRoute(
+            builder: (BuildContext _) => HotelFindPage(arguments));
+
+//FLIGHT SERVICE
       case FlightSearchPage.route:
         final arguments = settings.arguments as User;
         return MaterialPageRoute(
             builder: (BuildContext _) => FlightSearchPage(arguments));
+      case FlightFindPage.route:
+        final arguments = settings.arguments as FlightsArgument;
+        return MaterialPageRoute(
+            builder: (BuildContext _) => FlightFindPage(
+                arguments.flights, arguments.user, arguments.departureDate));
+      case FlightDetailPage.route:
+        final arguments = settings.arguments as Flight;
+        return MaterialPageRoute(
+            builder: (BuildContext _) => FlightDetailPage(arguments));
       case FlightBookingPage.route:
         final arguments = settings.arguments as FlightFindArgument;
         return MaterialPageRoute(
-            builder: (BuildContext _) => FlightBookingPage(arguments.flight, arguments.user, arguments.departureDate));
-
+            builder: (BuildContext _) => FlightBookingPage(
+                arguments.flight, arguments.user, arguments.departureDate));
       default:
         return null;
     }
