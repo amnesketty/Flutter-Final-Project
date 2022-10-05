@@ -62,7 +62,6 @@ class HomeController extends Controller {
   void navigateToSearchHotel(User user) {
     final context = getContext();
     Navigator.pushNamed(context, HotelSearchPage.route, arguments: user);
-
   }
 
   void getUserTransaction(String token) {

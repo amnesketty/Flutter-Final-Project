@@ -12,7 +12,6 @@ class UserTransactionCase extends UseCase<UserTransaction, UserTransactionParams
   @override
   Future<Stream<UserTransaction?>> buildUseCaseStream(UserTransactionParams? params) async {
     final streamController = StreamController<UserTransaction>();
-    print(params!.token);
     try {
       final userTransaction = await repository.getUserTransaction(params!.token);
       streamController.add(userTransaction);
