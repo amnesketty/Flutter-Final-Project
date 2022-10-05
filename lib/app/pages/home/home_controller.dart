@@ -23,7 +23,7 @@ class HomeController extends Controller {
   UserTransaction? _userTransaction = UserTransaction(username: '', bookingHotels: [], bookingFlights: []);
   UserTransaction? get userTransaction => _userTransaction;
 
-  int _dropDownValueTransaction = 1;
+  int _dropDownValueTransaction = 2;
   int get dropDownValueTransaction => _dropDownValueTransaction;
   
   @override
@@ -72,8 +72,9 @@ class HomeController extends Controller {
     _presenter.getUserTransaction(token);
   }
 
-  void refreshUserTransaction(int value) {
-    _dropDownValueTransaction = value;
+  void refreshUserTransaction() {
+    if (_dropDownValueTransaction == 1) _dropDownValueTransaction = 2;
+    else _dropDownValueTransaction = 1;
     refreshUI();
   }
 
