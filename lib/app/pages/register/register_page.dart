@@ -2,6 +2,7 @@ import 'package:lounga/app/pages/register/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
+import 'package:lounga/app/widgets/pop_up_dialog.dart';
 import 'package:lounga/app/widgets/text_field.dart';
 import '../../widgets/text_field_password.dart';
 
@@ -72,7 +73,7 @@ class _RegisterViewState extends ViewState<RegisterPage, RegisterController> {
                         height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: ElevatedButton(
-                          onPressed: () {                        
+                          onPressed: () async {                        
                             controller.registerNow(
                               controller.controllerFirstName.text,
                               controller.controllerLastName.text,
@@ -80,10 +81,14 @@ class _RegisterViewState extends ViewState<RegisterPage, RegisterController> {
                               controller.controllerEmail.text,
                               controller.controllerPhone.text, 
                               controller.controllerPassword.text);
-                            // showDialog(
-                            //     context: context,
-                            //     // builder: (BuildContext context) => _buildPopupDialog(context),
-                            //   );
+                            do {
+                              await Future.delayed(const Duration(milliseconds: 100));
+                            } while (controller.isLoading);
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) => 
+                                  PopUpDialog(function: () {controller.navigateToLoginPage();}, tipePopUpDialog: "registerSuccess", popUpButton: "registerSuccess")
+                              );
                           },
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
@@ -118,82 +123,7 @@ class _RegisterViewState extends ViewState<RegisterPage, RegisterController> {
                 : const SizedBox()
               ]
             ) 
-            
-
-
-
           ),
         ),
       );
- 
-//  ControlledWidgetBuilder<RegisterController>(
-//             builder: (BuildContext context, RegisterController controller)
-//  Widget _buildPopupDialog(BuildContext context) {
-//     return AlertDialog(
-//       titlePadding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-//       title: Container(
-//         alignment: Alignment.centerLeft,
-//         height: 50,
-//         width: 311,
-//         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
-//         decoration: const BoxDecoration(
-//             borderRadius: BorderRadius.only(
-//                 topLeft: Radius.circular(10.0),
-//                 topRight: Radius.circular(10.0)
-//             ),
-//             color: Colors.black
-//         ),
-//         child: const Text('SUCCESS',
-//           textAlign: TextAlign.start,
-//           style: TextStyle(
-//               color: Color(0xFFFFFFFF),
-//               fontWeight: FontWeight.w700,
-//               fontSize: 14
-//           ),
-//         ),
-//       ),
-//       backgroundColor: const Color(0xFFFFFFFF),
-//       shape:  RoundedRectangleBorder(
-//           borderRadius: BorderRadius.circular(10.0)
-//       ),
-//       content: 
-      
-//       Column(
-//         mainAxisSize: MainAxisSize.min,
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: const <Widget>[
-//           Text("Your registration has been successfully completed",
-//             textAlign: TextAlign.center,
-//             style: TextStyle(
-//                 fontSize: 14
-//             ),
-//           ),
-//         ],
-//       ),
-//       contentPadding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 20.0),
-//       actions: <Widget>[
-//         ElevatedButton(
-//           style: ElevatedButton.styleFrom(
-//               shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(30.0)
-//               ),
-//               side: const BorderSide(width: 1.0, color: Color(0xFFCA000E)),
-//               elevation: 0,
-//               primary: const Color(0xFFFFFFFF)
-//           ),
-//           onPressed: () {
-//             controller.navigateToLoginPage();
-//           },
-//           child: const Text('SIGN IN',
-//             style: TextStyle(
-//                 color: Color(0xFFCA000E),
-//                 fontWeight: FontWeight.w700,
-//                 fontSize: 14
-//             ),
-//           ),
-//         ),
-//       ],
-//       actionsPadding: const EdgeInsets.fromLTRB(0.0, 0.0, 20.0, 0.0),
-//     );
-//   }
 }
