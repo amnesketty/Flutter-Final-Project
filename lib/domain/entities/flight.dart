@@ -8,7 +8,6 @@ class Flight {
       seatPitch,
       destinationFrom,
       destinationTo,
-      departureDate,
       departureTime,
       arrivalTime;
   final FacilitiesFlight facilitiesFlight;
@@ -23,7 +22,6 @@ class Flight {
       required this.seatPitch,
       required this.destinationFrom,
       required this.destinationTo,
-      required this.departureDate,
       required this.departureTime,
       required this.arrivalTime,
       required this.seatCapacity,
@@ -40,7 +38,6 @@ class Flight {
     final seatPitch = response['seatPitch'] ?? '';
     final destinationFrom = response['destinationFrom'] ?? '';
     final destinationTo = response['destinationTo'] ?? '';
-    final departureDate = response['departureDate'] ?? '';
     final departureTime = response['departureTime'] ?? '';
     final arrivalTime = response['arrivalTime'] ?? '';
     final seatCapacity = response['seatCapacity'] ?? 0;
@@ -61,7 +58,6 @@ class Flight {
         seatPitch: seatPitch,
         destinationFrom: destinationFrom,
         destinationTo: destinationTo,
-        departureDate: departureDate,
         departureTime: departureTime,
         arrivalTime: arrivalTime,
         seatCapacity: seatCapacity,

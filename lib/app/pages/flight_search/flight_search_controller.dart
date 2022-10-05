@@ -10,7 +10,7 @@ class FlightSearchController extends Controller {
 
   FlightSearchController(this._presenter);
 
-  int _valueDropdownTitle = 1;
+  final int _valueDropdownTitle = 1;
   int get valueDropdownTitle => _valueDropdownTitle;
 
   bool _isLoading = false;
@@ -21,30 +21,41 @@ class FlightSearchController extends Controller {
   List<Flight> _flights = [];
   List<Flight> get flights => _flights;
 
-  List<String> _dropDownValue = [
+  final List<String> _dropDownValueDestination = [
     'Yogyakarta (YIA)',
     'Medan (KNO)',
     'Jakarta (CGK)',
     'Seamrang (SRG)',
     'Makassar (UPG)'
   ];
-  List<String> get dropdownvalue => _dropDownValue;
+  List<String> get dropdownvalueDestination => _dropDownValueDestination;
   int _destinationFrom = 0;
   int get destinationFrom => _destinationFrom;
-  int _destinationTo = 0;
+  int _destinationTo = 1;
   int get destinationTo => _destinationTo;
 
-  TextEditingController dateCtl = TextEditingController();
-  TextEditingController _controllerseatClass = TextEditingController();
-  TextEditingController get controllerseatClass => _controllerseatClass;
+  final List<String> _dropDownValueSeatClass = [
+    'Economy',
+    'Business',
+    'First Class',
+  ];
+  List<String> get dropdownvalueSeatClass => _dropDownValueSeatClass;
+  int _seatClass = 0;
+  int get seatClass => _seatClass;
+
+  // TextEditingController dateCtl = TextEditingController();
+  // TextEditingController _controllerseatClass = TextEditingController();
+  // TextEditingController get controllerseatClass => _controllerseatClass;
   // TextEditingController _controllerdestinationFrom = TextEditingController();
   // TextEditingController get controllerdestinationFrom =>
   //     _controllerdestinationFrom;
   // TextEditingController _controllerdestinationTo = TextEditingController();
   // TextEditingController get controllerdestinationTo => _controllerdestinationTo;
-  TextEditingController _controllerdepartureDate = TextEditingController();
+  final TextEditingController _controllerdepartureDate =
+      TextEditingController();
   TextEditingController get controllerdepartureDate => _controllerdepartureDate;
-  TextEditingController _controlleramountPassenger = TextEditingController();
+  final TextEditingController _controlleramountPassenger =
+      TextEditingController();
   TextEditingController get controlleramountPassenger =>
       _controlleramountPassenger;
 
@@ -61,17 +72,20 @@ class FlightSearchController extends Controller {
       String departureDate,
       int amountPassenger,
       User user) async {
+    print(departureDate + 'T00:00:00.000Z');
+    print(destinationFrom);
+    print(destinationTo);
     _user = user;
     _showLoading();
     _presenter.searchFlight(seatClass, destinationFrom, destinationTo,
-        departureDate, amountPassenger, user.token);
+        departureDate + 'T00:00:00.000Z', amountPassenger, user.token);
     do {
       await Future.delayed(const Duration(milliseconds: 10));
     } while (_isLoading);
     final context = getContext();
     Navigator.pushNamed(context, FlightFindPage.route,
-        arguments:
-            FlightsArgument(_flights, _user, departureDate, amountPassenger));
+        arguments: FlightsArgument(_flights, _user,
+            departureDate + 'T00:00:00.000Z', amountPassenger));
   }
 
   void _initObserver() {
@@ -105,16 +119,16 @@ class FlightSearchController extends Controller {
   }
 
   void onChangedDropdownSeatClass(int value) {
-    _destinationFrom = value;
+    _seatClass = value;
     refreshUI();
   }
 
   @override
   void onDisposed() {
     super.onDisposed();
-    _controllerseatClass.dispose();
+    // _controllerseatClass.dispose();
     // _controllerdestinationFrom.dispose();
-    // _controllerdestinationTo.dispose();
+    // // _controllerdestinationTo.dispose();
     _controllerdepartureDate.dispose();
     _controlleramountPassenger.dispose();
     _presenter.dispose();

@@ -85,10 +85,6 @@ class FlightTile extends StatelessWidget {
                       const SizedBox(height: 10),
                       Row(
                         children: [
-                          // Text(flight.destinationFrom.substring(10, 16),
-                          // style:
-                          //     // ignore: prefer_const_constructors
-                          //     TextStyle(color: Colors.black, fontSize: 13)),
                           Text(flight.destinationFrom.toString(),
                               style:
                                   // ignore: prefer_const_constructors

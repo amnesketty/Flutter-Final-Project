@@ -1,11 +1,11 @@
 import 'dart:ffi';
 
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
-import '../../../domain/entities/flight.dart';
 import '../../../domain/entities/user.dart';
 import 'flight_search_controller.dart';
 
@@ -53,46 +53,43 @@ class _FlightSearchViewState
                     SizedBox(
                       height: 15,
                     ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                        ),
-                        Text(
-                          'Destination From',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.85,
                       // margin: EdgeInsets.only(top: 10),
                       // height: MediaQuery.of(context).size.width * 2.5,
                       child: DropdownButtonFormField(
                           decoration: InputDecoration(
-                            icon: Icon(Icons.airplanemode_on),
+                            labelText: 'Destination From',
+                            icon: Icon(
+                              Icons.airplanemode_on,
+                            ),
                             fillColor: Colors.grey,
                           ),
-                          value: controller.valueDropdownTitle,
+                          value: controller.destinationFrom,
                           items: [
                             DropdownMenuItem(
-                              child: Text(controller.dropdownvalue[0]),
+                              child:
+                                  Text(controller.dropdownvalueDestination[0]),
                               value: 0,
                             ),
                             DropdownMenuItem(
-                              child: Text(controller.dropdownvalue[1]),
+                              child:
+                                  Text(controller.dropdownvalueDestination[1]),
                               value: 1,
                             ),
                             DropdownMenuItem(
-                              child: Text(controller.dropdownvalue[2]),
+                              child:
+                                  Text(controller.dropdownvalueDestination[2]),
                               value: 2,
                             ),
                             DropdownMenuItem(
-                              child: Text(controller.dropdownvalue[3]),
+                              child:
+                                  Text(controller.dropdownvalueDestination[3]),
                               value: 3,
                             ),
                             DropdownMenuItem(
-                              child: Text(controller.dropdownvalue[4]),
+                              child:
+                                  Text(controller.dropdownvalueDestination[4]),
                               value: 4,
                             ),
                           ],
@@ -104,47 +101,41 @@ class _FlightSearchViewState
                     SizedBox(
                       height: 15,
                     ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                        ),
-                        Text(
-                          'Destination To',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.85,
                       // margin: EdgeInsets.only(top: 7),
                       // height: MediaQuery.of(context).size.width * 2.5,
                       child: DropdownButtonFormField(
                           decoration: InputDecoration(
-                            hintText: 'Destination From',
+                            labelText: 'Destination To',
                             icon: Icon(Icons.airplanemode_on),
                             fillColor: Colors.grey,
                           ),
-                          value: controller.valueDropdownTitle,
+                          value: controller.destinationTo,
                           items: [
                             DropdownMenuItem(
-                              child: Text(controller.dropdownvalue[0]),
+                              child:
+                                  Text(controller.dropdownvalueDestination[0]),
                               value: 0,
                             ),
                             DropdownMenuItem(
-                              child: Text(controller.dropdownvalue[1]),
+                              child:
+                                  Text(controller.dropdownvalueDestination[1]),
                               value: 1,
                             ),
                             DropdownMenuItem(
-                              child: Text(controller.dropdownvalue[2]),
+                              child:
+                                  Text(controller.dropdownvalueDestination[2]),
                               value: 2,
                             ),
                             DropdownMenuItem(
-                              child: Text(controller.dropdownvalue[3]),
+                              child:
+                                  Text(controller.dropdownvalueDestination[3]),
                               value: 3,
                             ),
                             DropdownMenuItem(
-                              child: Text(controller.dropdownvalue[4]),
+                              child:
+                                  Text(controller.dropdownvalueDestination[4]),
                               value: 4,
                             ),
                           ],
@@ -153,6 +144,7 @@ class _FlightSearchViewState
                           },
                           hint: Text("From")),
                     ),
+                    /*
                     Container(
                       margin: EdgeInsets.only(
                           left: 15, top: 15, right: 30, bottom: 10),
@@ -164,6 +156,39 @@ class _FlightSearchViewState
                             labelText: 'Departure Date',
                             //prefixIcon: Icon(Icons.email),
                             icon: Icon(Icons.calendar_month)),
+                      ),
+                    ),*/
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.85,
+                      child: DateTimePicker(
+                        //controller: controller.controllerdepartureDate,
+
+                        type: DateTimePickerType.date,
+                        dateMask: 'd MMM, yyyy',
+                        initialValue: DateTime.now().toString(),
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(2100),
+                        icon: Icon(Icons.calendar_month),
+                        dateLabelText: 'Departure Date',
+                        // selectableDayPredicate: (date) {
+                        //   // Disable weekend days to select from the calendar
+                        //   if (date.weekday == 6 || date.weekday == 7) {
+                        //     return false;
+                        //   }
+
+                        //   return true;
+                        // },
+                        onChanged: (val) =>
+                            controller.controllerdepartureDate.text = val,
+                        validator: (val) {
+                          controller.controllerdepartureDate.text = val!;
+                          return null;
+                        },
+                        onSaved: (val) =>
+                            controller.controllerdepartureDate.text = val!,
                       ),
                     ),
                     Container(
@@ -186,20 +211,42 @@ class _FlightSearchViewState
                           ),
                           Spacer(),
                           Container(
-                            width: MediaQuery.of(context).size.width / 2.5,
-                            margin: EdgeInsets.only(
-                                left: 0, top: 15, right: 0, bottom: 10),
-                            child: TextFormField(
-                              controller: controller.controllerseatClass,
-                              keyboardType: TextInputType.emailAddress,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  labelText: 'Seat Class',
-                                  //prefixIcon: Icon(Icons.email),
-                                  icon: Icon(
-                                      Icons.airline_seat_recline_extra_sharp)),
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            child: Column(
+                              children: [
+                                DropdownButtonFormField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Seat Class',
+                                      icon: Icon(Icons
+                                          .airline_seat_recline_normal_rounded),
+                                      fillColor: Colors.grey,
+                                    ),
+                                    value: controller.seatClass,
+                                    items: [
+                                      DropdownMenuItem(
+                                        child: Text(controller
+                                            .dropdownvalueSeatClass[0]),
+                                        value: 0,
+                                      ),
+                                      DropdownMenuItem(
+                                        child: Text(controller
+                                            .dropdownvalueSeatClass[1]),
+                                        value: 1,
+                                      ),
+                                      DropdownMenuItem(
+                                        child: Text(controller
+                                            .dropdownvalueSeatClass[2]),
+                                        value: 2,
+                                      )
+                                    ],
+                                    onChanged: (int? value) {
+                                      controller
+                                          .onChangedDropdownSeatClass(value!);
+                                    },
+                                    hint: Text("Seat Class")),
+                              ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -217,11 +264,12 @@ class _FlightSearchViewState
                             primary: const Color(0XFFE67E22)),
                         onPressed: () {
                           controller.searchFlight(
-                              controller.controllerseatClass.text,
                               controller
-                                  .dropdownvalue[controller.destinationFrom],
-                              controller
-                                  .dropdownvalue[controller.destinationTo],
+                                  .dropdownvalueSeatClass[controller.seatClass],
+                              controller.dropdownvalueDestination[
+                                  controller.destinationFrom],
+                              controller.dropdownvalueDestination[
+                                  controller.destinationTo],
                               controller.controllerdepartureDate.text,
                               int.parse(
                                   controller.controlleramountPassenger.text),
