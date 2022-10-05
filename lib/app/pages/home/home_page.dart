@@ -26,16 +26,11 @@ class HomePage extends View {
 class _HomeViewState extends ViewState<HomePage, HomeController> {
   _HomeViewState(super.controller);
 
-  // final List<Widget> _widgetOptions = <Widget> [
-  //     HomePageMain(),
-  //     TransactionPage(),
-  //     ProfilePage(),
-  // ];
-
   @override
   Widget get view => Scaffold(
     key: globalKey,
     appBar: AppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: const Color(0XFFE67E22),
       title: const Text('LOUNGA'),
     ),
@@ -91,7 +86,7 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
               )
             ),
         ])
-        : controller.bottomNavigationValue == 1 ? TransactionPage(controller.userTransaction!)
+        : controller.bottomNavigationValue == 1 ? TransactionPage(controller.userTransaction!, controller.dropDownValueTransaction, () {controller.refreshUserTransaction(controller.dropDownValueTransaction);})
         : ProfilePage(widget.user)
       ),
     bottomNavigationBar: 
