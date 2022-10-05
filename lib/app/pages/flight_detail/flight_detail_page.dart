@@ -174,7 +174,10 @@ class _FlightDetailViewState
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  const Icon(Icons.airplanemode_active_sharp),
+                                  Transform.rotate(
+                                      angle: 1.57,
+                                      child: const Icon(
+                                          Icons.airplanemode_active_sharp)),
                                   SizedBox(
                                     width: 5,
                                   ),
