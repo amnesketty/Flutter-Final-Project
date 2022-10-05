@@ -43,7 +43,7 @@ class FlightBookingController extends Controller {
   Future<void> bookFlight(String title, String name, String idCard, Flight flight, User user, String departureDate, int amountPassenger, int price) async {
     //_user = user;
     _showLoading();
-    _presenter.flightBooking(departureDate, amountPassenger, amountPassenger*price, flight.id, user.token);
+    _presenter.flightBooking(departureDate, flight.destinationFrom, flight.destinationTo, amountPassenger, amountPassenger*price, flight.id, user.token);
     do {
       await Future.delayed(const Duration(milliseconds: 100));
     } while (_isLoading);

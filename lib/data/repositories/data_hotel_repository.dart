@@ -64,7 +64,7 @@ class DataHotelRepository implements HotelRepository {
   }
   
   @override
-  Future<int> bookingHotel(String bookingDate, int totalRoom, int price, int hotelId, int roomId, String token) async {
+  Future<int> bookingHotel(String bookingDate, String name, int totalRoom, int price, int hotelId, int roomId, String token) async {
     // TODO: implement bookingHotel
     dio.options.headers['Authorization'] = 'Bearer $token';
     try {
@@ -72,6 +72,7 @@ class DataHotelRepository implements HotelRepository {
         endpoints.bookingHotel,
         data: {
           'bookingDate': bookingDate,
+          'name': name,
           'totalRoom': totalRoom,
           'price': price,
           'hotelId': hotelId,

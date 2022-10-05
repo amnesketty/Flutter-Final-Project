@@ -91,6 +91,8 @@ class DataFlightRepository implements FlightRepository {
   @override
   Future<int> bookingFlight(
       String bookingDate,
+      String destinationFrom,
+      String destinationTo,
       int amountPassenger,
       int totalPrice,
       int flightId,
@@ -100,6 +102,8 @@ class DataFlightRepository implements FlightRepository {
     try {
       final response = await dio.post(endpoints.bookingFlight, data: {
         "bookingDate": bookingDate,
+        "destinationFrom": destinationFrom,
+        "destinationTo": destinationTo,
         "amountPassenger": amountPassenger,
         "totalPrice": totalPrice,
         "flightId": flightId,
