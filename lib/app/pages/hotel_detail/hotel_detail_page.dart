@@ -114,57 +114,102 @@ class _HotelDetailViewState
                             fontSize: 15, fontWeight: FontWeight.w900)),
                     const SizedBox(height: 7),
                     Container(
+                        height: MediaQuery.of(context).size.width * 0.4,
                         width: MediaQuery.of(context).size.width * 0.92,
                         // ignore: prefer_const_constructors
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.circular(10)),
-                        child: Container(
-                          margin: const EdgeInsets.all(7),
-                          child: ControlledWidgetBuilder<HotelDetailController>(
-                            builder: (BuildContext context, HotelDetailController controller) =>
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                // ignore: prefer_const_literals_to_create_immutables
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    // ignore: prefer_const_literals_to_create_immutables
-                                    children: [
-                                      Text(widget.hotel.roomsHotel.first.type,
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w800)),
-                                      Text(
-                                      'Rp ${widget.hotel.roomsHotel.first.price}/room/night',
-                                      // textAlign: TextAlign.right,
-                                      style: const TextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w800,
-                                          color: Color(0XFFE67E22))),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  TextButton(
-                                      onPressed: () {
-                                        controller.navigateToHotelBooking(
-                                          widget.hotel, widget.user, widget.bookingDate,
-                                          widget.totalRoom, widget.hotel.roomsHotel.first.price, widget.hotel.roomsHotel.first.id);
-                                      },
-                                      style: TextButton.styleFrom(
-                                          backgroundColor: const Color(0XFFE67E22)),
-                                      child: const Text('Choose',
-                                          style:
-                                              TextStyle(color: Colors.white)))
-                                ],
-                              ),
-                            ],
-                          ),
-                        )
-                        ,)
-                    ),
+                        child: ControlledWidgetBuilder<HotelDetailController>(
+                          builder: (BuildContext context, HotelDetailController controller)
+                          => ListView.builder(
+                            itemCount: widget.hotel.roomsHotel.length,
+                            itemBuilder: (BuildContext context, int index)
+                            => Container(
+                            margin: const EdgeInsets.all(7),
+                            child: 
+                            Row(
+                              // ignore: prefer_const_literals_to_create_immutables
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  // ignore: prefer_const_literals_to_create_immutables
+                                  children: [
+                                    Text(widget.hotel.roomsHotel[index].type,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w800)),
+                                    Text(
+                                    'Rp ${widget.hotel.roomsHotel[index].price}/room/night',
+                                    // textAlign: TextAlign.right,
+                                    style: const TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w800,
+                                        color: Color(0XFFE67E22))),
+                                  ],
+                                ),
+                                const Spacer(),
+                                TextButton(
+                                    onPressed: () {
+                                      print(widget.hotel.id);
+                                      print(widget.hotel.roomsHotel[index].id);
+                                      controller.navigateToHotelBooking(
+                                        widget.hotel, widget.user, widget.bookingDate,
+                                        widget.totalRoom, widget.hotel.roomsHotel[index].price, widget.hotel.roomsHotel[index].id);
+                                    },
+                                    style: TextButton.styleFrom(
+                                        backgroundColor: const Color(0XFFE67E22)),
+                                    child: const Text('Choose',
+                                        style:
+                                            TextStyle(color: Colors.white)))
+                              ],
+                            ),
+                          )
+                          ,)
+                            ),
+                        ),
+                        
+                    //     child: Container(
+                    //       margin: const EdgeInsets.all(7),
+                    //       child: ControlledWidgetBuilder<HotelDetailController>(
+                    //         builder: (BuildContext context, HotelDetailController controller) =>
+                    //       Row(
+                    //         // ignore: prefer_const_literals_to_create_immutables
+                    //         children: [
+                    //           Column(
+                    //             crossAxisAlignment: CrossAxisAlignment.start,
+                    //             // ignore: prefer_const_literals_to_create_immutables
+                    //             children: [
+                    //               Text(widget.hotel.roomsHotel.first.type,
+                    //                   style: TextStyle(
+                    //                       fontSize: 20,
+                    //                       fontWeight: FontWeight.w800)),
+                    //               Text(
+                    //               'Rp ${widget.hotel.roomsHotel.first.price}/room/night',
+                    //               // textAlign: TextAlign.right,
+                    //               style: const TextStyle(
+                    //                   fontSize: 13,
+                    //                   fontWeight: FontWeight.w800,
+                    //                   color: Color(0XFFE67E22))),
+                    //             ],
+                    //           ),
+                    //           const Spacer(),
+                    //           TextButton(
+                    //               onPressed: () {
+                    //                 controller.navigateToHotelBooking(
+                    //                   widget.hotel, widget.user, widget.bookingDate,
+                    //                   widget.totalRoom, widget.hotel.roomsHotel.first.price, widget.hotel.roomsHotel.first.id);
+                    //               },
+                    //               style: TextButton.styleFrom(
+                    //                   backgroundColor: const Color(0XFFE67E22)),
+                    //               child: const Text('Choose',
+                    //                   style:
+                    //                       TextStyle(color: Colors.white)))
+                    //         ],
+                    //       ),
+                    //     )
+                    //     ,)
+                    
                   ],
                 ))
           ]),

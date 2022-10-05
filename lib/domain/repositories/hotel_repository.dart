@@ -7,5 +7,5 @@ abstract class HotelRepository {
 
   Future<int> bookingHotel(String bookingDate, int totalRoom, int price, int hotelId, int roomId, String token);
   
-  Future<bool> addGuest(String name, String email, String phone, int bookingHotelId);
+  Future<bool> addGuest(String name, String email, String phone, int bookingHotelId, String token);
 }

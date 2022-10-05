@@ -196,18 +196,24 @@ class _HotelBookingViewState
                         builder: (BuildContext context, HotelBookingController controller) =>
                           TextButton(
                             onPressed: () {
-                              controller.bookingNow(
-                                widget.bookingDate,
-                                widget.totalRoom,
-                                widget.price,
-                                widget.hotel.id,
+                              controller.bookHotel(
+                                widget.hotel,
+                                widget.user,
+                                widget.bookingDate, 
+                                widget.totalRoom, 
+                                widget.price, 
                                 widget.roomId,
-                                widget.user);
-                              // controller.addGuest(
-                              //   controller.controllerContactName.text,
-                              //   controller.controllerEmail.text,
-                              //   controller.controllerPhone.text,
-                              //   );
+                                controller.controllerContactName.text,
+                                controller.controllerEmail.text,
+                                controller.controllerPhone.text);
+                              // controller.bookHotel(
+                              //   widget.bookingDate,
+                              //   widget.totalRoom,
+                              //   widget.price,
+                              //   widget.hotel.id,
+                              //   widget.roomId,
+                              //   widget.user);
+
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: const Color(0XFFE67E22)),

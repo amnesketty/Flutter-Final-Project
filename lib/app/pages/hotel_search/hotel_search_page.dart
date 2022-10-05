@@ -151,7 +151,7 @@ class _HotelSearchViewState
                                       keyboardType: TextInputType.emailAddress,
                                       textInputAction: TextInputAction.next,
                                       decoration: InputDecoration(
-                                          prefixIcon: Icon(Icons.access_alarm_outlined, color: Colors.black),
+                                          prefixIcon: Icon(Icons.access_alarm_rounded, color: Colors.black),
                                           prefixIconConstraints: BoxConstraints(maxWidth: 40),
                                           // icon: Icon(Icons.calendar_month),
                                           hintText: '1 Night(s)',

@@ -74,6 +74,8 @@ class DataHotelRepository implements HotelRepository {
           'bookingDate': bookingDate,
           'totalRoom': totalRoom,
           'price': price,
+          'hotelId': hotelId,
+          'roomId': roomId
           }
       );
       // print(response);
@@ -86,8 +88,8 @@ class DataHotelRepository implements HotelRepository {
     }
   }
 
-  Future<bool> addGuest(String name, String email, String phone, int bookingHotelId) async {
-    dio.options.headers['Authorization'] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwibmFtZSI6InNhbHNhIiwibmJmIjoxNjY0NDQwOTUzLCJleHAiOjE2NjUwNDU3NTMsImlhdCI6MTY2NDQ0MDk1M30.Jf0ChgYGrGA8xLgRhjRgWhAYswlKTcLD0NsJd6YynHE";
+  Future<bool> addGuest(String name, String email, String phone, int bookingHotelId, String token) async {
+    dio.options.headers['Authorization'] = 'Bearer $token';
     try {
       final response = await dio.post(
         endpoints.addGuest,
