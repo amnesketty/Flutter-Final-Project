@@ -71,7 +71,12 @@ class HotelBookingController extends Controller {
       await Future.delayed(const Duration(milliseconds: 100));
     } while (_isLoading);
     final context = getContext();
-    Navigator.pushReplacementNamed(context, HomePage.route, arguments: user);
+    // Navigator.pushReplacementNamed(context, HomePage.route, arguments: user);
+  }
+
+  void navigateToHomePage(User user) {
+    final context = getContext();
+    Navigator.pushNamed(context, HomePage.route, arguments: user);
   }
 
 
