@@ -71,7 +71,7 @@ class _HotelSearchViewState
                                         fontWeight: FontWeight.w700,
                                       fontSize: 18)),
                               DropdownButtonFormField(
-                                value: controller.valueDropdownTitle,
+                                value: controller.city,
                                 items: [
                                   DropdownMenuItem(
                                     child: Text(controller.dropdownvalue[0]),
@@ -191,7 +191,7 @@ class _HotelSearchViewState
                               TextButton(
                                 onPressed: () {
                                   controller.searchHotels(
-                                  controller.controllerCity.text, 
+                                  controller.dropdownvalue[controller.city], 
                                   controller.controllerBookingDate.text, 
                                   int.parse(controller.controllerRoom.text), 
                                   int.parse(controller.controllerDuration.text),
