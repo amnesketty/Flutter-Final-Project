@@ -17,9 +17,9 @@ class HotelBookingPresenter extends Presenter {
 
   HotelBookingPresenter({required this.hotelBookingUseCase, required this.hotelGuestUseCase});
 
-  void hotelBooking(String bookingDate, int totalRoom, int price, int hotelId, int roomId, String token) {
+  void hotelBooking(String bookingDate, String name, int totalRoom, int price, int hotelId, int roomId, String token) {
     hotelBookingUseCase.execute(
-      _HotelBookingObserver(this), HotelBookingParams(bookingDate, totalRoom, price, hotelId, roomId, token));
+      _HotelBookingObserver(this), HotelBookingParams(bookingDate, name, totalRoom, price, hotelId, roomId, token));
   }
 
   void hotelGuest(String name, String email, String phone, int hotelBookingId, String token) {

@@ -61,7 +61,7 @@ class HotelBookingController extends Controller {
 
   Future<void> bookHotel(Hotel hotel, User user, String bookingDate, int totalRoom, int price, int roomId, String name, String email, String phone) async {
     _showLoading();
-    _presenter.hotelBooking(bookingDate, totalRoom, totalRoom * price, hotel.id, roomId, user.token);
+    _presenter.hotelBooking(bookingDate, hotel.name, totalRoom, totalRoom * price, hotel.id, roomId, user.token);
     do {
       await Future.delayed(const Duration(milliseconds: 100));
     } while (_isLoading);
