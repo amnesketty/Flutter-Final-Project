@@ -16,7 +16,7 @@ class HotelGuest extends UseCase<bool, HotelGuestParams> {
     final streamController = StreamController<bool>();
 
     try {
-      final hotelGuest = await repository.addGuest(params!.name, params.email, params.phone, params.bookingHotelId);
+      final hotelGuest = await repository.addGuest(params!.name, params.email, params.phone, params.bookingHotelId, params.token);
       streamController.add(hotelGuest);
       streamController.close();
     } catch (e, stackTrace) {
@@ -33,5 +33,6 @@ class HotelGuestParams {
   final String email;
   final String phone;
   final int bookingHotelId;
-  HotelGuestParams(this.name, this.email, this.phone, this.bookingHotelId);
+  final String token;
+  HotelGuestParams(this.name, this.email, this.phone, this.bookingHotelId, this.token);
 }

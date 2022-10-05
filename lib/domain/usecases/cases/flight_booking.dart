@@ -15,6 +15,8 @@ class FlightBooking extends UseCase<int, FlightBookingParams> {
     try {
       final bookingFlightId = await repository.bookingFlight(
           params!.bookingDate,
+          params.destinationFrom,
+          params.destinationTo,
           params.amountPassenger,
           params.totalPrice,
           params.flightId,
@@ -25,17 +27,18 @@ class FlightBooking extends UseCase<int, FlightBookingParams> {
       logger.severe('StackTrace: $stackTrace');
       streamController.addError(e, stackTrace);
     }
-
     return streamController.stream;
   }
 }
 
 class FlightBookingParams {
   final String bookingDate;
+  final String destinationFrom;
+  final String destinationTo;
   final int amountPassenger;
   final int totalPrice;
   final int flightId;
   final String token;
   FlightBookingParams(
-      this.bookingDate, this.amountPassenger, this.totalPrice, this.flightId, this.token);
+      this.bookingDate, this.destinationFrom, this.destinationTo, this.amountPassenger, this.totalPrice, this.flightId, this.token);
 }
