@@ -8,6 +8,7 @@ import 'package:lounga/app/widgets/hotel_tile.dart';
 
 import '../../../domain/entities/hotel.dart';
 import '../../../domain/entities/user.dart';
+import '../home/home_controller.dart';
 import 'hotel_search_controller.dart';
 
 class HotelSearchPage extends View {
@@ -69,18 +70,34 @@ class _HotelSearchViewState
                                         color: Color(0XFFE67E22),
                                         fontWeight: FontWeight.w700,
                                       fontSize: 18)),
-                              TextFormField(
-                                controller: controller.controllerCity,
-                                keyboardType: TextInputType.emailAddress,
-                                textInputAction: TextInputAction.next,
-                                decoration: InputDecoration(
-                                    hintText: 'City',
-                                    labelStyle: 
-                                      const TextStyle(color: Colors.black),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:Color(0XFFE67E22))),
-                                )),
+                              DropdownButtonFormField(
+                                value: controller.valueDropdownTitle,
+                                items: [
+                                  DropdownMenuItem(
+                                    child: Text(controller.dropdownvalue[0]),
+                                    value: 0,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text(controller.dropdownvalue[1]),
+                                    value: 1,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text(controller.dropdownvalue[2]),
+                                    value: 2,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text(controller.dropdownvalue[3]),
+                                    value: 3,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text(controller.dropdownvalue[4]),
+                                    value: 4,
+                                  ),
+                                ],
+                                onChanged: (int? value) {
+                                  controller.onChangedDropdownCity(value!);
+                                },
+                                hint: Text("City")),
                               const SizedBox(height: 20),
                               const Text('Booking Date',
                                 style:
@@ -212,29 +229,37 @@ class _HotelSearchViewState
           ],
         ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
+        bottomNavigationBar: 
+          ControlledWidgetBuilder<HotelSearchController>(
+          builder: (BuildContext _, HotelSearchController controller) =>
+            BottomNavigationBar(items: <BottomNavigationBarItem> [
+            BottomNavigationBarItem(icon: controller.bottomNavigationValue == 0 ?
+              const Icon(Icons.home)
+              : const Icon(Icons.home_outlined),
+            label: 'Home',
+            ),
+            BottomNavigationBarItem(icon: controller.bottomNavigationValue == 1 ?
+              const Icon(Icons.receipt_long)
+              : const Icon(Icons.receipt_long_outlined),
+            label: 'My Order',
+            ),
+            BottomNavigationBarItem(icon: controller.bottomNavigationValue == 2 ?
+              const Icon(Icons.person)
+              : const Icon(Icons.person_outline),
+            label: 'My Account',
+            ),
+            ],
+          currentIndex: controller.bottomNavigationValue,
           type: BottomNavigationBarType.fixed,
-          // currentIndex: _currentIndex,
-          // onTap: _updateIndex,
-          selectedItemColor: Color(0XFFE67E22),
-          selectedFontSize: 13,
-          unselectedFontSize: 13,
-          iconSize: 30,
-          // ignore: prefer_const_literals_to_create_immutables
-          items: [
-            BottomNavigationBarItem(
-              label: "Home",
-              icon: Icon(Icons.home),
-            ),
-            BottomNavigationBarItem(
-              label: "My Order",
-              icon: Icon(Icons.note),
-            ),
-            BottomNavigationBarItem(
-              label: "My Account",
-              icon: Icon(Icons.account_circle_outlined),
-            ),
-          ],
+          selectedItemColor: const Color(0XFFE67E22),
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: true,
+          showSelectedLabels: true,
+          onTap: (index) {
+            // controller.bottomNavigationMove(index, widget.user.token);
+            }
+          )
+          
         ),
       );
 }
