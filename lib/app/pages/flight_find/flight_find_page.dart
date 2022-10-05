@@ -15,7 +15,9 @@ class FlightFindPage extends View {
   final User user;
   final String departureDate;
   final int amountPassenger;
-  const FlightFindPage(this.flights, this.user, this.departureDate, this.amountPassenger, {Key? key})
+  const FlightFindPage(
+      this.flights, this.user, this.departureDate, this.amountPassenger,
+      {Key? key})
       : super(key: key);
 
   // FlightFindPage({Key? key}) : super(key: key);
@@ -37,7 +39,7 @@ class _FlightFindViewState
         key: globalKey,
         appBar: AppBar(
           backgroundColor: const Color(0XFFE67E22),
-          title: const Text('List of Booked Flights'),
+          title: const Text('List of Flights'),
         ),
         backgroundColor: const Color(0XFFD3D3D3),
         body: ControlledWidgetBuilder<FlightFindController>(
@@ -53,7 +55,11 @@ class _FlightFindViewState
                             flight: flight,
                             onFlightClicked: (Flight flight) {
                               controller.navigateToFlightDetail(
-                                  flight, widget.user, widget.departureDate, widget.amountPassenger, price);
+                                  flight,
+                                  widget.user,
+                                  widget.departureDate,
+                                  widget.amountPassenger,
+                                  price);
                             },
                           );
                         })),
