@@ -84,7 +84,7 @@ class _FlightBookingViewState
                             Text(
                               // Day,Month Date,Year
                               DateFormat.yMMMEd().format(
-                                  DateTime.parse(widget.flight.departureTime)),
+                                  DateTime.parse(widget.departureDate)),
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ],
