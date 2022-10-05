@@ -58,11 +58,6 @@ class HotelSearchController extends Controller {
     };
   }
 
-  // void navigateToHotelFind() {
-  //   final context = getContext();
-  //   Navigator.pushNamed(context, HotelFindPage.route, arguments: _hotel);
-  // }
-
   void _showLoading() {
     _isLoading = true;
     refreshUI();
