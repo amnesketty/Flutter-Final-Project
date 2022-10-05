@@ -10,6 +10,12 @@ class HotelSearchController extends Controller {
 
   HotelSearchController(this._presenter);
 
+  int _bottomNavigationValue = 0;
+  int get bottomNavigationValue => _bottomNavigationValue;
+
+  int _valueDropdownTitle = 0;
+  int get valueDropdownTitle => _valueDropdownTitle;
+
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
@@ -17,6 +23,18 @@ class HotelSearchController extends Controller {
 
   List<Hotel> _hotel = [];
   List<Hotel> get hotels => _hotel;
+
+  final List<String> _dropDownValue = [
+    'Jakarta',
+    'Makassar',
+    'Medan',
+    'Semarang',
+    'Yogyakarta',
+  ];
+  List<String> get dropdownvalue => _dropDownValue;
+  int _city = 0;
+  int get city => _city;
+
 
   TextEditingController dateCtl = TextEditingController();
   TextEditingController _controllerCity = TextEditingController();
@@ -48,6 +66,21 @@ class HotelSearchController extends Controller {
       HotelsArgument(_hotel, _user, bookingDate, totalRoom ));
   }
 
+  // Future<void> bottomNavigationMove(int index, String token) async {
+  //   _bottomNavigationValue = index;
+  //   refreshUI();
+  //   if (index == 1) //&& _userTransaction?.username == '')
+  //   {
+  //     _showLoading();
+  //     _presenter.getUserTransaction(token);
+  //     do {
+  //       await Future.delayed(const Duration(milliseconds: 100));
+  //     } while (_isLoading);
+  //   }
+  // }
+
+
+
   void _initObserver() {
     _presenter.onErrorHotelSearch = (e) {};
     _presenter.onFinishHotelSearch = () {
@@ -58,11 +91,6 @@ class HotelSearchController extends Controller {
     };
   }
 
-  // void navigateToHotelFind() {
-  //   final context = getContext();
-  //   Navigator.pushNamed(context, HotelFindPage.route, arguments: _hotel);
-  // }
-
   void _showLoading() {
     _isLoading = true;
     refreshUI();
@@ -70,6 +98,11 @@ class HotelSearchController extends Controller {
 
   void _hideLoading() {
     _isLoading = false;
+    refreshUI();
+  }
+
+  void onChangedDropdownCity(int value) {
+    _city = value;
     refreshUI();
   }
 

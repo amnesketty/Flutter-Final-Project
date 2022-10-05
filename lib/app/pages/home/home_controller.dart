@@ -22,6 +22,9 @@ class HomeController extends Controller {
 
   UserTransaction? _userTransaction = UserTransaction(username: '', bookingHotels: [], bookingFlights: []);
   UserTransaction? get userTransaction => _userTransaction;
+
+  int _dropDownValueTransaction = 2;
+  int get dropDownValueTransaction => _dropDownValueTransaction;
   
   @override
   void initListeners() {
@@ -44,7 +47,7 @@ class HomeController extends Controller {
   Future<void> bottomNavigationMove(int index, String token) async {
     _bottomNavigationValue = index;
     refreshUI();
-    if (index == 1 && _userTransaction?.username == '')
+    if (index == 1) //&& _userTransaction?.username == '')
     {
       _showLoading();
       _presenter.getUserTransaction(token);
@@ -67,6 +70,12 @@ class HomeController extends Controller {
   void getUserTransaction(String token) {
     _showLoading();
     _presenter.getUserTransaction(token);
+  }
+
+  void refreshUserTransaction() {
+    if (_dropDownValueTransaction == 1) _dropDownValueTransaction = 2;
+    else _dropDownValueTransaction = 1;
+    refreshUI();
   }
 
   void _showLoading() {

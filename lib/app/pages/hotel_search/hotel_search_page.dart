@@ -8,6 +8,7 @@ import 'package:lounga/app/widgets/hotel_tile.dart';
 
 import '../../../domain/entities/hotel.dart';
 import '../../../domain/entities/user.dart';
+import '../home/home_controller.dart';
 import 'hotel_search_controller.dart';
 
 class HotelSearchPage extends View {
@@ -39,184 +40,226 @@ class _HotelSearchViewState
           backgroundColor: const Color(0XFFE67E22),
         ),
         backgroundColor: const Color(0XFFD3D3D3),
-        body: ListView(
-          children: [Container(
-              margin: EdgeInsets.only(left: 10, top: 20, right: 10, bottom: 200),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 10),
-                    child: 
-                      ControlledWidgetBuilder<HotelSearchController>(
-                        builder: (BuildContext context, HotelSearchController controller) =>
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          const Text('City',
-                            style:
-                                TextStyle(
-                                    color: Color(0XFFE67E22),
-                                    fontWeight: FontWeight.w700,
-                                  fontSize: 18)),
-                          TextFormField(
-                            controller: controller.controllerCity,
-                            keyboardType: TextInputType.emailAddress,
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                                hintText: 'City',
-                                labelStyle: 
-                                  const TextStyle(color: Colors.black),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:Color(0XFFE67E22))),
-                            )),
-                          const SizedBox(height: 20),
-                          const Text('Booking Date',
-                            style:
-                                TextStyle(
-                                    color: Color(0XFFE67E22),
-                                    fontWeight: FontWeight.w700,
-                                  fontSize: 18)),
-                          TextFormField(
-                            controller: controller.controllerBookingDate,
-                            keyboardType: TextInputType.datetime,
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.calendar_month, color: Colors.black),
-                                prefixIconConstraints: BoxConstraints(maxWidth: 40),
-                                // icon: Icon(Icons.calendar_month),
-                                hintText: 'Booking Date',
-                                labelStyle: 
-                                  const TextStyle(color: Colors.black),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:Color(0XFFE67E22))),
-                            )),
-                          const SizedBox(height: 20),
-                          Row(
+        body: ControlledWidgetBuilder<HotelSearchController>(
+         builder: (BuildContext context, HotelSearchController controller) =>
+        Stack(
+          children: [
+            ListView(
+              children: [Container(
+                  margin: EdgeInsets.only(left: 10, top: 20, right: 10, bottom: 200),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 10),
+                        child: 
+                          ControlledWidgetBuilder<HotelSearchController>(
+                            builder: (BuildContext context, HotelSearchController controller) =>
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.32,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  // ignore: prefer_const_literals_to_create_immutables
-                                  children: [
-                                    const Text('Room',
-                                      style:
-                                          TextStyle(
-                                              color: Color(0XFFE67E22),
-                                              fontWeight: FontWeight.w700,
-                                            fontSize: 18)),
-                                    TextFormField(
-                                      controller: controller.controllerRoom,
-                                      keyboardType: TextInputType.emailAddress,
-                                      textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                          prefixIcon: Icon(Icons.door_back_door, color: Colors.black),
-                                          prefixIconConstraints: BoxConstraints(maxWidth: 40),
-                                          // icon: Icon(Icons.calendar_month),
-                                          hintText: '1 Room(s)',
-                                          labelStyle: 
-                                            const TextStyle(color: Colors.black),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:Color(0XFFE67E22))),
-                                      )),
-                                  ],
-                                ),
-                              ),
-                              Spacer(),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.32,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  // ignore: prefer_const_literals_to_create_immutables
-                                  children: [
-                                    const Text('Duration',
-                                      style:
-                                          TextStyle(
-                                              color: Color(0XFFE67E22),
-                                              fontWeight: FontWeight.w700,
-                                            fontSize: 18)),
-                                    TextFormField(
-                                      controller: controller.controllerDuration,
-                                      keyboardType: TextInputType.emailAddress,
-                                      textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                          prefixIcon: Icon(Icons.access_alarm_rounded, color: Colors.black),
-                                          prefixIconConstraints: BoxConstraints(maxWidth: 40),
-                                          // icon: Icon(Icons.calendar_month),
-                                          hintText: '1 Night(s)',
-                                          labelStyle: 
-                                            const TextStyle(color: Colors.black),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:Color(0XFFE67E22))),
-                                      )),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height:60),
-                          TextButton(
-                            onPressed: () {
-                              controller.searchHotels(
-                              controller.controllerCity.text, 
-                              controller.controllerBookingDate.text, 
-                              int.parse(controller.controllerRoom.text), 
-                              int.parse(controller.controllerDuration.text),
-                              widget.user
-                              );
-                            },
-                            style: TextButton.styleFrom(
-                                backgroundColor: const Color(0XFFE67E22),
-                                minimumSize: const Size.fromHeight(40)),
-                            child: const Text('Search',
+                              const Text('City',
                                 style:
                                     TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w900,
-                                    ))),
-                        ],
+                                        color: Color(0XFFE67E22),
+                                        fontWeight: FontWeight.w700,
+                                      fontSize: 18)),
+                              DropdownButtonFormField(
+                                value: controller.valueDropdownTitle,
+                                items: [
+                                  DropdownMenuItem(
+                                    child: Text(controller.dropdownvalue[0]),
+                                    value: 0,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text(controller.dropdownvalue[1]),
+                                    value: 1,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text(controller.dropdownvalue[2]),
+                                    value: 2,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text(controller.dropdownvalue[3]),
+                                    value: 3,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text(controller.dropdownvalue[4]),
+                                    value: 4,
+                                  ),
+                                ],
+                                onChanged: (int? value) {
+                                  controller.onChangedDropdownCity(value!);
+                                },
+                                hint: Text("City")),
+                              const SizedBox(height: 20),
+                              const Text('Booking Date',
+                                style:
+                                    TextStyle(
+                                        color: Color(0XFFE67E22),
+                                        fontWeight: FontWeight.w700,
+                                      fontSize: 18)),
+                              TextFormField(
+                                controller: controller.controllerBookingDate,
+                                keyboardType: TextInputType.datetime,
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                    prefixIcon: Icon(Icons.calendar_month, color: Colors.black),
+                                    prefixIconConstraints: BoxConstraints(maxWidth: 40),
+                                    // icon: Icon(Icons.calendar_month),
+                                    hintText: 'Booking Date',
+                                    labelStyle: 
+                                      const TextStyle(color: Colors.black),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:Color(0XFFE67E22))),
+                                )),
+                              const SizedBox(height: 20),
+                              Row(
+                                // ignore: prefer_const_literals_to_create_immutables
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width * 0.32,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      // ignore: prefer_const_literals_to_create_immutables
+                                      children: [
+                                        const Text('Room',
+                                          style:
+                                              TextStyle(
+                                                  color: Color(0XFFE67E22),
+                                                  fontWeight: FontWeight.w700,
+                                                fontSize: 18)),
+                                        TextFormField(
+                                          controller: controller.controllerRoom,
+                                          keyboardType: TextInputType.emailAddress,
+                                          textInputAction: TextInputAction.next,
+                                          decoration: InputDecoration(
+                                              prefixIcon: Icon(Icons.door_back_door, color: Colors.black),
+                                              prefixIconConstraints: BoxConstraints(maxWidth: 40),
+                                              // icon: Icon(Icons.calendar_month),
+                                              hintText: '1 Room(s)',
+                                              labelStyle: 
+                                                const TextStyle(color: Colors.black),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color:Color(0XFFE67E22))),
+                                          )),
+                                      ],
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width * 0.32,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      // ignore: prefer_const_literals_to_create_immutables
+                                      children: [
+                                        const Text('Duration',
+                                          style:
+                                              TextStyle(
+                                                  color: Color(0XFFE67E22),
+                                                  fontWeight: FontWeight.w700,
+                                                fontSize: 18)),
+                                        TextFormField(
+                                          controller: controller.controllerDuration,
+                                          keyboardType: TextInputType.emailAddress,
+                                          textInputAction: TextInputAction.next,
+                                          decoration: InputDecoration(
+                                              prefixIcon: Icon(Icons.access_alarm_rounded, color: Colors.black),
+                                              prefixIconConstraints: BoxConstraints(maxWidth: 40),
+                                              // icon: Icon(Icons.calendar_month),
+                                              hintText: '1 Night(s)',
+                                              labelStyle: 
+                                                const TextStyle(color: Colors.black),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color:Color(0XFFE67E22))),
+                                          )),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height:60),
+                              TextButton(
+                                onPressed: () {
+                                  controller.searchHotels(
+                                  controller.controllerCity.text, 
+                                  controller.controllerBookingDate.text, 
+                                  int.parse(controller.controllerRoom.text), 
+                                  int.parse(controller.controllerDuration.text),
+                                  widget.user
+                                  );
+                                },
+                                style: TextButton.styleFrom(
+                                    backgroundColor: const Color(0XFFE67E22),
+                                    minimumSize: const Size.fromHeight(40)),
+                                child: const Text('Search',
+                                    style:
+                                        TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w900,
+                                        ))),
+                            ],
+                          ),
                       ),
-                  ),
-              )],
-              )
-            ),
-        ]),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          // currentIndex: _currentIndex,
-          // onTap: _updateIndex,
-          selectedItemColor: Color(0XFFE67E22),
-          selectedFontSize: 13,
-          unselectedFontSize: 13,
-          iconSize: 30,
-          // ignore: prefer_const_literals_to_create_immutables
-          items: [
-            BottomNavigationBarItem(
-              label: "Home",
-              icon: Icon(Icons.home),
-            ),
-            BottomNavigationBarItem(
-              label: "My Order",
-              icon: Icon(Icons.note),
-            ),
-            BottomNavigationBarItem(
-              label: "My Account",
-              icon: Icon(Icons.account_circle_outlined),
-            ),
+                  )],
+                  )
+                ),
+            ]),
+            controller.isLoading ? 
+              Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.2)
+              ),
+              child: const Center(
+                child: CircularProgressIndicator(
+                  color: Color(0XFFE67E22),
+                ),))
+              : const SizedBox(),
           ],
+        ),
+        ),
+        bottomNavigationBar: 
+          ControlledWidgetBuilder<HotelSearchController>(
+          builder: (BuildContext _, HotelSearchController controller) =>
+            BottomNavigationBar(items: <BottomNavigationBarItem> [
+            BottomNavigationBarItem(icon: controller.bottomNavigationValue == 0 ?
+              const Icon(Icons.home)
+              : const Icon(Icons.home_outlined),
+            label: 'Home',
+            ),
+            BottomNavigationBarItem(icon: controller.bottomNavigationValue == 1 ?
+              const Icon(Icons.receipt_long)
+              : const Icon(Icons.receipt_long_outlined),
+            label: 'My Order',
+            ),
+            BottomNavigationBarItem(icon: controller.bottomNavigationValue == 2 ?
+              const Icon(Icons.person)
+              : const Icon(Icons.person_outline),
+            label: 'My Account',
+            ),
+            ],
+          currentIndex: controller.bottomNavigationValue,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: const Color(0XFFE67E22),
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: true,
+          showSelectedLabels: true,
+          onTap: (index) {
+            // controller.bottomNavigationMove(index, widget.user.token);
+            }
+          )
+          
         ),
       );
 }
