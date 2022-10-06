@@ -55,7 +55,7 @@ class _HotelBookingViewState
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width * 1,
-                      height: MediaQuery.of(context).size.height * 0.22,
+                      height: MediaQuery.of(context).size.height * 0.2,
                       color: const Color(0XFFE67E22),
                       child: 
                         Row(
@@ -128,18 +128,6 @@ class _HotelBookingViewState
                                         fontWeight: FontWeight.w900)),
                                     SizedBox(width: MediaQuery.of(context).size.width * 0.02),
                                     Text(widget.roomsHotel.type, style: 
-                                      TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w900))
-                                  ]),
-                                  SizedBox(height: 5),
-                                  Row(children: [
-                                    Text('1x', style: 
-                                      TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w900)),
-                                    SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-                                    Text('Room(s)', style: 
                                       TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w900))

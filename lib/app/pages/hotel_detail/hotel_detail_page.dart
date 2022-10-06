@@ -106,15 +106,24 @@ class _HotelDetailViewState
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.w900)),
                     const SizedBox(height: 7),
-                    Text(
-                        widget.hotel.facilitiesHotel.airConditioner.toString()),
+                    Column(
+                      // if (widget.hotel.facilitiesHotel.airConditioner == true) {
+                      children: [
+                        Text(
+                            widget.hotel.facilitiesHotel.airConditioner.toString()),
+                         
+                          Icon(Icons.wind_power_sharp),
+                        // }
+                        
+                      ],
+                    ),
                     const Text('ROOMS',
                         // ignore: prefer_const_constructors
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.w900)),
                     const SizedBox(height: 7),
                     Container(
-                        height: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.238,
                         width: MediaQuery.of(context).size.width * 0.92,
                         // ignore: prefer_const_constructors
                         decoration: BoxDecoration(
