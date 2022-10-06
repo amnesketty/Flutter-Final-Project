@@ -37,6 +37,7 @@ class _FlightBookingViewState
   _FlightBookingViewState(super.controller);
   @override
   Widget get view => Scaffold(
+      resizeToAvoidBottomInset: false,
       key: globalKey,
       appBar: AppBar(
         backgroundColor: const Color(0XFFE67E22),
@@ -55,7 +56,7 @@ class _FlightBookingViewState
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           width: MediaQuery.of(context).size.width * 1,
-                          height: MediaQuery.of(context).size.height * 0.25,
+                          height: MediaQuery.of(context).size.height * 0.20,
                           color: const Color(0XFFE67E22),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -272,45 +273,47 @@ class _FlightBookingViewState
                                             textLabel: "Id Card Number",
                                           ),
                                           SizedBox(
-                                              height: MediaQuery.of(context)
-                                                      .size
+                                              height: index == widget.amountPassenger - 1 ? MediaQuery.of(context).size.height * 0.3 : MediaQuery.of(context).size
                                                       .height *
                                                   0.05),
                                         ],
                                       );
                                     },
                                   ))),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: TextButton(
-                            onPressed: () async {
-                              controller.bookFlight(
-                                  widget.flight,
-                                  widget.user,
-                                  widget.departureDate,
-                                  widget.amountPassenger,
-                                  widget.price);
-                              do {
-                                await Future.delayed(
-                                    const Duration(milliseconds: 100));
-                              } while (controller.isLoading);
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30.0),
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: TextButton(
+                              onPressed: () async {
+                                controller.bookFlight(
+                                    widget.flight,
+                                    widget.user,
+                                    widget.departureDate,
+                                    widget.amountPassenger,
+                                    widget.price);
+                                do {
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 100));
+                                } while (controller.isLoading);
 
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      PopUpDialog(
-                                          function: () {
-                                            controller.navigateToHomePage(
-                                                widget.user);
-                                          },
-                                          message: "success",
-                                          tipePopUpDialog: "bookingSuccess",
-                                          popUpButton: "bookingSuccess"));
-                            },
-                            style: TextButton.styleFrom(
-                                backgroundColor: const Color(0XFFE67E22)),
-                            child: const Text('BOOK FLIGHT',
-                                style: TextStyle(color: Colors.white))),
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        PopUpDialog(
+                                            function: () {
+                                              controller.navigateToHomePage(
+                                                  widget.user);
+                                            },
+                                            message: "success",
+                                            tipePopUpDialog: "bookingSuccess",
+                                            popUpButton: "bookingSuccess"));
+                              },
+                              style: TextButton.styleFrom(
+                                  backgroundColor: const Color(0XFFE67E22)),
+                              child: const Text('BOOK FLIGHT',
+                                  style: TextStyle(color: Colors.white))),
+                        ),
                       )
                     ],
                   ),

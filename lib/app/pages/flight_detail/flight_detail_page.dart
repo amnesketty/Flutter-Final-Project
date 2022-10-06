@@ -191,57 +191,57 @@ class _FlightDetailViewState
                                       angle: 1.57,
                                       child: const Icon(
                                           Icons.airplanemode_active_sharp)),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
                                     widget.flight.airline,
                                     style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                        const TextStyle(fontWeight: FontWeight.bold),
                                   )
                                 ],
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 15,
                                   ),
                                   Text(
                                     widget.flight.aircraft,
                                     style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                        const TextStyle(fontWeight: FontWeight.bold),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
-                                  Text(
+                                  const Text(
                                     '~',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
                                     widget.flight.seatClass,
                                     style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                        const TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 25,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Icon(
                                     Icons.luggage,
                                     color: Colors.grey.shade500,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -254,7 +254,7 @@ class _FlightDetailViewState
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 40,
                                   ),
                                   Text(
@@ -265,19 +265,19 @@ class _FlightDetailViewState
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Icon(
                                     Icons.tv_off,
                                     color: Colors.grey.shade500,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -288,19 +288,19 @@ class _FlightDetailViewState
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Icon(
                                     Icons.wifi_off,
                                     color: Colors.grey.shade500,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -311,19 +311,19 @@ class _FlightDetailViewState
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Icon(
                                     Icons.power_off,
                                     color: Colors.grey.shade500,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -334,19 +334,19 @@ class _FlightDetailViewState
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Icon(
                                     Icons.info_outline,
                                     color: Colors.grey.shade500,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -359,7 +359,7 @@ class _FlightDetailViewState
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 40,
                                   ),
                                   Text(
@@ -372,7 +372,7 @@ class _FlightDetailViewState
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 40,
                                   ),
                                   Text(
@@ -386,12 +386,12 @@ class _FlightDetailViewState
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 8,
                         ),
                         Text(
                           widget.flight.destinationTo,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 15,
                           ),
@@ -402,55 +402,55 @@ class _FlightDetailViewState
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 6,
                 ),
-                Icon(Icons.payment),
-                SizedBox(
+                const Icon(Icons.payment),
+                const SizedBox(
                   width: 6,
                 ),
-                Text(
+                const Text(
                   'Price Details',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
+              height: 130,
+              color: Colors.white,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Row(
                     children: [
                       Text('Passengers (x${widget.amountPassenger})'),
-                      Spacer(),
+                      const Spacer(),
                       Text('Rp${widget.flight.price}')
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
-                    children: [Text('Tax'), Spacer(), Text('Included')],
+                    children: const [Text('Tax'), Spacer(), Text('Included')],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 ],
               ),
-              height: 100,
-              color: Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 3,
             ),
             Container(
@@ -458,17 +458,17 @@ class _FlightDetailViewState
               color: Colors.white,
               child: Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Row(
                     children: [
                       Text(
                         'Rp${widget.flight.price * widget.amountPassenger}',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: const Color(0XFFE67E22)),
+                            color: Color(0XFFE67E22)),
                       ),
                       Text(
                         '/pax',
@@ -478,12 +478,12 @@ class _FlightDetailViewState
                       )
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   // ControlledWidgetBuilder<FlightBookingController>(
                   //     builder: (BuildContext context,
                   //             FlightBookingController controller) =>
                   Container(
-                      margin: EdgeInsets.only(right: 2, top: 2, bottom: 2),
+                      margin: const EdgeInsets.only(right: 2, top: 2, bottom: 2),
                       child: ControlledWidgetBuilder<FlightDetailController>(
                         builder: (BuildContext context,
                                 FlightDetailController controller) =>
