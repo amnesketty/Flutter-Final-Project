@@ -16,18 +16,24 @@ class UseCaseModule {
   static registerClasses() {
     final injector = Injector.appInstance;
     injector.registerDependency<UserLogin>(() => UserLogin(injector.get()));
-    injector.registerDependency<UserRegister>(() => UserRegister(injector.get()));
-    injector.registerDependency<UserTransactionCase>(() => UserTransactionCase(injector.get()));
+    injector
+        .registerDependency<UserRegister>(() => UserRegister(injector.get()));
+    injector.registerDependency<UserTransactionCase>(
+        () => UserTransactionCase(injector.get()));
 
     injector.registerDependency<FlightGet>(() => FlightGet(injector.get()));
     injector.registerDependency<FlightFind>(() => FlightFind(injector.get()));
-    injector.registerDependency<FlightBooking>(() => FlightBooking(injector.get()));
-    injector.registerDependency<PassengerAdd>(() => PassengerAdd(injector.get()));
-    injector.registerDependency<PassengerAddList>(() => PassengerAddList(injector.get()));
+    injector
+        .registerDependency<FlightBooking>(() => FlightBooking(injector.get()));
+    injector
+        .registerDependency<PassengerAdd>(() => PassengerAdd(injector.get()));
+    injector.registerDependency<PassengerAddList>(
+        () => PassengerAddList(injector.get()));
 
     injector.registerDependency<HotelGet>(() => HotelGet(injector.get()));
     injector.registerDependency<HotelFind>(() => HotelFind(injector.get()));
-    injector.registerDependency<HotelBooking>(() => HotelBooking(injector.get()));
+    injector
+        .registerDependency<HotelBooking>(() => HotelBooking(injector.get()));
     injector.registerDependency<HotelGuest>(() => HotelGuest(injector.get()));
   }
 }

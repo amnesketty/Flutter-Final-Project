@@ -13,10 +13,17 @@ abstract class FlightRepository {
       String token);
 
   Future<int> bookingFlight(
-      String bookingDate, String destinationFrom, String destinationTo,int amountPassenger, int totalPrice, int flightId,String token);
+      String bookingDate,
+      String destinationFrom,
+      String destinationTo,
+      int amountPassenger,
+      int totalPrice,
+      int flightId,
+      String token);
 
   Future<int> addPassenger(String title, String name, String idCard,
       int bookingFlightId, String token);
 
-  Future<bool> addListPassenger(List<SinglePassenger> listPassenger, String token);
+  Future<bool> addListPassenger(
+      List<SinglePassenger> listPassenger, String token);
 }

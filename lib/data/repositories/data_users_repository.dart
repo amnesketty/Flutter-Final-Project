@@ -11,18 +11,17 @@ class DataUserRepository implements UserRepository {
   DataUserRepository({required this.endpoints, required this.dio});
 
   @override
-  Future<int> register(String firstName, String lastName, String username, String email, String phone, String password) async {
+  Future<int> register(String firstName, String lastName, String username,
+      String email, String phone, String password) async {
     try {
-      final response = await dio.post(
-        endpoints.register,
-          data: {
-            "firstName": firstName,
-            "lastName": lastName,
-            "username": username,
-            "email": email,
-            "phone": phone,
-            "password": password
-            });
+      final response = await dio.post(endpoints.register, data: {
+        "firstName": firstName,
+        "lastName": lastName,
+        "username": username,
+        "email": email,
+        "phone": phone,
+        "password": password
+      });
       final userResponse = response.data['data'] as int;
       return userResponse;
     } catch (e) {
@@ -51,28 +50,29 @@ class DataUserRepository implements UserRepository {
 
   @override
   Future<UserTransaction> getUserTransaction(String token) async {
-    dio.options.headers['Authorization'] =
-        'Bearer $token';
+    dio.options.headers['Authorization'] = 'Bearer $token';
     try {
-      final response = await dio.get(
-        endpoints.userTransaction
-      );
-      final userTransactionResponse = response.data['data'] as Map<String,dynamic>;
+      final response = await dio.get(endpoints.userTransaction);
+      final userTransactionResponse =
+          response.data['data'] as Map<String, dynamic>;
 
-      final userTransactionResponseBookingHotels = userTransactionResponse['bookingHotels'] as List<dynamic>;
+      final userTransactionResponseBookingHotels =
+          userTransactionResponse['bookingHotels'] as List<dynamic>;
       final userTransactionBookingHotels = userTransactionResponseBookingHotels
-        .map(
-          (dynamic response) => TransactionHotels.fromJson(response)).toList();
+          .map((dynamic response) => TransactionHotels.fromJson(response))
+          .toList();
 
-      final userTransactionResponseBookingFlights = userTransactionResponse['bookingFlights'] as List<dynamic>;
-      final userTransactionBookingFlights = userTransactionResponseBookingFlights
-        .map(
-          (dynamic response) => TransactionFlights.fromJson(response)).toList();
+      final userTransactionResponseBookingFlights =
+          userTransactionResponse['bookingFlights'] as List<dynamic>;
+      final userTransactionBookingFlights =
+          userTransactionResponseBookingFlights
+              .map((dynamic response) => TransactionFlights.fromJson(response))
+              .toList();
 
       final finalResponse = UserTransaction(
-        username: userTransactionResponse['username'],
-        bookingHotels: userTransactionBookingHotels,
-        bookingFlights: userTransactionBookingFlights);
+          username: userTransactionResponse['username'],
+          bookingHotels: userTransactionBookingHotels,
+          bookingFlights: userTransactionBookingFlights);
       return finalResponse;
     } catch (e) {
       rethrow;

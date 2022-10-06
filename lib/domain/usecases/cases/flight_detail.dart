@@ -11,7 +11,6 @@ class FlightDetail extends UseCase<List<Flight>, dynamic> {
   @override
   Future<Stream<List<Flight>>> buildUseCaseStream(params) async {
     final streamController = StreamController<List<Flight>>();
-
     try {
       final flight = await repository.getAllFlight();
       streamController.add(flight);
@@ -20,7 +19,6 @@ class FlightDetail extends UseCase<List<Flight>, dynamic> {
       logger.severe('StackTrace: $stackTrace');
       streamController.addError(e, stackTrace);
     }
-
     return streamController.stream;
   }
 }

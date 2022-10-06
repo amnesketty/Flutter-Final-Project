@@ -38,9 +38,9 @@ class SinglePassenger {
   });
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-      'title': title,
-      'name': name,
-      'idCard': idCard,
-      'bookingFlightId': bookingFlightId,
-    };
+        'title': title,
+        'name': name,
+        'idCard': idCard,
+        'bookingFlightId': bookingFlightId,
+      };
 }

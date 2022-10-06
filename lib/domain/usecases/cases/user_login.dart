@@ -11,7 +11,6 @@ class UserLogin extends UseCase<User, UserLoginParams> {
   @override
   Future<Stream<User>> buildUseCaseStream(UserLoginParams? params) async {
     final streamController = StreamController<User>();
-
     try {
       final user = await repository.login(params!.username, params.password);
       streamController.add(user);
@@ -20,7 +19,6 @@ class UserLogin extends UseCase<User, UserLoginParams> {
       logger.severe('StackTrace: $stackTrace');
       streamController.addError(e, stackTrace);
     }
-
     return streamController.stream;
   }
 }

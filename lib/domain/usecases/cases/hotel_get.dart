@@ -11,7 +11,6 @@ class HotelGet extends UseCase<List<Hotel>, dynamic> {
   @override
   Future<Stream<List<Hotel>>> buildUseCaseStream(params) async {
     final streamController = StreamController<List<Hotel>>();
-
     try {
       final hotel = await repository.getHotel("jakarta");
       streamController.add(hotel);
@@ -20,7 +19,6 @@ class HotelGet extends UseCase<List<Hotel>, dynamic> {
       logger.severe('StackTrace: $stackTrace');
       streamController.addError(e, stackTrace);
     }
-
     return streamController.stream;
   }
 }

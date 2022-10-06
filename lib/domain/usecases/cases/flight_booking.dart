@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-
 import '../../repositories/flights_repository.dart';
 
 class FlightBooking extends UseCase<int, FlightBookingParams> {
@@ -11,7 +10,6 @@ class FlightBooking extends UseCase<int, FlightBookingParams> {
   @override
   Future<Stream<int>> buildUseCaseStream(FlightBookingParams? params) async {
     final streamController = StreamController<int>();
-
     try {
       final bookingFlightId = await repository.bookingFlight(
           params!.bookingDate,
@@ -40,5 +38,11 @@ class FlightBookingParams {
   final int flightId;
   final String token;
   FlightBookingParams(
-      this.bookingDate, this.destinationFrom, this.destinationTo, this.amountPassenger, this.totalPrice, this.flightId, this.token);
+      this.bookingDate,
+      this.destinationFrom,
+      this.destinationTo,
+      this.amountPassenger,
+      this.totalPrice,
+      this.flightId,
+      this.token);
 }

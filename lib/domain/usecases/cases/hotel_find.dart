@@ -9,18 +9,18 @@ class HotelFind extends UseCase<List<Hotel>, HotelFindParams> {
   HotelFind(this.repository);
 
   @override
-  Future<Stream<List<Hotel>>> buildUseCaseStream(HotelFindParams? params) async {
+  Future<Stream<List<Hotel>>> buildUseCaseStream(
+      HotelFindParams? params) async {
     final streamController = StreamController<List<Hotel>>();
-
     try {
-      final hotel = await repository.findHotel(params!.city, params.bookingDate, params.totalRoom, params.duration, params.token);
+      final hotel = await repository.findHotel(params!.city, params.bookingDate,
+          params.totalRoom, params.duration, params.token);
       streamController.add(hotel);
       streamController.close();
     } catch (e, stackTrace) {
       logger.severe('StackTrace: $stackTrace');
       streamController.addError(e, stackTrace);
     }
-
     return streamController.stream;
   }
 }
@@ -31,5 +31,6 @@ class HotelFindParams {
   final int totalRoom;
   final int duration;
   final String token;
-  HotelFindParams(this.city, this.bookingDate, this.totalRoom, this.duration, this.token);
+  HotelFindParams(
+      this.city, this.bookingDate, this.totalRoom, this.duration, this.token);
 }

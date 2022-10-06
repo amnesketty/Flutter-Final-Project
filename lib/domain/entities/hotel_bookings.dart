@@ -1,12 +1,8 @@
-import 'package:lounga/domain/usecases/cases/hotel_booking.dart';
-
 class HotelBookings {
   final String bookingDate;
-  // final String bookingHotelNo;
   final int id, totalRoom, price, hotelId, roomId, userId;
 
-  HotelBookings(
-  {
+  HotelBookings({
     required this.id,
     required this.bookingDate,
     required this.totalRoom,
@@ -14,7 +10,6 @@ class HotelBookings {
     required this.hotelId,
     required this.userId,
     required this.roomId,
-    // required this.bookingHotelNo
   });
 
   factory HotelBookings.fromResponse(Map<String, dynamic> response) {
@@ -27,14 +22,12 @@ class HotelBookings {
     final roomId = response['roomId'] ?? 0;
 
     return HotelBookings(
-      id: id, 
-      bookingDate: bookingDate, 
-      totalRoom: totalRoom, 
-      price: price, 
-      hotelId: hotelId, 
-      userId: userId, 
-      roomId: roomId);
+        id: id,
+        bookingDate: bookingDate,
+        totalRoom: totalRoom,
+        price: price,
+        hotelId: hotelId,
+        userId: userId,
+        roomId: roomId);
   }
 }
-
-

@@ -9,9 +9,9 @@ class PassengerAddList extends UseCase<bool, PassengerAddListParams> {
   PassengerAddList(this.repository);
 
   @override
-  Future<Stream<bool>> buildUseCaseStream(PassengerAddListParams? params) async {
+  Future<Stream<bool>> buildUseCaseStream(
+      PassengerAddListParams? params) async {
     final streamController = StreamController<bool>();
-
     try {
       final listPassenger = await repository.addListPassenger(
           params!.listPassenger, params.token);
@@ -21,7 +21,6 @@ class PassengerAddList extends UseCase<bool, PassengerAddListParams> {
       logger.severe('StackTrace: $stackTrace');
       streamController.addError(e, stackTrace);
     }
-
     return streamController.stream;
   }
 }
@@ -29,6 +28,5 @@ class PassengerAddList extends UseCase<bool, PassengerAddListParams> {
 class PassengerAddListParams {
   final List<SinglePassenger> listPassenger;
   final String token;
-  PassengerAddListParams(
-      this.listPassenger, this.token);
+  PassengerAddListParams(this.listPassenger, this.token);
 }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:lounga/domain/entities/flight.dart';
 import 'package:lounga/domain/entities/passenger.dart';
@@ -86,17 +84,18 @@ class DataFlightRepository implements FlightRepository {
   }
 
   @override
-  Future<int> addPassenger(
-    String title, String name, String idCard, int bookingFlightId, String token) async {
+  Future<int> addPassenger(String title, String name, String idCard,
+      int bookingFlightId, String token) async {
     dio.options.headers['Authorization'] = 'Bearer $token';
     try {
-      final response = await dio.post(endpoints.addPassenger,
-          data: {
-            "title": title,
-            "name": name,
-            "idCard": idCard,
-            "bookingFlightId": bookingFlightId});
-      final addPassengersResponse = response.data['data'] as Map<String, dynamic>;
+      final response = await dio.post(endpoints.addPassenger, data: {
+        "title": title,
+        "name": name,
+        "idCard": idCard,
+        "bookingFlightId": bookingFlightId
+      });
+      final addPassengersResponse =
+          response.data['data'] as Map<String, dynamic>;
       int passengerId = addPassengersResponse['id'];
       return passengerId;
     } catch (e) {
@@ -105,13 +104,12 @@ class DataFlightRepository implements FlightRepository {
   }
 
   @override
-  Future<bool> addListPassenger(List<SinglePassenger> listPassenger, String token) async {
+  Future<bool> addListPassenger(
+      List<SinglePassenger> listPassenger, String token) async {
     dio.options.headers['Authorization'] = 'Bearer $token';
     try {
-      final response = await dio.post(endpoints.addListPassenger,
-          data: {
-            "data" : listPassenger
-          });
+      final response = await dio
+          .post(endpoints.addListPassenger, data: {"data": listPassenger});
       bool passengerSuccess = response.data['success'];
       return passengerSuccess;
     } catch (e) {

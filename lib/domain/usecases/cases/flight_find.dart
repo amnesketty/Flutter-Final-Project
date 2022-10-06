@@ -12,7 +12,6 @@ class FlightFind extends UseCase<List<Flight>, FlightFindParams> {
   Future<Stream<List<Flight>>> buildUseCaseStream(
       FlightFindParams? params) async {
     final streamController = StreamController<List<Flight>>();
-
     try {
       final flight = await repository.findFlight(
           params!.seatClass,
@@ -27,7 +26,6 @@ class FlightFind extends UseCase<List<Flight>, FlightFindParams> {
       logger.severe('StackTrace: $stackTrace');
       streamController.addError(e, stackTrace);
     }
-
     return streamController.stream;
   }
 }

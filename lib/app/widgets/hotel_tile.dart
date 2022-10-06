@@ -32,8 +32,7 @@ class HotelTile extends StatelessWidget {
                       height: MediaQuery.of(context).size.height * 0.8,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        // ignore: unnecessary_new
-                        image: new DecorationImage(
+                        image: DecorationImage(
                             image: NetworkImage(hotel.photosHotel.first.image),
                             fit: BoxFit.cover),
                       )),
@@ -41,29 +40,24 @@ class HotelTile extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // ignore: prefer_const_literals_to_create_immutables
                       Text(hotel.name,
-                          style:
-                              // ignore: prefer_const_constructors
-                              TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18)),
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18)),
                       const SizedBox(height: 10),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.6,
                         child: Text(hotel.address,
-                            style:
-                                // ignore: prefer_const_constructors
-                                TextStyle(color: Colors.black, fontSize: 13)),
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 13)),
                       ),
                       const SizedBox(height: 10),
                       Row(
                         children: [
                           Text(hotel.rating.toString(),
-                              style:
-                                  // ignore: prefer_const_constructors
-                                  TextStyle(color: Colors.black, fontSize: 18)),
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 18)),
                           const Icon(
                             Icons.star,
                             size: 18,
@@ -73,12 +67,10 @@ class HotelTile extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(hotel.roomsHotel.first.price.toString(),
-                          style:
-                              // ignore: prefer_const_constructors
-                              TextStyle(
-                                  color: const Color(0XFFE67E22),
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 15)),
+                          style: const TextStyle(
+                              color: Color(0XFFE67E22),
+                              fontWeight: FontWeight.w700,
+                              fontSize: 15)),
                     ],
                   )
                 ])),

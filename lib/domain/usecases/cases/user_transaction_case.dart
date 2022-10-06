@@ -3,16 +3,19 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:lounga/domain/repositories/users_repository.dart';
 import '../../entities/user_transaction.dart';
 
-class UserTransactionCase extends UseCase<UserTransaction, UserTransactionParams> {
+class UserTransactionCase
+    extends UseCase<UserTransaction, UserTransactionParams> {
   final UserRepository repository;
 
   UserTransactionCase(this.repository);
-  
+
   @override
-  Future<Stream<UserTransaction?>> buildUseCaseStream(UserTransactionParams? params) async {
+  Future<Stream<UserTransaction?>> buildUseCaseStream(
+      UserTransactionParams? params) async {
     final streamController = StreamController<UserTransaction>();
     try {
-      final userTransaction = await repository.getUserTransaction(params!.token);
+      final userTransaction =
+          await repository.getUserTransaction(params!.token);
       streamController.add(userTransaction);
       streamController.close();
       print(userTransaction.username);

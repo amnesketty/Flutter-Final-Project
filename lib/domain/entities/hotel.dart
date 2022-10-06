@@ -1,5 +1,3 @@
-
-
 import 'hotel_bookings.dart';
 
 class Hotel {
@@ -121,25 +119,23 @@ class RoomsHotel {
   final String type;
   final List<HotelBookings> bookingHotels;
 
-  RoomsHotel({required this.id, required this.type, required this.price, required this.bookingHotels});
+  RoomsHotel(
+      {required this.id,
+      required this.type,
+      required this.price,
+      required this.bookingHotels});
 
   factory RoomsHotel.fromJson(Map<String, dynamic> roomsHotelJson) {
     final id = roomsHotelJson['id'] ?? 0;
-    //final hotelId = roomsHotelJson['hotelId'] ?? 0;
     final price = roomsHotelJson['price'] ?? 0;
     final type = roomsHotelJson['type'] ?? '';
-    // final List<dynamic> photosList = response['photos'];
-    // final List<PhotosHotel> photos = photosList
-    //     .map(
-    //       (dynamic response) => PhotosHotel.fromJson(response),
-    //     )
-    //     .toList();
     final List<dynamic> bookingHotelsResponse = roomsHotelJson['bookingHotels'];
     final List<HotelBookings> bookingHotels = bookingHotelsResponse
         .map(
           (dynamic response) => HotelBookings.fromResponse(response),
         )
         .toList();
-    return RoomsHotel(id: id, type: type, price: price, bookingHotels: bookingHotels);
+    return RoomsHotel(
+        id: id, type: type, price: price, bookingHotels: bookingHotels);
   }
 }

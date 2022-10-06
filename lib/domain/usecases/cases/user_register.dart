@@ -10,9 +10,14 @@ class UserRegister extends UseCase<int, UserRegisterParams> {
   @override
   Future<Stream<int>> buildUseCaseStream(UserRegisterParams? params) async {
     final streamController = StreamController<int>();
-
     try {
-      final userId = await repository.register(params!.firstName, params.lastName, params.username, params.email, params.phone, params.password);
+      final userId = await repository.register(
+          params!.firstName,
+          params.lastName,
+          params.username,
+          params.email,
+          params.phone,
+          params.password);
       streamController.add(userId);
       streamController.close();
     } catch (e, stackTrace) {
@@ -30,5 +35,6 @@ class UserRegisterParams {
   final String email;
   final String phone;
   final String password;
-  UserRegisterParams(this.firstName, this.lastName, this.username, this.email, this.phone, this.password);
+  UserRegisterParams(this.firstName, this.lastName, this.username, this.email,
+      this.phone, this.password);
 }

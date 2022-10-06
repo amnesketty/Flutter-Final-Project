@@ -12,15 +12,14 @@ class PassengerAdd extends UseCase<int, PassengerAddParams> {
     final streamController = StreamController<int>();
 
     try {
-      final passenger = await repository.addPassenger(
-          params!.title, params.name, params.idCard, params.bookingFlightId, params.token);
+      final passenger = await repository.addPassenger(params!.title,
+          params.name, params.idCard, params.bookingFlightId, params.token);
       streamController.add(passenger);
       streamController.close();
     } catch (e, stackTrace) {
       logger.severe('StackTrace: $stackTrace');
       streamController.addError(e, stackTrace);
     }
-
     return streamController.stream;
   }
 }

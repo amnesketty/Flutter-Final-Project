@@ -11,7 +11,6 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ElevatedButton(
         onPressed: () => onButtonClicked,
-        // leading: Image.network(user.image),
         child: const Text("LOGIN"),
       );
 }

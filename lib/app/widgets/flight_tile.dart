@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../domain/entities/flight.dart';
 
 class FlightTile extends StatelessWidget {
@@ -32,20 +31,17 @@ class FlightTile extends StatelessWidget {
                     children: [
                       Row(children: [
                         Transform.rotate(
-                            angle: 1.57, child: Icon(Icons.airplanemode_on)),
-                        SizedBox(
+                            angle: 1.57,
+                            child: const Icon(Icons.airplanemode_on)),
+                        const SizedBox(
                           width: 10,
                         ),
                         Text(flight.airline,
-                            style:
-                                // ignore: prefer_const_constructors
-                                TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 18)),
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18)),
                       ]),
-
-                      // ignore: prefer_const_literals_to_create_immutables
                       const SizedBox(height: 10),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.6,
@@ -58,15 +54,13 @@ class FlightTile extends StatelessWidget {
                                         minute: int.parse(flight.departureTime
                                             .substring(14, 16)))
                                     .format(context),
-                                style:
-                                    // ignore: prefer_const_constructors
-                                    TextStyle(
-                                        color: Colors.black, fontSize: 13)),
-                            SizedBox(
+                                style: const TextStyle(
+                                    color: Colors.black, fontSize: 13)),
+                            const SizedBox(
                               width: 10,
                             ),
-                            Text("-"),
-                            SizedBox(
+                            const Text("-"),
+                            const SizedBox(
                               width: 10,
                             ),
                             Text(
@@ -76,10 +70,8 @@ class FlightTile extends StatelessWidget {
                                         minute: int.parse(flight.arrivalTime
                                             .substring(14, 16)))
                                     .format(context),
-                                style:
-                                    // ignore: prefer_const_constructors
-                                    TextStyle(
-                                        color: Colors.black, fontSize: 13)),
+                                style: const TextStyle(
+                                    color: Colors.black, fontSize: 13)),
                           ],
                         ),
                       ),
@@ -87,59 +79,52 @@ class FlightTile extends StatelessWidget {
                       Row(
                         children: [
                           Text(flight.destinationFrom.toString(),
-                              style:
-                                  // ignore: prefer_const_constructors
-                                  TextStyle(color: Colors.black, fontSize: 18)),
-                          SizedBox(
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 18)),
+                          const SizedBox(
                             width: 10,
                           ),
-                          Icon(Icons.arrow_right_alt_outlined),
-                          SizedBox(
+                          const Icon(Icons.arrow_right_alt_outlined),
+                          const SizedBox(
                             width: 10,
                           ),
                           Text(flight.destinationTo.toString(),
-                              style:
-                                  // ignore: prefer_const_constructors
-                                  TextStyle(color: Colors.black, fontSize: 18))
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 18))
                         ],
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Row(
                         children: [
-                          Text("Rp.",
-                              style:
-                                  // ignore: prefer_const_constructors
-                                  TextStyle(
-                                      color: const Color(0XFFE67E22),
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 15)),
+                          const Text("Rp.",
+                              style: TextStyle(
+                                  color: Color(0XFFE67E22),
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 15)),
                           Text(flight.price.toString(),
-                              style:
-                                  // ignore: prefer_const_constructors
-                                  TextStyle(
-                                      color: const Color(0XFFE67E22),
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 15)),
-                          Text('/pax',
-                              style:
-                                  // ignore: prefer_const_constructors
-                                  TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 15))
+                              style: const TextStyle(
+                                  color: Color(0XFFE67E22),
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 15)),
+                          const Text('/pax',
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 15))
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Row(
                         children: [
-                          Icon(Icons.luggage),
-                          SizedBox(
+                          const Icon(Icons.luggage),
+                          const SizedBox(
                             width: 280,
                           ),
                           IconButton(
-                              icon: Icon(Icons.keyboard_arrow_right_sharp),
+                              icon:
+                                  const Icon(Icons.keyboard_arrow_right_sharp),
                               onPressed: () {
                                 onFlightClicked(flight);
                               })
