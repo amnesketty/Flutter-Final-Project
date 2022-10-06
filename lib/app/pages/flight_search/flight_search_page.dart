@@ -27,6 +27,36 @@ class FlightSearchPage extends View {
 class _FlightSearchViewState
     extends ViewState<FlightSearchPage, FlightSearchController> {
   _FlightSearchViewState(super._controller);
+  DateTime selectedDate = DateTime.now();
+  Future<Null> _selectDate(
+      BuildContext context, FlightSearchController controller) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        builder: (context, child) {
+          return Theme(
+            data: ThemeData.dark().copyWith(
+              colorScheme: ColorScheme.dark(
+                primary: Color(0XFFE67E22),
+                onPrimary: Colors.white,
+                surface: Color(0XFFE67E22),
+                onSurface: Colors.white,
+              ),
+            ),
+            child: child!,
+          );
+        },
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2100));
+    onChanged:
+    (val) => controller.controllerdepartureDate.text = val;
+    if (picked != null) {
+      print(picked);
+      selectedDate = picked;
+      controller.changeDate(selectedDate.toString().substring(0, 10));
+      //controller.controllerBookingDate.text = selectedDate.toString();
+    }
+  }
 
   @override
   Widget get view => Scaffold(
@@ -61,50 +91,57 @@ class _FlightSearchViewState
                           width: MediaQuery.of(context).size.width * 0.85,
                           // margin: EdgeInsets.only(top: 10),
                           // height: MediaQuery.of(context).size.width * 2.5,
-                          child: DropdownButtonFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Destination From',
-                                icon: Transform.rotate(
-                                  angle: 1.57,
-                                  child: Icon(
-                                    Icons.airplanemode_on,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Destination From',
+                                  style: TextStyle(
+                                      color: Color(0XFFE67E22),
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 15)),
+                              DropdownButtonFormField(
+                                  decoration: InputDecoration(
+                                    prefixIcon: Transform.rotate(
+                                        angle: 1.57,
+                                        child: Icon(Icons.airplanemode_on)),
+                                    // labelText: 'Destination From',
+                                    fillColor: Colors.grey,
                                   ),
-                                ),
-                                fillColor: Colors.grey,
-                              ),
-                              value: controller.destinationFrom,
-                              items: [
-                                DropdownMenuItem(
-                                  child: Text(
-                                      controller.dropdownvalueDestination[0]),
-                                  value: 0,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text(
-                                      controller.dropdownvalueDestination[1]),
-                                  value: 1,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text(
-                                      controller.dropdownvalueDestination[2]),
-                                  value: 2,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text(
-                                      controller.dropdownvalueDestination[3]),
-                                  value: 3,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text(
-                                      controller.dropdownvalueDestination[4]),
-                                  value: 4,
-                                ),
-                              ],
-                              onChanged: (int? value) {
-                                controller
-                                    .onChangedDropdownDestinationFrom(value!);
-                              },
-                              hint: Text("From")),
+                                  value: controller.destinationFrom,
+                                  items: [
+                                    DropdownMenuItem(
+                                      child: Text(controller
+                                          .dropdownvalueDestination[0]),
+                                      value: 0,
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text(controller
+                                          .dropdownvalueDestination[1]),
+                                      value: 1,
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text(controller
+                                          .dropdownvalueDestination[2]),
+                                      value: 2,
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text(controller
+                                          .dropdownvalueDestination[3]),
+                                      value: 3,
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text(controller
+                                          .dropdownvalueDestination[4]),
+                                      value: 4,
+                                    ),
+                                  ],
+                                  onChanged: (int? value) {
+                                    controller.onChangedDropdownDestinationFrom(
+                                        value!);
+                                  },
+                                  hint: Text("From")),
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 15,
@@ -113,85 +150,124 @@ class _FlightSearchViewState
                           width: MediaQuery.of(context).size.width * 0.85,
                           // margin: EdgeInsets.only(top: 7),
                           // height: MediaQuery.of(context).size.width * 2.5,
-                          child: DropdownButtonFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Destination To',
-                                icon: Transform.rotate(
-                                    angle: 1.57,
-                                    child: Icon(Icons.airplanemode_on)),
-                                fillColor: Colors.grey,
-                              ),
-                              value: controller.destinationTo,
-                              items: [
-                                DropdownMenuItem(
-                                  child: Text(
-                                      controller.dropdownvalueDestination[0]),
-                                  value: 0,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text(
-                                      controller.dropdownvalueDestination[1]),
-                                  value: 1,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text(
-                                      controller.dropdownvalueDestination[2]),
-                                  value: 2,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text(
-                                      controller.dropdownvalueDestination[3]),
-                                  value: 3,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text(
-                                      controller.dropdownvalueDestination[4]),
-                                  value: 4,
-                                ),
-                              ],
-                              onChanged: (int? value) {
-                                controller
-                                    .onChangedDropdownDestinationTo(value!);
-                              },
-                              hint: Text("From")),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Destination To',
+                                  style: TextStyle(
+                                      color: Color(0XFFE67E22),
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 15)),
+                              DropdownButtonFormField(
+                                  decoration: InputDecoration(
+                                    prefixIcon: Transform.rotate(
+                                        angle: 1.57,
+                                        child: Icon(Icons.airplanemode_on)),
+                                    // labelText: 'Destination To',
+
+                                    fillColor: Colors.grey,
+                                  ),
+                                  value: controller.destinationTo,
+                                  items: [
+                                    DropdownMenuItem(
+                                      child: Text(controller
+                                          .dropdownvalueDestination[0]),
+                                      value: 0,
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text(controller
+                                          .dropdownvalueDestination[1]),
+                                      value: 1,
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text(controller
+                                          .dropdownvalueDestination[2]),
+                                      value: 2,
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text(controller
+                                          .dropdownvalueDestination[3]),
+                                      value: 3,
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text(controller
+                                          .dropdownvalueDestination[4]),
+                                      value: 4,
+                                    ),
+                                  ],
+                                  onChanged: (int? value) {
+                                    controller
+                                        .onChangedDropdownDestinationTo(value!);
+                                  },
+                                  hint: Text("From")),
+                            ],
+                          ),
                         ),
-                        /*
-                      Container(
-                        margin: EdgeInsets.only(
-                            left: 15, top: 15, right: 30, bottom: 10),
-                        child: TextFormField(
-                          controller: controller.controllerdepartureDate,
-                          keyboardType: TextInputType.datetime,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                              labelText: 'Departure Date',
-                              //prefixIcon: Icon(Icons.email),
-                              icon: Icon(Icons.calendar_month)),
-                        ),
-                      ),*/
                         SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.85,
-                          child: DateTimePicker(
-                            
-                            type: DateTimePickerType.date,
-                            dateMask: 'd MMM, yyyy',
-                            initialValue: DateTime.now().toString(),
-                            firstDate: DateTime.now(),
-                            lastDate: DateTime(2100),
-                            icon: Icon(Icons.calendar_month),
-                            dateLabelText: 'Departure Date',
-                            onChanged: (val) =>
-                                controller.controllerdepartureDate.text = val,
-                            validator: (val) {
-                              controller.controllerdepartureDate.text = val!;
-                              return null;
-                            },
-                            onSaved: (val) =>
-                                controller.controllerdepartureDate.text = val!,
-                          ),
+                        SizedBox(height: 9),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.05,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.05,
+                                ),
+                                const Text('Departure Date',
+                                    style: TextStyle(
+                                        color: Color(0XFFE67E22),
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 15)),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.05,
+                                ),
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.06,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.84,
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          bottom:
+                                              BorderSide(color: Colors.grey))),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      GestureDetector(
+                                          onTap: () {
+                                            _selectDate(context, controller);
+                                          },
+                                          child: Icon(
+                                            Icons.calendar_month,
+                                            size: 25,
+                                          )),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        "${selectedDate.toLocal()}"
+                                            .split(' ')[0],
+                                        style: TextStyle(
+                                            // fontWeight: FontWeight.w900,
+                                            // fontSize: 20,
+                                            ),
+                                      ),
+                                      Spacer()
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                         Container(
                           margin:
@@ -199,18 +275,27 @@ class _FlightSearchViewState
                           child: Row(
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width / 2.5,
+                                width: MediaQuery.of(context).size.width / 2.8,
                                 margin: EdgeInsets.only(
-                                    left: 0, top: 15, right: 0, bottom: 10),
-                                child: TextFormField(
-                                  controller:
-                                      controller.controlleramountPassenger,
-                                  keyboardType: TextInputType.number,
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                      labelText: 'Passengers',
-                                      //prefixIcon: Icon(Icons.email),
-                                      icon: Icon(Icons.people)),
+                                    left: 5, top: 15, right: 10, bottom: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Passenger',
+                                        style: TextStyle(
+                                            color: Color(0XFFE67E22),
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 15)),
+                                    TextFormField(
+                                      controller:
+                                          controller.controlleramountPassenger,
+                                      keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: InputDecoration(
+                                        prefixIcon: Icon(Icons.people),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Spacer(),
@@ -218,36 +303,53 @@ class _FlightSearchViewState
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 child: Column(
                                   children: [
-                                    DropdownButtonFormField(
-                                        decoration: InputDecoration(
-                                          labelText: 'Seat Class',
-                                          icon: Icon(Icons
-                                              .airline_seat_recline_normal_rounded),
-                                          fillColor: Colors.grey,
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.007,
                                         ),
-                                        value: controller.seatClass,
-                                        items: [
-                                          DropdownMenuItem(
-                                            child: Text(controller
-                                                .dropdownvalueSeatClass[0]),
-                                            value: 0,
-                                          ),
-                                          DropdownMenuItem(
-                                            child: Text(controller
-                                                .dropdownvalueSeatClass[1]),
-                                            value: 1,
-                                          ),
-                                          DropdownMenuItem(
-                                            child: Text(controller
-                                                .dropdownvalueSeatClass[2]),
-                                            value: 2,
-                                          )
-                                        ],
-                                        onChanged: (int? value) {
-                                          controller.onChangedDropdownSeatClass(
-                                              value!);
-                                        },
-                                        hint: Text("Seat Class")),
+                                        Text('Seat Class',
+                                            style: TextStyle(
+                                                color: Color(0XFFE67E22),
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 15)),
+                                        DropdownButtonFormField(
+                                            decoration: InputDecoration(
+                                              prefixIcon: Icon(Icons
+                                                  .airline_seat_recline_extra_sharp),
+                                              // fillColor: Colors.grey,
+                                            ),
+                                            value: controller.seatClass,
+                                            items: [
+                                              DropdownMenuItem(
+                                                child: Text(controller
+                                                    .dropdownvalueSeatClass[0]),
+                                                value: 0,
+                                              ),
+                                              DropdownMenuItem(
+                                                child: Text(controller
+                                                    .dropdownvalueSeatClass[1]),
+                                                value: 1,
+                                              ),
+                                              DropdownMenuItem(
+                                                child: Text(controller
+                                                    .dropdownvalueSeatClass[2]),
+                                                value: 2,
+                                              )
+                                            ],
+                                            onChanged: (int? value) {
+                                              controller
+                                                  .onChangedDropdownSeatClass(
+                                                      value!);
+                                            },
+                                            hint: Text("Seat Class")),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),

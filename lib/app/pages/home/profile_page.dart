@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:lounga/app/pages/home/home_controller.dart';
+import 'package:lounga/app/pages/register/register_controller.dart';
 
 import '../../../domain/entities/user.dart';
 
@@ -51,10 +54,27 @@ class ProfilePage extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
-              ),)
-            
-            // SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-            // ElevatedButton(onPressed: () {}, child: Text('Logout'))
+              ),
+            ), /*
+            SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+            ControlledWidgetBuilder<HomeController>(
+                builder: (BuildContext _, HomeController controller) {
+              return ElevatedButton(
+                onPressed: () {
+                  controller.navigateToLoginPage();
+                },
+                child: Text('Logout'),
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7.0)),
+                    primary: const Color(0XFFE67E22)),
+              );
+            }),*/
+            // Image.asset(
+            //   'assets/logo-lounga.png',
+            //   height: MediaQuery.of(context).size.height * 0.3,
+            //   width: MediaQuery.of(context).size.height * 0.1,
+            // )
           ],
         ),
       ),

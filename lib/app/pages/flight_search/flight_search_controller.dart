@@ -88,9 +88,21 @@ class FlightSearchController extends Controller {
       await Future.delayed(const Duration(milliseconds: 10));
     } while (_isLoading);
     final context = getContext();
+
     Navigator.pushNamed(context, FlightFindPage.route,
-        arguments: FlightsArgument(_flights, _user,
-            departureDate + 'T00:00:00.000Z', amountPassenger, destinationFrom, destinationTo, seatClass));
+        arguments: FlightsArgument(
+            _flights,
+            _user,
+            departureDate + 'T00:00:00.000Z',
+            amountPassenger,
+            destinationFrom,
+            destinationTo,
+            seatClass));
+  }
+
+  void changeDate(String date) {
+    _controllerdepartureDate.text = date;
+    refreshUI();
   }
 
   void _initObserver() {
@@ -149,5 +161,11 @@ class FlightsArgument {
   String destinationTo;
   String seatClass;
   FlightsArgument(
-      this.flights, this.user, this.departureDate, this.amountPassenger, this.destinationFrom, this.destinationTo, this.seatClass);
+      this.flights,
+      this.user,
+      this.departureDate,
+      this.amountPassenger,
+      this.destinationFrom,
+      this.destinationTo,
+      this.seatClass);
 }
