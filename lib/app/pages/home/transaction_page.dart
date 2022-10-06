@@ -217,7 +217,7 @@ class TransactionPage extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 Text(DateFormat.yMMMEd().format(
-                                  DateTime.parse(userTransaction.bookingHotels[index].bookingDate)),
+                                  DateTime.parse(userTransaction.bookingFlights[index].bookingDate)),
                                   style: const TextStyle(fontWeight: FontWeight.bold),)
                               ],
                             )
