@@ -34,32 +34,16 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: const Color(0XFFE67E22),
-          flexibleSpace: SafeArea(
-              child: Row(
-            children: [
-              SizedBox(
-                width: 10,
-              ),
-              Text('LOUNGA'),
-              Spacer(),
-              ControlledWidgetBuilder<RegisterController>(
-                  builder: (BuildContext _, RegisterController controller) =>
-                      IconButton(
-                          onPressed: () {
-                            controller.navigateToLoginPage();
-                          },
-                          icon: Icon(Icons.logout)))
-            ],
-          )),
-          /*actions: [
-            ControlledWidgetBuilder<RegisterController>(
-                builder: (BuildContext _, RegisterController controller) =>
+          title: Text('LOUNGA'),
+          actions: [
+            ControlledWidgetBuilder<HomeController>(
+                builder: (BuildContext _, HomeController controller) =>
                     IconButton(
                         onPressed: () {
                           controller.navigateToLoginPage();
                         },
                         icon: Icon(Icons.logout)))
-          ],*/
+          ],
         ),
         backgroundColor: const Color(0XFFD3D3D3),
         body: ControlledWidgetBuilder<HomeController>(

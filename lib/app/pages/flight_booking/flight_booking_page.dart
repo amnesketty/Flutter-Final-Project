@@ -298,9 +298,14 @@ class _FlightBookingViewState
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) =>
-                                      PopUpDialog(function: () {
-                                        controller.navigateToHomePage(widget.user);
-                                        }, message: "success", tipePopUpDialog: "bookingSuccess", popUpButton: "bookingSuccess"));
+                                      PopUpDialog(
+                                          function: () {
+                                            controller.navigateToHomePage(
+                                                widget.user);
+                                          },
+                                          message: "success",
+                                          tipePopUpDialog: "bookingSuccess",
+                                          popUpButton: "bookingSuccess"));
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: const Color(0XFFE67E22)),
