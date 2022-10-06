@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
+import 'package:intl/intl.dart';
 import 'package:lounga/app/widgets/hotel_tile.dart';
 
 import '../../../domain/entities/hotel.dart';
@@ -55,7 +56,7 @@ class _HotelSearchViewState
         if (picked != null) {
           print(picked);
           selectedDate = picked;
-          controller.changeDate(selectedDate.toString().substring(0,10));
+          controller.changeDate(DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(selectedDate));
           //controller.controllerBookingDate.text = selectedDate.toString();
         }
   }

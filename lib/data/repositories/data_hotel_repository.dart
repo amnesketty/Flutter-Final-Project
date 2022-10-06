@@ -53,6 +53,13 @@ class DataHotelRepository implements HotelRepository {
   
   @override
   Future<int> bookingHotel(String bookingDate, String name, int totalRoom, int price, int hotelId, int roomId, String token) async {
+    print(bookingDate);
+    print(name);
+    print(totalRoom);
+    print(price);
+    print(hotelId);
+    print(roomId);
+    print(token);
     dio.options.headers['Authorization'] = 'Bearer $token';
     try {
       final response = await dio.post(

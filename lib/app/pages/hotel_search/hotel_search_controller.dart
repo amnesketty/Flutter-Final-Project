@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:lounga/domain/entities/hotel.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import '../../../domain/entities/user.dart';
@@ -50,7 +51,7 @@ class HotelSearchController extends Controller {
   @override
   void initListeners() {
     _initObserver();
-    _controllerBookingDate.text = DateTime.now().toString().substring(0,10);
+    _controllerBookingDate.text = DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(DateTime.now());
     // _searchHotel();
   }
 
