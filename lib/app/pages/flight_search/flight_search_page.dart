@@ -60,8 +60,11 @@ class _FlightSearchViewState
                       child: DropdownButtonFormField(
                           decoration: InputDecoration(
                             labelText: 'Destination From',
-                            icon: Icon(
-                              Icons.airplanemode_on,
+                            icon: Transform.rotate(
+                              angle: 1.57,
+                              child: Icon(
+                                Icons.airplanemode_on,
+                              ),
                             ),
                             fillColor: Colors.grey,
                           ),
@@ -108,7 +111,9 @@ class _FlightSearchViewState
                       child: DropdownButtonFormField(
                           decoration: InputDecoration(
                             labelText: 'Destination To',
-                            icon: Icon(Icons.airplanemode_on),
+                            icon: Transform.rotate(
+                                angle: 1.57,
+                                child: Icon(Icons.airplanemode_on)),
                             fillColor: Colors.grey,
                           ),
                           value: controller.destinationTo,

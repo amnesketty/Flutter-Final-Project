@@ -31,7 +31,8 @@ class FlightTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(children: [
-                        Icon(Icons.airplanemode_on),
+                        Transform.rotate(
+                            angle: 1.57, child: Icon(Icons.airplanemode_on)),
                         SizedBox(
                           width: 10,
                         ),
