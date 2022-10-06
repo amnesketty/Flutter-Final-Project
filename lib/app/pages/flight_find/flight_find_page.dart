@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 import 'package:lounga/app/widgets/flight_tile.dart';
-
 import '../../../domain/entities/flight.dart';
 import '../../../domain/entities/user.dart';
 import 'flight_find_controller.dart';
@@ -30,8 +28,6 @@ class FlightFindPage extends View {
       {Key? key})
       : super(key: key);
 
-  // FlightFindPage({Key? key}) : super(key: key);
-
   @override
   State<StatefulWidget> createState() {
     final flightFindController =
@@ -42,7 +38,7 @@ class FlightFindPage extends View {
 
 class _FlightFindViewState
     extends ViewState<FlightFindPage, FlightFindController> {
-  _FlightFindViewState(super._controller);
+  _FlightFindViewState(super.controller);
 
   @override
   Widget get view => Scaffold(
@@ -52,7 +48,7 @@ class _FlightFindViewState
           flexibleSpace: SafeArea(
               child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               SizedBox(
@@ -65,12 +61,12 @@ class _FlightFindViewState
                   ),
                   Text(
                     widget.destinationFrom,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.01,
                   ),
-                  Icon(
+                  const Icon(
                     Icons.arrow_right_alt,
                     color: Colors.white,
                   ),
@@ -78,7 +74,7 @@ class _FlightFindViewState
                     width: MediaQuery.of(context).size.width * 0.01,
                   ),
                   Text(widget.destinationTo,
-                      style: TextStyle(color: Colors.white)),
+                      style: const TextStyle(color: Colors.white)),
                 ],
               ),
               SizedBox(
@@ -91,16 +87,17 @@ class _FlightFindViewState
                   ),
                   Text(
                     widget.departureDate.substring(0, 10),
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.01,
                   ),
-                  Text('-', style: TextStyle(color: Colors.white)),
+                  const Text('-', style: TextStyle(color: Colors.white)),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.01,
                   ),
-                  Text(widget.seatClass, style: TextStyle(color: Colors.white)),
+                  Text(widget.seatClass,
+                      style: const TextStyle(color: Colors.white)),
                 ],
               )
             ],
@@ -108,18 +105,22 @@ class _FlightFindViewState
         ),
         backgroundColor: const Color(0XFFD3D3D3),
         body: ControlledWidgetBuilder<FlightFindController>(
-            builder: (BuildContext _, FlightFindController controller) =>
-                widget.flights.length == 0
+            builder: (BuildContext _, FlightFindController controller) {
+              var availableFlights = <String>{};
+              List<Flight> availableFlightList = widget
+                .flights
+                .where((element) => element.amountPassenger < element.seatCapacity)
+                .toList();
+              return widget.flights.isEmpty
                     ? Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          // ignore: prefer_const_literals_to_create_immutables
-                          children: [
-                            const Icon(
+                          children: const [
+                            Icon(
                               Icons.search_off_rounded,
                               size: 80,
                             ),
-                            const Text(
+                            Text(
                               'No flights available',
                               style: TextStyle(
                                   fontSize: 25, fontWeight: FontWeight.w500),
@@ -128,10 +129,10 @@ class _FlightFindViewState
                         ),
                       )
                     : ListView.builder(
-                        itemCount: widget.flights.length,
+                        itemCount: availableFlightList.length,
                         itemBuilder: (BuildContext _, int index) {
-                          final flight = widget.flights[index];
-                          final price = widget.flights[index].price;
+                          final flight = availableFlightList[index];
+                          final price = availableFlightList[index].price;
                           return FlightTile(
                             flight: flight,
                             onFlightClicked: (Flight flight) {
@@ -146,6 +147,7 @@ class _FlightFindViewState
                                   widget.seatClass);
                             },
                           );
-                        })),
+                        });
+            }),
       );
 }

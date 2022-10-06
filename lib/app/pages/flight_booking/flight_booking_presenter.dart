@@ -21,7 +21,10 @@ class FlightBookingPresenter extends Presenter {
   final PassengerAdd passengerAddUseCase;
   final PassengerAddList passengerAddListUseCase;
 
-  FlightBookingPresenter({required this.flightBookingUseCase, required this.passengerAddUseCase, required this.passengerAddListUseCase});
+  FlightBookingPresenter(
+      {required this.flightBookingUseCase,
+      required this.passengerAddUseCase,
+      required this.passengerAddListUseCase});
 
   void flightBooking(
       String bookingDate,
@@ -29,18 +32,21 @@ class FlightBookingPresenter extends Presenter {
       String destinationTo,
       int amountPassenger,
       int totalPrice,
-      int flightId, String token) {
+      int flightId,
+      String token) {
     flightBookingUseCase.execute(
         _FlightBookingObserver(this),
-        FlightBookingParams(bookingDate, destinationFrom, destinationTo, amountPassenger,totalPrice, flightId,token));
+        FlightBookingParams(bookingDate, destinationFrom, destinationTo,
+            amountPassenger, totalPrice, flightId, token));
   }
 
-  void passengerAdd(
-      String title, String name, String idCard, int bookingFlightId, String token) {
+  void passengerAdd(String title, String name, String idCard,
+      int bookingFlightId, String token) {
     passengerAddUseCase.execute(_PassengerAddObserver(this),
         PassengerAddParams(title, name, idCard, bookingFlightId, token));
   }
-  void passengerAddList(List<SinglePassenger> listPassenger,String token) {
+
+  void passengerAddList(List<SinglePassenger> listPassenger, String token) {
     passengerAddListUseCase.execute(_PassengerAddListObserver(this),
         PassengerAddListParams(listPassenger, token));
   }

@@ -19,24 +19,23 @@ class HotelGetPresenter extends Presenter {
   void dispose() {
     hotelGetUseCase.dispose();
   }
-
 }
 
 class _HotelGetObserver extends Observer<List<Hotel>> {
   final HotelGetPresenter presenter;
 
   _HotelGetObserver(this.presenter);
-  
+
   @override
   void onComplete() {
     presenter.onFinishHotelGet();
   }
-  
+
   @override
   void onError(e) {
     presenter.onErrorHotelGet(e);
   }
-  
+
   @override
   void onNext(List<Hotel>? response) {
     List<Hotel> hotels = response ?? [];

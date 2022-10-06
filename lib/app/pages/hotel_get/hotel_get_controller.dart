@@ -12,7 +12,7 @@ class HotelGetController extends Controller {
 
   List<Hotel> _hotels = [];
   List<Hotel> get hotels => _hotels;
-  
+
   @override
   void initListeners() {
     _initObserver();
@@ -24,13 +24,13 @@ class HotelGetController extends Controller {
     _presenter.getHotel();
   }
 
-  void _initObserver(){
+  void _initObserver() {
     _presenter.onErrorHotelGet = (e) {};
     _presenter.onFinishHotelGet = () {
       _hideLoading();
     };
     _presenter.onSuccessHotelGet = (List<Hotel> data) {
-      _hotels= data;
+      _hotels = data;
     };
   }
 
@@ -38,6 +38,7 @@ class HotelGetController extends Controller {
     _isLoading = true;
     refreshUI();
   }
+
   void _hideLoading() {
     _isLoading = false;
     refreshUI();

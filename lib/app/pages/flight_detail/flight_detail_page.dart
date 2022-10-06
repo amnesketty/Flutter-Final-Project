@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-
 import '../../../domain/entities/flight.dart';
 import '../../../domain/entities/user.dart';
 import 'flight_detail_controller.dart';
@@ -28,8 +27,8 @@ class FlightDetailPage extends View {
       this.seatClass,
       {Key? key})
       : super(key: key);
+
   @override
-  // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() {
     final flightDetailController =
         Injector.appInstance.get<FlightDetailController>();
@@ -89,57 +88,51 @@ class _FlightDetailViewState
                       topRight: Radius.circular(30))),
               child: Row(
                 children: [
-                  Container(
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          width: 70,
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Text(
-                            TimeOfDay(
-                                    hour: int.parse(widget.flight.departureTime
-                                        .substring(11, 13)),
-                                    minute: int.parse(widget
-                                        .flight.departureTime
-                                        .substring(14, 16)))
-                                .format(context),
-                            style:
-                                // ignore: prefer_const_constructors
-                                TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold)),
-                        const SizedBox(
-                          height: 155,
-                        ),
-                        Text(
-                          widget.departureDate.substring(0, 10),
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.grey.shade400,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 155,
-                        ),
-                        Text(
-                            TimeOfDay(
-                                    hour: int.parse(widget.flight.arrivalTime
-                                        .substring(11, 13)),
-                                    minute: int.parse(widget.flight.arrivalTime
-                                        .substring(14, 16)))
-                                .format(context),
-                            style:
-                                // ignore: prefer_const_constructors
-                                TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold)),
-                      ],
-                    ),
+                  Column(
+                    children: [
+                      const SizedBox(
+                        width: 70,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                          TimeOfDay(
+                                  hour: int.parse(widget.flight.departureTime
+                                      .substring(11, 13)),
+                                  minute: int.parse(widget
+                                      .flight.departureTime
+                                      .substring(14, 16)))
+                              .format(context),
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold)),
+                      const SizedBox(
+                        height: 155,
+                      ),
+                      Text(
+                        widget.departureDate.substring(0, 10),
+                        style: TextStyle(
+                            fontSize: 10,
+                            color: Colors.grey.shade400,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 155,
+                      ),
+                      Text(
+                          TimeOfDay(
+                                  hour: int.parse(widget.flight.arrivalTime
+                                      .substring(11, 13)),
+                                  minute: int.parse(widget.flight.arrivalTime
+                                      .substring(14, 16)))
+                              .format(context),
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold)),
+                    ],
                   ),
                   Container(
                     margin: const EdgeInsets.only(
@@ -196,8 +189,8 @@ class _FlightDetailViewState
                                   ),
                                   Text(
                                     widget.flight.airline,
-                                    style:
-                                        const TextStyle(fontWeight: FontWeight.bold),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
                                   )
                                 ],
                               ),
@@ -208,8 +201,8 @@ class _FlightDetailViewState
                                   ),
                                   Text(
                                     widget.flight.aircraft,
-                                    style:
-                                        const TextStyle(fontWeight: FontWeight.bold),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(
                                     width: 5,
@@ -224,8 +217,8 @@ class _FlightDetailViewState
                                   ),
                                   Text(
                                     widget.flight.seatClass,
-                                    style:
-                                        const TextStyle(fontWeight: FontWeight.bold),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -406,15 +399,15 @@ class _FlightDetailViewState
               height: 12,
             ),
             Row(
-              children: [
-                const SizedBox(
+              children: const [
+                SizedBox(
                   width: 6,
                 ),
-                const Icon(Icons.payment),
-                const SizedBox(
+                Icon(Icons.payment),
+                SizedBox(
                   width: 6,
                 ),
-                const Text(
+                Text(
                   'Price Details',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
@@ -479,11 +472,9 @@ class _FlightDetailViewState
                     ],
                   ),
                   const Spacer(),
-                  // ControlledWidgetBuilder<FlightBookingController>(
-                  //     builder: (BuildContext context,
-                  //             FlightBookingController controller) =>
                   Container(
-                      margin: const EdgeInsets.only(right: 2, top: 2, bottom: 2),
+                      margin:
+                          const EdgeInsets.only(right: 2, top: 2, bottom: 2),
                       child: ControlledWidgetBuilder<FlightDetailController>(
                         builder: (BuildContext context,
                                 FlightDetailController controller) =>

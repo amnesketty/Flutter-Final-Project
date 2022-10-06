@@ -11,32 +11,27 @@ class HotelFindPresenter extends Presenter {
 
   HotelFindPresenter({required this.hotelFindUseCase});
 
-  // void findHotel() {
-  //   hotelFindUseCase.execute(_HotelFindObserver(this));
-  // }
-
   @override
   void dispose() {
     hotelFindUseCase.dispose();
   }
-
 }
 
 class _HotelFindObserver extends Observer<List<Hotel>> {
   final HotelFindPresenter presenter;
 
   _HotelFindObserver(this.presenter);
-  
+
   @override
   void onComplete() {
     presenter.onFinishHotelFind();
   }
-  
+
   @override
   void onError(e) {
     presenter.onErrorHotelFind(e);
   }
-  
+
   @override
   void onNext(List<Hotel>? response) {
     List<Hotel> hotels = response ?? [];

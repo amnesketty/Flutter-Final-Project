@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:lounga/app/pages/home/home_controller.dart';
-import 'package:lounga/app/pages/register/register_controller.dart';
-
 import '../../../domain/entities/user.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -12,7 +8,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF), // AppBar
+      backgroundColor: const Color(0xFFFFFFFF), // AppBar
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -25,7 +21,6 @@ class ProfilePage extends StatelessWidget {
                   MediaQuery.of(context).size.width * 0.2,
                   MediaQuery.of(context).size.width * 0.2,
                   MediaQuery.of(context).size.width * 0.1),
-              // ignore: prefer_const_constructors
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(user.avatarImage.toString()),
@@ -55,26 +50,7 @@ class ProfilePage extends StatelessWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
-            ), /*
-            SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-            ControlledWidgetBuilder<HomeController>(
-                builder: (BuildContext _, HomeController controller) {
-              return ElevatedButton(
-                onPressed: () {
-                  controller.navigateToLoginPage();
-                },
-                child: Text('Logout'),
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7.0)),
-                    primary: const Color(0XFFE67E22)),
-              );
-            }),*/
-            // Image.asset(
-            //   'assets/logo-lounga.png',
-            //   height: MediaQuery.of(context).size.height * 0.3,
-            //   width: MediaQuery.of(context).size.height * 0.1,
-            // )
+            ),
           ],
         ),
       ),

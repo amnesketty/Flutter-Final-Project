@@ -4,11 +4,7 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 import 'package:lounga/app/pages/home/profile_page.dart';
 import 'package:lounga/app/pages/home/transaction_page.dart';
-import 'package:lounga/app/pages/login/login_controller.dart';
-import 'package:lounga/app/pages/register/register_controller.dart';
-
 import '../../../domain/entities/user.dart';
-import 'home_page_main.dart';
 
 class HomePage extends View {
   static const route = '/home-page';
@@ -18,7 +14,6 @@ class HomePage extends View {
   const HomePage(this.user, {Key? key}) : super(key: key);
 
   @override
-  // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() {
     final homeController = Injector.appInstance.get<HomeController>();
     return _HomeViewState(homeController);
@@ -34,7 +29,7 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: const Color(0XFFE67E22),
-          title: Text('LOUNGA'),
+          title: const Text('LOUNGA'),
           actions: [
             ControlledWidgetBuilder<HomeController>(
                 builder: (BuildContext _, HomeController controller) =>
@@ -42,7 +37,7 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
                         onPressed: () {
                           controller.navigateToLoginPage();
                         },
-                        icon: Icon(Icons.logout)))
+                        icon: const Icon(Icons.logout)))
           ],
         ),
         backgroundColor: const Color(0XFFD3D3D3),
@@ -67,15 +62,14 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    //Transform.rotate(angle: 90, child: Text("test"),)
                                     Transform.rotate(
                                         angle: 1.57,
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.airplanemode_active,
                                           size: 150,
                                           color: Color(0XFFE67E22),
                                         )),
-                                    Text(
+                                    const Text(
                                       "FLIGHT",
                                       style: TextStyle(
                                           fontSize: 40,
@@ -117,7 +111,8 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
                         ? TransactionPage(
                             controller.userTransaction!,
                             controller.dropDownValueTransaction,
-                            controller.refreshUserTransaction)
+                            controller.refreshUserTransaction,
+                            controller.isLoading)
                         : ProfilePage(widget.user)),
         bottomNavigationBar: ControlledWidgetBuilder<HomeController>(
           builder: (BuildContext _, HomeController controller) =>

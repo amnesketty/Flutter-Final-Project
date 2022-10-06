@@ -12,7 +12,8 @@ class LoginPresenter extends Presenter {
   LoginPresenter({required this.userLoginUseCase});
 
   void loginUser(String username, String password) {
-    userLoginUseCase.execute(_UserLoginObserver(this), UserLoginParams(username, password));
+    userLoginUseCase.execute(
+        _UserLoginObserver(this), UserLoginParams(username, password));
   }
 
   @override
@@ -25,17 +26,17 @@ class _UserLoginObserver extends Observer<User> {
   final LoginPresenter presenter;
 
   _UserLoginObserver(this.presenter);
-  
+
   @override
   void onComplete() {
     presenter.onFinishUserLogin();
   }
-  
+
   @override
   void onError(e) {
     presenter.onErrorUserLogin(e);
   }
-  
+
   @override
   void onNext(User? response) {
     User? user = response;

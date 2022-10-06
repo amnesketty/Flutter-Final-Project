@@ -12,7 +12,8 @@ class HomePresenter extends Presenter {
   HomePresenter({required this.userTransactionCase});
 
   void getUserTransaction(String token) {
-    userTransactionCase.execute(_HomeObserver(this), UserTransactionParams(token));
+    userTransactionCase.execute(
+        _HomeObserver(this), UserTransactionParams(token));
   }
 
   @override
@@ -25,17 +26,17 @@ class _HomeObserver extends Observer<UserTransaction> {
   final HomePresenter presenter;
 
   _HomeObserver(this.presenter);
-  
+
   @override
   void onComplete() {
     presenter.onFinishUserTransaction();
   }
-  
+
   @override
   void onError(e) {
     presenter.onErrorUserTransaction(e);
   }
-  
+
   @override
   void onNext(UserTransaction? response) {
     UserTransaction? userTransaction = response;

@@ -11,8 +11,13 @@ class FlightSearchPresenter extends Presenter {
 
   FlightSearchPresenter({required this.flightSearchUseCase});
 
-  void searchFlight(String seatClass, String destinationFrom,
-      String destinationTo, String departureDate, int amountPassenger, String token) {
+  void searchFlight(
+      String seatClass,
+      String destinationFrom,
+      String destinationTo,
+      String departureDate,
+      int amountPassenger,
+      String token) {
     flightSearchUseCase.execute(
         _FlightSearchObserver(this),
         FlightFindParams(seatClass, destinationFrom, destinationTo,

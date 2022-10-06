@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lounga/domain/entities/hotel.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:lounga/domain/usecases/cases/hotel_booking.dart';
-
 import '../../../domain/entities/guest.dart';
 import '../../../domain/entities/user.dart';
 import '../home/home_page.dart';
@@ -30,7 +28,7 @@ class HotelBookingController extends Controller {
   TextEditingController get controllerEmail => _controllerEmail;
   final TextEditingController _controllerPhone = TextEditingController();
   TextEditingController get controllerPhone => _controllerPhone;
-  
+
   @override
   void initListeners() {
     _initObserver();
@@ -59,26 +57,34 @@ class HotelBookingController extends Controller {
     };
   }
 
-  Future<void> bookHotel(Hotel hotel, User user, String bookingDate, int totalRoom, int price, int roomId, String name, String email, String phone) async {
+  Future<void> bookHotel(
+      Hotel hotel,
+      User user,
+      String bookingDate,
+      int totalRoom,
+      int price,
+      int roomId,
+      String name,
+      String email,
+      String phone) async {
     _showLoading();
-    _presenter.hotelBooking(bookingDate, hotel.name, totalRoom, totalRoom * price, hotel.id, roomId, user.token);
+    _presenter.hotelBooking(bookingDate, hotel.name, totalRoom,
+        totalRoom * price, hotel.id, roomId, user.token);
     do {
       await Future.delayed(const Duration(milliseconds: 100));
     } while (_isLoading);
     print("Nilai booking hotel id : $_bookingHotelId");
     _presenter.hotelGuest(name, email, phone, _bookingHotelId!, user.token);
-    do{
+    do {
       await Future.delayed(const Duration(milliseconds: 100));
     } while (_isLoading);
     final context = getContext();
-    // Navigator.pushReplacementNamed(context, HomePage.route, arguments: user);
   }
 
   void navigateToHomePage(User user) {
     final context = getContext();
     Navigator.pushNamed(context, HomePage.route, arguments: user);
   }
-
 
   void _showLoading() {
     _isLoading = true;
@@ -91,12 +97,11 @@ class HotelBookingController extends Controller {
   }
 
   @override
-    void onDisposed() {
+  void onDisposed() {
     super.onDisposed();
     _controllerContactName.dispose();
     _controllerEmail.dispose();
     _controllerPhone.dispose();
     _presenter.dispose();
   }
- 
 }

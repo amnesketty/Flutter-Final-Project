@@ -36,8 +36,6 @@ class HotelSearchController extends Controller {
   int _city = 0;
   int get city => _city;
 
-
-  TextEditingController dateCtl = TextEditingController();
   TextEditingController _controllerCity = TextEditingController();
   TextEditingController get controllerCity => _controllerCity;
   TextEditingController _controllerBookingDate = TextEditingController();
@@ -47,40 +45,25 @@ class HotelSearchController extends Controller {
   TextEditingController _controllerDuration = TextEditingController();
   TextEditingController get controllerDuration => _controllerDuration;
 
-
   @override
   void initListeners() {
     _initObserver();
-    _controllerBookingDate.text = DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(DateTime.now());
-    // _searchHotel();
+    _controllerBookingDate.text =
+        DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(DateTime.now());
   }
 
-  Future<void> searchHotels (String city, String bookingDate, int totalRoom, int duration, User user) async {
+  Future<void> searchHotels(String city, String bookingDate, int totalRoom,
+      int duration, User user) async {
     _user = user;
-    print(_controllerBookingDate.text);
     _showLoading();
     _presenter.searchHotel(city, bookingDate, totalRoom, duration, user.token);
     do {
       await Future.delayed(const Duration(milliseconds: 100));
-    }
-    while(_isLoading == true);
+    } while (_isLoading == true);
     final context = getContext();
-    Navigator.pushNamed(context, HotelFindPage.route, arguments: 
-      HotelsArgument(_hotel, _user, bookingDate, totalRoom ));
+    Navigator.pushNamed(context, HotelFindPage.route,
+        arguments: HotelsArgument(_hotel, _user, bookingDate, totalRoom));
   }
-
-  // Future<void> bottomNavigationMove(int index, String token) async {
-  //   _bottomNavigationValue = index;
-  //   refreshUI();
-  //   if (index == 1) //&& _userTransaction?.username == '')
-  //   {
-  //     _showLoading();
-  //     _presenter.getUserTransaction(token);
-  //     do {
-  //       await Future.delayed(const Duration(milliseconds: 100));
-  //     } while (_isLoading);
-  //   }
-  // }
 
   void changeDate(String date) {
     _controllerBookingDate.text = date;
@@ -112,7 +95,7 @@ class HotelSearchController extends Controller {
     refreshUI();
   }
 
-   @override
+  @override
   void onDisposed() {
     super.onDisposed();
     _controllerCity.dispose();

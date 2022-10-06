@@ -6,7 +6,7 @@ import 'package:injector/injector.dart';
 
 class HotelGetPage extends View {
   HotelGetPage({Key? key}) : super(key: key);
-  
+
   @override
   State<StatefulWidget> createState() {
     final hotelGetController = Injector.appInstance.get<HotelGetController>();
@@ -19,20 +19,19 @@ class _HotelGetViewState extends ViewState<HotelGetPage, HotelGetController> {
 
   @override
   Widget get view => Scaffold(
-    key: globalKey,
-    appBar: AppBar(
-      title: const Text('List of Hotel'),
-    ),
-    body: ControlledWidgetBuilder<HotelGetController>(
-      builder: (BuildContext _, HotelGetController controller) =>
-        controller.isLoading
-        ? const Center(child: CupertinoActivityIndicator())
-        : ListView.builder(
-          itemCount: controller.hotels.length,
-          itemBuilder: (BuildContext _, int index) {
-            final hotels = controller.hotels[index];
-            return Text(hotels.photosHotel[0].image.toString());
-          }
-        )),
-  );
+        key: globalKey,
+        appBar: AppBar(
+          title: const Text('List of Hotel'),
+        ),
+        body: ControlledWidgetBuilder<HotelGetController>(
+            builder: (BuildContext _, HotelGetController controller) =>
+                controller.isLoading
+                    ? const Center(child: CupertinoActivityIndicator())
+                    : ListView.builder(
+                        itemCount: controller.hotels.length,
+                        itemBuilder: (BuildContext _, int index) {
+                          final hotels = controller.hotels[index];
+                          return Text(hotels.photosHotel[0].image.toString());
+                        })),
+      );
 }

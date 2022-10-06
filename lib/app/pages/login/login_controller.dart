@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lounga/app/pages/login/login_presenter.dart';
 import 'package:lounga/domain/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-
 import '../../widgets/pop_up_dialog.dart';
 import '../home/home_page.dart';
 import '../register/register_page.dart';
@@ -30,9 +29,9 @@ class LoginController extends Controller {
   bool _visibilityPassword = false;
   bool get visibilityPassword => _visibilityPassword;
 
-  TextEditingController _controllerUsername = TextEditingController();
+  final TextEditingController _controllerUsername = TextEditingController();
   TextEditingController get controllerUsername => _controllerUsername;
-  TextEditingController _controllerPassword = TextEditingController();
+  final TextEditingController _controllerPassword = TextEditingController();
   TextEditingController get controllerPassword => _controllerPassword;
 
   @override
@@ -44,9 +43,8 @@ class LoginController extends Controller {
     _presenter.onErrorUserLogin = (e) {
       _hideLoading();
       if (e is DioError) {
-        print(e.response!.data['message']);
         message = e.response!.data['message'];
-        }
+      }
     };
     _presenter.onFinishUserLogin = () {
       _hideLoading();
@@ -65,19 +63,22 @@ class LoginController extends Controller {
     if (_user?.token != "") {
       final context = getContext();
       Navigator.pushNamed(context, HomePage.route, arguments: _user);
-    }
-    else {
+    } else {
       showDialog(
-            context: getContext(),
-            builder: (BuildContext context) => 
-              PopUpDialog(function: () {Navigator.pop(context);}, message: "failed", tipePopUpDialog: message.toString(), popUpButton: "Unknown Error")
-          );
+          context: getContext(),
+          builder: (BuildContext context) => PopUpDialog(
+              function: () {
+                Navigator.pop(context);
+              },
+              message: "failed",
+              tipePopUpDialog: message.toString(),
+              popUpButton: "Unknown Error"));
     }
   }
 
   void navigateToHomePage() {
     final context = getContext();
-    Navigator.pushReplacementNamed(context, HomePage.route,arguments: _user );
+    Navigator.pushReplacementNamed(context, HomePage.route, arguments: _user);
   }
 
   void navigateToRegisterPage() {
@@ -85,7 +86,7 @@ class LoginController extends Controller {
     Navigator.pushReplacementNamed(context, RegisterPage.route);
   }
 
-    void showPassword() {
+  void showPassword() {
     _visibilityPassword = !_visibilityPassword;
     refreshUI();
   }

@@ -1,5 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:lounga/app/pages/flight_booking/flight_booking_page.dart';
+import 'package:flutter/material.dart';
 import 'package:lounga/app/pages/flight_detail/flight_detail_page.dart';
 import 'package:lounga/domain/entities/flight.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -20,7 +19,6 @@ class FlightFindController extends Controller {
   @override
   void initListeners() {
     _initObserver();
-    //_findFlight();
   }
 
   void _initObserver() {

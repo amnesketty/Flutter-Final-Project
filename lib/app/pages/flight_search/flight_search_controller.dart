@@ -1,6 +1,4 @@
-import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
 import 'package:lounga/domain/entities/flight.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -48,14 +46,6 @@ class FlightSearchController extends Controller {
   int _seatClass = 0;
   int get seatClass => _seatClass;
 
-  // TextEditingController dateCtl = TextEditingController();
-  // TextEditingController _controllerseatClass = TextEditingController();
-  // TextEditingController get controllerseatClass => _controllerseatClass;
-  // TextEditingController _controllerdestinationFrom = TextEditingController();
-  // TextEditingController get controllerdestinationFrom =>
-  //     _controllerdestinationFrom;
-  // TextEditingController _controllerdestinationTo = TextEditingController();
-  // TextEditingController get controllerdestinationTo => _controllerdestinationTo;
   final TextEditingController _controllerdepartureDate =
       TextEditingController();
   TextEditingController get controllerdepartureDate => _controllerdepartureDate;
@@ -77,9 +67,6 @@ class FlightSearchController extends Controller {
       String departureDate,
       int amountPassenger,
       User user) async {
-    print(departureDate + 'T00:00:00.000Z');
-    print(destinationFrom);
-    print(destinationTo);
     _user = user;
     _showLoading();
     _presenter.searchFlight(seatClass, destinationFrom, destinationTo,
@@ -88,7 +75,6 @@ class FlightSearchController extends Controller {
       await Future.delayed(const Duration(milliseconds: 10));
     } while (_isLoading);
     final context = getContext();
-
     Navigator.pushNamed(context, FlightFindPage.route,
         arguments: FlightsArgument(
             _flights,
@@ -143,9 +129,6 @@ class FlightSearchController extends Controller {
   @override
   void onDisposed() {
     super.onDisposed();
-    // _controllerseatClass.dispose();
-    // _controllerdestinationFrom.dispose();
-    // // _controllerdestinationTo.dispose();
     _controllerdepartureDate.dispose();
     _controlleramountPassenger.dispose();
     _presenter.dispose();

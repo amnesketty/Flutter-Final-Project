@@ -11,9 +11,10 @@ class HotelSearchPresenter extends Presenter {
 
   HotelSearchPresenter({required this.hotelSearchUseCase});
 
-  void searchHotel(String city, String bookingDate, int totalRoom, int duration, String token) {
-    hotelSearchUseCase.execute(
-      _HotelSearchObserver(this), HotelFindParams(city, bookingDate, totalRoom, duration, token));
+  void searchHotel(String city, String bookingDate, int totalRoom, int duration,
+      String token) {
+    hotelSearchUseCase.execute(_HotelSearchObserver(this),
+        HotelFindParams(city, bookingDate, totalRoom, duration, token));
   }
 
   @override
