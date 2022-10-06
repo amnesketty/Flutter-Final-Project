@@ -42,8 +42,7 @@ class AppNavigator {
                 arguments.user,
                 arguments.bookingDate,
                 arguments.totalRoom,
-                arguments.price,
-                arguments.roomId));
+                arguments.roomsHotel));
       case HotelFindPage.route:
         final arguments = settings.arguments as HotelsArgument;
         return MaterialPageRoute(

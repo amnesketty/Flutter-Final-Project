@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:lounga/app/pages/login/login_presenter.dart';
 import 'package:lounga/domain/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
+import '../../widgets/pop_up_dialog.dart';
 import '../home/home_page.dart';
 import '../register/register_page.dart';
 
@@ -23,6 +25,8 @@ class LoginController extends Controller {
       avatarImage: "");
   User? get user => _user;
 
+  String? message;
+
   bool _visibilityPassword = false;
   bool get visibilityPassword => _visibilityPassword;
 
@@ -39,6 +43,10 @@ class LoginController extends Controller {
   void _initObserver() {
     _presenter.onErrorUserLogin = (e) {
       _hideLoading();
+      if (e is DioError) {
+        print(e.response!.data['message']);
+        message = e.response!.data['message'];
+        }
     };
     _presenter.onFinishUserLogin = () {
       _hideLoading();
@@ -58,6 +66,18 @@ class LoginController extends Controller {
       final context = getContext();
       Navigator.pushNamed(context, HomePage.route, arguments: _user);
     }
+    else {
+      showDialog(
+            context: getContext(),
+            builder: (BuildContext context) => 
+              PopUpDialog(function: () {Navigator.pop(context);}, message: "failed", tipePopUpDialog: message.toString(), popUpButton: "Unknown Error")
+          );
+    }
+  }
+
+  void navigateToHomePage() {
+    final context = getContext();
+    Navigator.pushReplacementNamed(context, HomePage.route,arguments: _user );
   }
 
   void navigateToRegisterPage() {

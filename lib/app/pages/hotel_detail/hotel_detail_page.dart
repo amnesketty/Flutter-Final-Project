@@ -155,7 +155,7 @@ class _HotelDetailViewState
                                       print(widget.hotel.roomsHotel[index].id);
                                       controller.navigateToHotelBooking(
                                         widget.hotel, widget.user, widget.bookingDate,
-                                        widget.totalRoom, widget.hotel.roomsHotel[index].price, widget.hotel.roomsHotel[index].id);
+                                        widget.totalRoom, widget.hotel.roomsHotel[index]);
                                     },
                                     style: TextButton.styleFrom(
                                         backgroundColor: const Color(0XFFE67E22)),

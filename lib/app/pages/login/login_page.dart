@@ -5,6 +5,8 @@ import 'package:injector/injector.dart';
 import 'package:lounga/app/widgets/text_field.dart';
 import 'package:lounga/app/widgets/text_field_password.dart';
 
+import '../../widgets/pop_up_dialog.dart';
+
 class LoginPage extends View {
   static const route = '/login-page';
 
