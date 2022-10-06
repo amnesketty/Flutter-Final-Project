@@ -12,9 +12,9 @@ class HotelDetailController extends Controller {
   void initListeners() {
   }
 
-  void navigateToHotelBooking(Hotel hotel, User user, String bookingDate, int totalRoom,  int price, int roomId) {
+  void navigateToHotelBooking(Hotel hotel, User user, String bookingDate, int totalRoom, RoomsHotel roomsHotel) {
     final context = getContext();
-    Navigator.pushNamed(context, HotelBookingPage.route, arguments: HotelDetailArgument(hotel, user, bookingDate, totalRoom, price, roomId));
+    Navigator.pushNamed(context, HotelBookingPage.route, arguments: HotelDetailArgument(hotel, user, bookingDate, totalRoom, roomsHotel));
   }
 }
 
@@ -23,7 +23,7 @@ class HotelDetailArgument {
   User user;
   String bookingDate;
   int totalRoom;
-  int price;
-  int roomId;
-  HotelDetailArgument(this.hotel, this.user, this.bookingDate, this.totalRoom, this.price, this.roomId);
+  RoomsHotel roomsHotel;
+
+  HotelDetailArgument(this.hotel, this.user, this.bookingDate, this.totalRoom, this.roomsHotel);
 }

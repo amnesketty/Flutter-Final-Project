@@ -21,10 +21,9 @@ class HotelBookingPage extends View {
   final User user;
   final String bookingDate;
   final int totalRoom;
-  final int price;
-  final int roomId;
+  final RoomsHotel roomsHotel;
 
-  const HotelBookingPage(this.hotel, this.user, this.bookingDate, this.totalRoom, this.price, this.roomId, {Key? key}) : super(key: key);
+  const HotelBookingPage(this.hotel, this.user, this.bookingDate, this.totalRoom, this.roomsHotel, {Key? key}) : super(key: key);
 
   @override
   // ignore: no_logic_in_create_state
@@ -56,7 +55,7 @@ class _HotelBookingViewState
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width * 1,
-                      height: MediaQuery.of(context).size.height * 0.2,
+                      height: MediaQuery.of(context).size.height * 0.22,
                       color: const Color(0XFFE67E22),
                       child: 
                         Row(
@@ -123,12 +122,12 @@ class _HotelBookingViewState
                                   ]),
                                   SizedBox(height: 5),
                                   Row(children: [
-                                    Text('1x', style: 
+                                    Text('${widget.totalRoom}x', style: 
                                       TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w900)),
                                     SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-                                    Text(widget.hotel.roomsHotel.first.type, style: 
+                                    Text(widget.roomsHotel.type, style: 
                                       TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w900))
@@ -145,6 +144,14 @@ class _HotelBookingViewState
                                         color: Colors.white,
                                         fontWeight: FontWeight.w900))
                                   ]),
+                                  SizedBox(height: 5),
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Text('Rp ${widget.roomsHotel.price * widget.totalRoom}', style: 
+                                        TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w900)),
+                                  )
                                 ],
                             
                               ),
@@ -205,8 +212,8 @@ class _HotelBookingViewState
                                         widget.user,
                                         widget.bookingDate, 
                                         widget.totalRoom, 
-                                        widget.price, 
-                                        widget.roomId,
+                                        widget.roomsHotel.price * widget.totalRoom, 
+                                        widget.roomsHotel.id,
                                         controller.controllerContactName.text,
                                         controller.controllerEmail.text,
                                         controller.controllerPhone.text);
@@ -217,7 +224,7 @@ class _HotelBookingViewState
                                     showDialog(
                                         context: context,
                                         builder: (BuildContext context) => 
-                                          PopUpDialog(function: () {controller.navigateToHomePage(widget.user);}, tipePopUpDialog: "bookingSuccess", popUpButton: "bookingSuccess")
+                                          PopUpDialog(function: () {controller.navigateToHomePage(widget.user);}, message: "success", tipePopUpDialog: "bookingSuccess", popUpButton: "bookingSuccess")
                                       );
                                     },
                                     style: TextButton.styleFrom(

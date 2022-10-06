@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class PopUpDialog extends StatelessWidget {
   final VoidCallback function;
+  final String message;
   final String tipePopUpDialog;
   final String popUpButton;
 
   const PopUpDialog({
     super.key,
     required this.function,
+    required this.message,
     required this.tipePopUpDialog,
     required this.popUpButton
   });
@@ -32,7 +34,10 @@ class PopUpDialog extends StatelessWidget {
               ),
               color: Color(0XFFE67E22)
           ),
-          child: const Text('SUCCESS',
+          child: Text(
+              message == "success" ? "SUCCESS" 
+              : message == "failed" ? "ERROR"
+              : "Unknown Error",
             textAlign: TextAlign.start,
             style: TextStyle(
                 color: Color(0xFFFFFFFF),
@@ -54,8 +59,8 @@ class PopUpDialog extends StatelessWidget {
             Text(
               tipePopUpDialog == "registerSuccess" ? "Your registration has been successfully completed" 
               : tipePopUpDialog == "bookingSuccess" ? "Your booking has been successfully completed"
-              : "Unknown Error"
-              ,
+
+              : tipePopUpDialog,
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 14
@@ -78,7 +83,7 @@ class PopUpDialog extends StatelessWidget {
             child:  Text(
               popUpButton == "registerSuccess" ? "SIGN IN"
               : popUpButton == "bookingSuccess" ? "Close"
-              : "Unknown Error"
+              : "Close"
               ,
               style: TextStyle(
                   color: Color(0XFFE67E22),

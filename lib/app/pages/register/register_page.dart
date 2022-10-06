@@ -87,7 +87,7 @@ class _RegisterViewState extends ViewState<RegisterPage, RegisterController> {
                             showDialog(
                                 context: context,
                                 builder: (BuildContext context) => 
-                                  PopUpDialog(function: () {controller.navigateToLoginPage();}, tipePopUpDialog: "registerSuccess", popUpButton: "registerSuccess")
+                                  PopUpDialog(function: () {controller.navigateToLoginPage();}, message: "success", tipePopUpDialog: "registerSuccess", popUpButton: "registerSuccess")
                               );
                           },
                           style: ElevatedButton.styleFrom(
