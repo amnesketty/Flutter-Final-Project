@@ -33,10 +33,12 @@ class FlightFindController extends Controller {
     };
   }
 
-  void navigateToFlightDetail(Flight flight, User user, String departureDate, int amountPassenger, int price) {
+  void navigateToFlightDetail(Flight flight, User user, String departureDate,
+      int amountPassenger, int price, String destinationFrom, String destinationTo, String seatClass) {
     final context = getContext();
     Navigator.pushNamed(context, FlightDetailPage.route,
-        arguments: FlightFindArgument(flight, user, departureDate, amountPassenger, price));
+        arguments: FlightFindArgument(
+            flight, user, departureDate, amountPassenger, price, destinationFrom, destinationTo, seatClass));
   }
 
   void _showLoading() {
@@ -62,5 +64,9 @@ class FlightFindArgument {
   String departureDate;
   int amountPassenger;
   int price;
-  FlightFindArgument(this.flight, this.user, this.departureDate, this.amountPassenger, this.price);
+  String destinationFrom;
+  String destinationTo;
+  String seatClass;
+  FlightFindArgument(this.flight, this.user, this.departureDate,
+      this.amountPassenger, this.price, this.destinationFrom, this.destinationTo, this.seatClass);
 }

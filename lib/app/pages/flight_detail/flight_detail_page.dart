@@ -11,11 +11,21 @@ class FlightDetailPage extends View {
   static const route = '/flight-detail';
   final Flight flight;
   final User user;
-  final String departureDate;
   final int amountPassenger;
   final int price;
-  const FlightDetailPage(this.flight, this.user, this.departureDate,
-      this.amountPassenger, this.price,
+  final String destinationFrom;
+  final String destinationTo;
+  final String seatClass;
+  final String departureDate;
+  const FlightDetailPage(
+      this.flight,
+      this.user,
+      this.departureDate,
+      this.amountPassenger,
+      this.price,
+      this.destinationFrom,
+      this.destinationTo,
+      this.seatClass,
       {Key? key})
       : super(key: key);
   @override
@@ -106,8 +116,11 @@ class _FlightDetailViewState
                           height: 155,
                         ),
                         Text(
-                          'duration',
-                          style: TextStyle(color: Colors.grey.shade400),
+                          widget.departureDate.substring(0, 10),
+                          style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.grey.shade400,
+                              fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
                           height: 155,
@@ -484,7 +497,10 @@ class _FlightDetailViewState
                                 widget.user,
                                 widget.departureDate,
                                 widget.amountPassenger,
-                                widget.price);
+                                widget.price,
+                                widget.destinationFrom,
+                                widget.destinationTo,
+                                widget.seatClass);
                           },
                           child: const Text(
                             'Select',

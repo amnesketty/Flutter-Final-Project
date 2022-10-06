@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:lounga/domain/entities/flight.dart';
 import 'package:lounga/domain/entities/passenger.dart';
@@ -12,22 +14,16 @@ class DataFlightRepository implements FlightRepository {
 
   @override
   Future<List<Flight>> getAllFlight() async {
-    // TODO: implement getFlight
     try {
       final response = await dio.get(endpoints.getAllFlights);
-      print(response);
       final getFlightsResponse = response.data['data'] as List<dynamic>;
-      print(getFlightsResponse);
       final flights = getFlightsResponse
           .map(
             (dynamic response) => Flight.fromResponse(response),
           )
           .toList();
-
-      print(flights);
       return flights;
     } catch (e) {
-      print(e);
       rethrow;
     }
   }
@@ -40,7 +36,6 @@ class DataFlightRepository implements FlightRepository {
       String departureDate,
       int amountPassengers,
       String token) async {
-    // TODO: implement findFlight
     dio.options.headers['Authorization'] = 'Bearer $token';
     try {
       final response = await dio.post(endpoints.findFlights, data: {
@@ -50,40 +45,14 @@ class DataFlightRepository implements FlightRepository {
         "departureDate": departureDate,
         "amountPassengers": amountPassengers
       });
-      //print(response.data['data']);
       final findFlightsResponse = response.data['data'] as List<dynamic>;
       final flights = findFlightsResponse
           .map(
             (dynamic response) => Flight.fromResponse(response),
           )
           .toList();
-
-      //print(userResponse);
-      print(flights);
       return flights;
     } catch (e) {
-      print(e);
-      rethrow;
-    }
-  }
-
-  Future<int> addPassenger(
-      String title, String name, String idCard, int bookingFlightId, String token) async {
-    // TODO: implement findFlight
-    dio.options.headers['Authorization'] = 'Bearer $token';
-    try {
-      final response = await dio.post(endpoints.addPassenger,
-          data: {
-            "title": title,
-            "name": name,
-            "idCard": idCard,
-            "bookingFlightId": bookingFlightId});
-      //print(response.data['data']);
-      final addPassengersResponse = response.data['data'] as Map<String, dynamic>;
-      int passengerId = addPassengersResponse['id'];
-      return passengerId;
-    } catch (e) {
-      print(e);
       rethrow;
     }
   }
@@ -97,7 +66,6 @@ class DataFlightRepository implements FlightRepository {
       int totalPrice,
       int flightId,
       String token) async {
-    // TODO: implement findFlight
     dio.options.headers['Authorization'] = 'Bearer $token';
     try {
       final response = await dio.post(endpoints.bookingFlight, data: {
@@ -113,7 +81,40 @@ class DataFlightRepository implements FlightRepository {
       int bookingFlightsId = bookingFlightsResponse['id'];
       return bookingFlightsId;
     } catch (e) {
-      print(e);
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> addPassenger(
+    String title, String name, String idCard, int bookingFlightId, String token) async {
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    try {
+      final response = await dio.post(endpoints.addPassenger,
+          data: {
+            "title": title,
+            "name": name,
+            "idCard": idCard,
+            "bookingFlightId": bookingFlightId});
+      final addPassengersResponse = response.data['data'] as Map<String, dynamic>;
+      int passengerId = addPassengersResponse['id'];
+      return passengerId;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> addListPassenger(List<SinglePassenger> listPassenger, String token) async {
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    try {
+      final response = await dio.post(endpoints.addListPassenger,
+          data: {
+            "data" : listPassenger
+          });
+      bool passengerSuccess = response.data['success'];
+      return passengerSuccess;
+    } catch (e) {
       rethrow;
     }
   }

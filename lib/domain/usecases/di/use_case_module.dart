@@ -1,4 +1,3 @@
-import 'package:lounga/domain/entities/user_transaction.dart';
 import 'package:lounga/domain/usecases/cases/flight_booking.dart';
 import 'package:lounga/domain/usecases/cases/flight_find.dart';
 import 'package:lounga/domain/usecases/cases/flight_get.dart';
@@ -10,6 +9,7 @@ import 'package:injector/injector.dart';
 import 'package:lounga/domain/usecases/cases/user_register.dart';
 import '../cases/hotel_get.dart';
 import '../cases/hotel_guest.dart';
+import '../cases/passenger_add_list.dart';
 import '../cases/user_transaction_case.dart';
 
 class UseCaseModule {
@@ -23,6 +23,7 @@ class UseCaseModule {
     injector.registerDependency<FlightFind>(() => FlightFind(injector.get()));
     injector.registerDependency<FlightBooking>(() => FlightBooking(injector.get()));
     injector.registerDependency<PassengerAdd>(() => PassengerAdd(injector.get()));
+    injector.registerDependency<PassengerAddList>(() => PassengerAddList(injector.get()));
 
     injector.registerDependency<HotelGet>(() => HotelGet(injector.get()));
     injector.registerDependency<HotelFind>(() => HotelFind(injector.get()));

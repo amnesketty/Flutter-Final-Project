@@ -9,7 +9,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),// AppBar
+      backgroundColor: Color(0xFFFFFFFF), // AppBar
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -17,7 +17,11 @@ class ProfilePage extends StatelessWidget {
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.3,
-              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.2, MediaQuery.of(context).size.width * 0.2, MediaQuery.of(context).size.width * 0.2, MediaQuery.of(context).size.width * 0.1),
+              margin: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.2,
+                  MediaQuery.of(context).size.width * 0.2,
+                  MediaQuery.of(context).size.width * 0.2,
+                  MediaQuery.of(context).size.width * 0.1),
               // ignore: prefer_const_constructors
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -26,21 +30,31 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ),
-            Text(user.firstName+' '+user.lastName, style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w900,
-            ),),
+            Text(
+              user.firstName + ' ' + user.lastName,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-            Text(user.email, style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),),
+            Text(
+              user.email,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-            Text(user.phone, style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),),
+            Text(
+              user.phone,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+              ),)
             
+            // SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+            // ElevatedButton(onPressed: () {}, child: Text('Logout'))
           ],
         ),
       ),

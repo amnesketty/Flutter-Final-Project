@@ -1,4 +1,5 @@
 import 'package:lounga/domain/entities/flight.dart';
+import 'package:lounga/domain/entities/passenger.dart';
 
 abstract class FlightRepository {
   Future<List<Flight>> getAllFlight();
@@ -16,4 +17,6 @@ abstract class FlightRepository {
 
   Future<int> addPassenger(String title, String name, String idCard,
       int bookingFlightId, String token);
+
+  Future<bool> addListPassenger(List<SinglePassenger> listPassenger, String token);
 }

@@ -14,9 +14,19 @@ class FlightFindPage extends View {
   final List<Flight> flights;
   final User user;
   final String departureDate;
+  final String destinationFrom;
+  final String destinationTo;
+  final String seatClass;
+
   final int amountPassenger;
   const FlightFindPage(
-      this.flights, this.user, this.departureDate, this.amountPassenger,
+      this.flights,
+      this.user,
+      this.departureDate,
+      this.amountPassenger,
+      this.destinationFrom,
+      this.destinationTo,
+      this.seatClass,
       {Key? key})
       : super(key: key);
 
