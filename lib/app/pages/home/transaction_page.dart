@@ -191,7 +191,7 @@ class TransactionPage extends StatelessWidget {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                Text(userTransaction.bookingFlights[index].destinationFrom,
+                                Text(userTransaction.bookingFlights[index].destinationTo,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 15,
