@@ -32,7 +32,7 @@ class _HotelFindViewState extends ViewState<HotelFindPage, HotelFindController> 
     key: globalKey,
     appBar: AppBar(
       backgroundColor: const Color(0XFFE67E22),
-      title: const Text('List of Hotels'),
+      title: const Text('List of Hotels in '),
     ),
     backgroundColor: const Color(0XFFD3D3D3),
     body: 
@@ -72,23 +72,6 @@ class _HotelFindViewState extends ViewState<HotelFindPage, HotelFindController> 
               );
           }
         )
-        // : Center(
-        //           child: Column(
-        //             mainAxisAlignment: MainAxisAlignment.center,
-        //             children: [
-        //               Text('Data yang anda cari',
-        //                 style: TextStyle(
-        //                     fontSize: 14,
-        //                     fontFamily: 'MMC',
-        //                     color: Colors.grey),),
-        //               Text('tidak ditemukan',
-        //                 style: TextStyle(
-        //                     fontSize: 14,
-        //                     fontFamily: 'MMC',
-        //                     color: Colors.grey),),
-        //             ],
-        //           ),
-        //         ),
         ),
   );
 }
