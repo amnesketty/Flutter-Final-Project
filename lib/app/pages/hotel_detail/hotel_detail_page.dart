@@ -121,9 +121,17 @@ class _HotelDetailViewState
                             border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.circular(10)),
                         child: ControlledWidgetBuilder<HotelDetailController>(
-                          builder: (BuildContext context, HotelDetailController controller)
-                          => ListView.builder(
-                            itemCount: widget.hotel.roomsHotel.length,
+                          builder: (BuildContext context, HotelDetailController controller) {
+                            var typeRoom = Set<String>();
+                            List<RoomsHotel> uniqueTypeRoomList = widget.hotel.roomsHotel
+                              .where((element) => element.bookingHotels.isEmpty)
+                              .where((room) => typeRoom.add(room.type))
+                              .toList();
+                            //print(typeRoom.length);
+                            //uniqueTypeRoomList.forEach((element) {print(element.type);});
+                            //print(uniqueTypeRoomList.forEach((element) {print(element);}));
+                            return ListView.builder(
+                            itemCount: typeRoom.length,
                             itemBuilder: (BuildContext context, int index)
                             => Container(
                             margin: const EdgeInsets.all(7),
@@ -135,12 +143,12 @@ class _HotelDetailViewState
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   // ignore: prefer_const_literals_to_create_immutables
                                   children: [
-                                    Text(widget.hotel.roomsHotel[index].type,
+                                    Text(uniqueTypeRoomList[index].type,
                                         style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.w800)),
                                     Text(
-                                    'Rp ${widget.hotel.roomsHotel[index].price}/room/night',
+                                    'Rp ${uniqueTypeRoomList[index].price}/room/night',
                                     // textAlign: TextAlign.right,
                                     style: const TextStyle(
                                         fontSize: 13,
@@ -151,11 +159,12 @@ class _HotelDetailViewState
                                 const Spacer(),
                                 TextButton(
                                     onPressed: () {
-                                      print(widget.hotel.id);
-                                      print(widget.hotel.roomsHotel[index].id);
+                                      //var seen = Set<String>();
+                                      //List<RoomsHotel> uniquelist = widget.hotel.roomsHotel.where((room) => seen.add(room.type)).toList();
+                                      //print(uniquelist);
                                       controller.navigateToHotelBooking(
                                         widget.hotel, widget.user, widget.bookingDate,
-                                        widget.totalRoom, widget.hotel.roomsHotel[index]);
+                                        widget.totalRoom, uniqueTypeRoomList[index]);
                                     },
                                     style: TextButton.styleFrom(
                                         backgroundColor: const Color(0XFFE67E22)),
@@ -165,7 +174,8 @@ class _HotelDetailViewState
                               ],
                             ),
                           )
-                          ,)
+                          ,);
+                          }
                             ),
                         ),
                         

@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:lounga/app/pages/register/register_presenter.dart';
 import 'package:lounga/domain/entities/user.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
+import '../../widgets/pop_up_dialog.dart';
 import '../login/login_page.dart';
 
 class RegisterController extends Controller {
@@ -15,6 +17,9 @@ class RegisterController extends Controller {
 
   int? _userId = 0;
   int? get userId => _userId;
+
+  String? message;
+  bool? status;
   
   bool _visibilityPassword = false;
   bool get visibilityPassword => _visibilityPassword;
@@ -49,6 +54,11 @@ class RegisterController extends Controller {
   void _initObserver() {
     _presenter.onErrorUserLogin = (e) {
       _hideLoading();
+      if (e is DioError) {
+        print(e.response!.data['message']);
+        message = e.response!.data['message'];
+        status = e.response!.data['success'];
+        }
     };
     _presenter.onFinishUserLogin = () {
       _hideLoading();
@@ -58,10 +68,30 @@ class RegisterController extends Controller {
     };
   }
 
-  void registerNow(String firstName, String lastName, String username, String email, String phone, String password) {
+  Future<void> registerNow(String firstName, String lastName, String username, String email, String phone, String password) async {
     _showLoading();
     _presenter.registerUser(firstName, lastName, username, email, phone, password);
-  }
+    do {
+      await Future.delayed(const Duration(milliseconds: 100));
+    } while (_isLoading);
+    print(message);
+    print(status);
+    if (status == false) {
+      final context = getContext();
+      showDialog(
+            context: getContext(),
+            builder: (BuildContext context) => 
+              PopUpDialog(function: () {Navigator.pop(context);}, message: "failed", tipePopUpDialog: message.toString(), popUpButton: "Unknown Error")
+          );
+      status = true;
+    }
+    else {
+      showDialog(
+        context: getContext(),
+        builder: (BuildContext context) => 
+          PopUpDialog(function: () {navigateToLoginPage();}, message: "success", tipePopUpDialog: "registerSuccess", popUpButton: "registerSuccess")
+      );}
+}
 
   void showPassword() {
     _visibilityPassword = !_visibilityPassword;
