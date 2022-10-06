@@ -59,7 +59,6 @@ class PopUpDialog extends StatelessWidget {
             Text(
               tipePopUpDialog == "registerSuccess" ? "Your registration has been successfully completed" 
               : tipePopUpDialog == "bookingSuccess" ? "Your booking has been successfully completed"
-
               : tipePopUpDialog,
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -82,7 +81,6 @@ class PopUpDialog extends StatelessWidget {
             onPressed: function,
             child:  Text(
               popUpButton == "registerSuccess" ? "SIGN IN"
-              : popUpButton == "bookingSuccess" ? "Close"
               : "Close"
               ,
               style: TextStyle(
