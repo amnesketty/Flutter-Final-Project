@@ -50,11 +50,13 @@ class HotelSearchController extends Controller {
   @override
   void initListeners() {
     _initObserver();
+    _controllerBookingDate.text = DateTime.now().toString().substring(0,10);
     // _searchHotel();
   }
 
   Future<void> searchHotels (String city, String bookingDate, int totalRoom, int duration, User user) async {
     _user = user;
+    print(_controllerBookingDate.text);
     _showLoading();
     _presenter.searchHotel(city, bookingDate, totalRoom, duration, user.token);
     do {
@@ -79,7 +81,10 @@ class HotelSearchController extends Controller {
   //   }
   // }
 
-
+  void changeDate(String date) {
+    _controllerBookingDate.text = date;
+    refreshUI();
+  }
 
   void _initObserver() {
     _presenter.onErrorHotelSearch = (e) {};

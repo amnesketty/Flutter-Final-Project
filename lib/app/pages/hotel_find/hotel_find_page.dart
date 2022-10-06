@@ -35,10 +35,27 @@ class _HotelFindViewState extends ViewState<HotelFindPage, HotelFindController> 
       title: const Text('List of Hotels'),
     ),
     backgroundColor: const Color(0XFFD3D3D3),
-    body: ControlledWidgetBuilder<HotelFindController>(
+    body: 
+    
+    ControlledWidgetBuilder<HotelFindController>(
       builder: (BuildContext _, HotelFindController controller) =>
-        controller.isLoading
-        ? const Center(child: CupertinoActivityIndicator())
+       widget.hotels.length == 0
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                const Icon(
+                  Icons.search_off_rounded,
+                  size: 80,),
+                const Text('No hotels available',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500
+                  ),)
+              ],
+            ),
+          )
         : ListView.builder(
           //shrinkWrap: true,
           itemCount: widget.hotels.length,            
@@ -54,6 +71,24 @@ class _HotelFindViewState extends ViewState<HotelFindPage, HotelFindController> 
               },
               );
           }
-        )),
+        )
+        // : Center(
+        //           child: Column(
+        //             mainAxisAlignment: MainAxisAlignment.center,
+        //             children: [
+        //               Text('Data yang anda cari',
+        //                 style: TextStyle(
+        //                     fontSize: 14,
+        //                     fontFamily: 'MMC',
+        //                     color: Colors.grey),),
+        //               Text('tidak ditemukan',
+        //                 style: TextStyle(
+        //                     fontSize: 14,
+        //                     fontFamily: 'MMC',
+        //                     color: Colors.grey),),
+        //             ],
+        //           ),
+        //         ),
+        ),
   );
 }

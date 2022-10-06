@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'package:lounga/domain/entities/flight.dart';
-import 'package:lounga/domain/entities/passenger.dart';
 import 'package:lounga/domain/repositories/flights_repository.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 

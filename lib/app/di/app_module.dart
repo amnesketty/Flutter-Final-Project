@@ -67,7 +67,8 @@ class AppModule {
     injector.registerDependency<FlightBookingPresenter>(() =>
         FlightBookingPresenter(
             flightBookingUseCase: injector.get(),
-            passengerAddUseCase: injector.get()));
+            passengerAddUseCase: injector.get(),
+            passengerAddListUseCase: injector.get()));
 
     //HOTEL
     injector.registerDependency<HotelGetPresenter>(

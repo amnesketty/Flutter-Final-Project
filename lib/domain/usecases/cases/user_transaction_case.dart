@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:lounga/domain/repositories/users_repository.dart';
 import '../../entities/user_transaction.dart';

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, avoid_unnecessary_containers
 
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -28,7 +29,37 @@ class HotelSearchPage extends View {
 
 class _HotelSearchViewState
     extends ViewState<HotelSearchPage, HotelSearchController> {
-  _HotelSearchViewState(super._controller);
+  _HotelSearchViewState(super.controller);
+
+  DateTime selectedDate = DateTime.now();
+  Future<Null> _selectDate(BuildContext context, HotelSearchController controller) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        builder: (context, child) {
+          return Theme(
+            data: ThemeData.dark().copyWith(
+              colorScheme: ColorScheme.dark(
+                primary: Color(0XFFE67E22),
+                onPrimary: Colors.white,
+                surface: Color(0XFFE67E22),
+                onSurface: Colors.white,
+              ),
+            ),
+            child: child!,
+          );
+        },
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2100));
+        onChanged: (val) => controller.controllerBookingDate.text = val;
+        if (picked != null) {
+          print(picked);
+          selectedDate = picked;
+          controller.changeDate(selectedDate.toString().substring(0,10));
+          //controller.controllerBookingDate.text = selectedDate.toString();
+        }
+  }
+
 
   @override
   Widget get view => Scaffold(
@@ -105,21 +136,54 @@ class _HotelSearchViewState
                                         color: Color(0XFFE67E22),
                                         fontWeight: FontWeight.w700,
                                       fontSize: 18)),
-                              TextFormField(
-                                controller: controller.controllerBookingDate,
-                                keyboardType: TextInputType.datetime,
-                                textInputAction: TextInputAction.next,
-                                decoration: InputDecoration(
-                                    prefixIcon: Icon(Icons.calendar_month, color: Colors.black),
-                                    prefixIconConstraints: BoxConstraints(maxWidth: 40),
-                                    // icon: Icon(Icons.calendar_month),
-                                    hintText: 'Booking Date',
-                                    labelStyle: 
-                                      const TextStyle(color: Colors.black),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:Color(0XFFE67E22))),
-                                )),
+                              // Container(
+                              //   width: MediaQuery.of(context).size.width * 0.85,
+                              //   child: 
+                              //   DateTimePicker(
+                              //     type: DateTimePickerType.date,
+                              //     dateMask: 'd MMM, yyyy',
+                              //     initialValue: DateTime.now().toString(),
+                              //     firstDate: DateTime.now(),
+                              //     lastDate: DateTime(2100),
+                              //     decoration: InputDecoration(
+                              //       prefixIcon: Icon(Icons.calendar_month),
+                              //       prefixIconConstraints: BoxConstraints(maxWidth: 60),),
+                              //     cursorColor: Colors.pink,
+                              //     onChanged: (val) =>
+                              //         controller.controllerBookingDate.text = val,
+                              //     validator: (val) {
+                              //       controller.controllerBookingDate.text = val!;
+                              //       return null;
+                              //     },
+                              //     onSaved: (val) =>
+                              //         controller.controllerBookingDate.text = val!,
+                              //   ),
+                              // ),
+                              SizedBox(height: 9),
+                              Container(
+                                padding: EdgeInsets.only(bottom: 7),
+                                decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide(color: Colors.grey))
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: <Widget> [
+                                    GestureDetector(
+                                      onTap: () {
+                                         _selectDate(context, controller);
+                                      },
+                                      child: Icon(Icons.calendar_month, size: 25,)
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text("${selectedDate.toLocal()}".split(' ')[0], style: TextStyle(
+                                      // fontWeight: FontWeight.w900,
+                                      // fontSize: 20,
+                                    ),),
+                                    Spacer()
+                                  ],
+                                ),
+                              ),
+
                               const SizedBox(height: 20),
                               Row(
                                 // ignore: prefer_const_literals_to_create_immutables
