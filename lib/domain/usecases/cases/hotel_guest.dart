@@ -1,10 +1,6 @@
 import 'dart:async';
 import 'package:lounga/domain/repositories/hotel_repository.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:lounga/domain/usecases/cases/hotel_booking.dart';
-
-import '../../entities/hotel_bookings.dart';
-
 
 class HotelGuest extends UseCase<bool, HotelGuestParams> {
   final HotelRepository repository;

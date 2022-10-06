@@ -1,6 +1,8 @@
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:lounga/domain/usecases/cases/passenger_add.dart';
+import '../../../domain/entities/passenger.dart';
 import '../../../domain/usecases/cases/flight_booking.dart';
+import '../../../domain/usecases/cases/passenger_add_list.dart';
 
 class FlightBookingPresenter extends Presenter {
   late Function(int?) onSuccessFlightBooking;
@@ -11,11 +13,15 @@ class FlightBookingPresenter extends Presenter {
   late Function(dynamic error) onErrorPassengerAdd;
   late Function() onFinishPassengerAdd;
 
+  late Function(bool?) onSuccessPassengerAddList;
+  late Function(dynamic error) onErrorPassengerAddList;
+  late Function() onFinishPassengerAddList;
+
   final FlightBooking flightBookingUseCase;
   final PassengerAdd passengerAddUseCase;
+  final PassengerAddList passengerAddListUseCase;
 
-  FlightBookingPresenter({required this.flightBookingUseCase, required this.passengerAddUseCase});
-
+  FlightBookingPresenter({required this.flightBookingUseCase, required this.passengerAddUseCase, required this.passengerAddListUseCase});
 
   void flightBooking(
       String bookingDate,
@@ -33,6 +39,10 @@ class FlightBookingPresenter extends Presenter {
       String title, String name, String idCard, int bookingFlightId, String token) {
     passengerAddUseCase.execute(_PassengerAddObserver(this),
         PassengerAddParams(title, name, idCard, bookingFlightId, token));
+  }
+  void passengerAddList(List<SinglePassenger> listPassenger,String token) {
+    passengerAddListUseCase.execute(_PassengerAddListObserver(this),
+        PassengerAddListParams(listPassenger, token));
   }
 
   @override
@@ -83,5 +93,27 @@ class _PassengerAddObserver extends Observer<int> {
   void onNext(int? response) {
     int? data = response;
     presenter.onSuccessPassengerAdd(data);
+  }
+}
+
+class _PassengerAddListObserver extends Observer<bool> {
+  final FlightBookingPresenter presenter;
+
+  _PassengerAddListObserver(this.presenter);
+
+  @override
+  void onComplete() {
+    presenter.onFinishPassengerAddList();
+  }
+
+  @override
+  void onError(e) {
+    presenter.onErrorPassengerAddList(e);
+  }
+
+  @override
+  void onNext(bool? response) {
+    bool? data = response;
+    presenter.onSuccessPassengerAddList(data);
   }
 }

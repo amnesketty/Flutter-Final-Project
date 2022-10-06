@@ -25,3 +25,22 @@ class Passenger {
         idCard: idCard);
   }
 }
+
+class SinglePassenger {
+  final int bookingFlightId;
+  final String title, name, idCard;
+
+  SinglePassenger({
+    required this.title,
+    required this.name,
+    required this.idCard,
+    required this.bookingFlightId,
+  });
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+      'title': title,
+      'name': name,
+      'idCard': idCard,
+      'bookingFlightId': bookingFlightId,
+    };
+}
