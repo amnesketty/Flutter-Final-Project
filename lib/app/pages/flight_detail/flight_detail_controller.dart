@@ -10,8 +10,8 @@ class FlightDetailController extends Controller {
   @override
   void initListeners() {}
 
-  void navigateToFlightBooking(Flight flight, User user, String departureDate, int amountPassenger, int price) {
+  void navigateToFlightBooking(Flight flight, User user, String departureDate, int amountPassenger, int price, String destinationFrom, String destinationTo, String seatClass) {
     final context = getContext();
-    Navigator.pushNamed(context, FlightBookingPage.route, arguments: FlightFindArgument(flight, user, departureDate, amountPassenger, price));
+    Navigator.pushNamed(context, FlightBookingPage.route, arguments: FlightFindArgument(flight, user, departureDate, amountPassenger, price, destinationFrom, destinationTo, seatClass));
   }
 }

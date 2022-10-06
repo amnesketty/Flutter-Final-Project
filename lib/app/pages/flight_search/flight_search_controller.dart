@@ -1,4 +1,6 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:lounga/app/pages/flight_find/flight_find_page.dart';
 import 'package:lounga/domain/entities/flight.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -17,6 +19,9 @@ class FlightSearchController extends Controller {
   bool get isLoading => _isLoading;
 
   late User _user;
+
+  int _bottomNavigationValue = 0;
+  int get bottomNavigationValue => _bottomNavigationValue;
 
   List<Flight> _flights = [];
   List<Flight> get flights => _flights;
@@ -62,7 +67,7 @@ class FlightSearchController extends Controller {
   @override
   void initListeners() {
     _initObserver();
-    // _searchFlight();
+    _controllerdepartureDate.text = DateTime.now().toString().substring(0, 10);
   }
 
   Future<void> searchFlight(
@@ -85,7 +90,7 @@ class FlightSearchController extends Controller {
     final context = getContext();
     Navigator.pushNamed(context, FlightFindPage.route,
         arguments: FlightsArgument(_flights, _user,
-            departureDate + 'T00:00:00.000Z', amountPassenger));
+            departureDate + 'T00:00:00.000Z', amountPassenger, destinationFrom, destinationTo, seatClass));
   }
 
   void _initObserver() {
@@ -140,6 +145,9 @@ class FlightsArgument {
   User user;
   String departureDate;
   int amountPassenger;
+  String destinationFrom;
+  String destinationTo;
+  String seatClass;
   FlightsArgument(
-      this.flights, this.user, this.departureDate, this.amountPassenger);
+      this.flights, this.user, this.departureDate, this.amountPassenger, this.destinationFrom, this.destinationTo, this.seatClass);
 }

@@ -14,9 +14,19 @@ class FlightFindPage extends View {
   final List<Flight> flights;
   final User user;
   final String departureDate;
+  final String destinationFrom;
+  final String destinationTo;
+  final String seatClass;
+
   final int amountPassenger;
   const FlightFindPage(
-      this.flights, this.user, this.departureDate, this.amountPassenger,
+      this.flights,
+      this.user,
+      this.departureDate,
+      this.amountPassenger,
+      this.destinationFrom,
+      this.destinationTo,
+      this.seatClass,
       {Key? key})
       : super(key: key);
 
@@ -39,7 +49,68 @@ class _FlightFindViewState
         key: globalKey,
         appBar: AppBar(
           backgroundColor: const Color(0XFFE67E22),
-          title: const Text('List of Flights'),
+          //title: const Text('List of Flights'),
+          flexibleSpace: SafeArea(
+              child: Column(
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.width * 0.02,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.13,
+                  ),
+                  Text(
+                    widget.destinationFrom,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.01,
+                  ),
+                  Text(
+                    '-',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.01,
+                  ),
+                  Text(
+                    widget.destinationTo,
+                    style: TextStyle(color: Colors.white),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.width * 0.02,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.13,
+                  ),
+                  Text(
+                    widget.departureDate.substring(0, 10),
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.01,
+                  ),
+                  Text(
+                    '-',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.01,
+                  ),
+                  Text(
+                    widget.seatClass,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              )
+            ],
+          )),
         ),
         backgroundColor: const Color(0XFFD3D3D3),
         body: ControlledWidgetBuilder<FlightFindController>(
@@ -59,7 +130,10 @@ class _FlightFindViewState
                                   widget.user,
                                   widget.departureDate,
                                   widget.amountPassenger,
-                                  price);
+                                  price,
+                                  widget.destinationFrom,
+                                  widget.destinationTo,
+                                  widget.seatClass);
                             },
                           );
                         })),

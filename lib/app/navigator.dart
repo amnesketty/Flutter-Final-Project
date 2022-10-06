@@ -33,7 +33,10 @@ class AppNavigator {
         final arguments = settings.arguments as FlightsArgument;
         return MaterialPageRoute(
             builder: (BuildContext _) => FlightFindPage(
-                arguments.flights, arguments.user, arguments.departureDate, arguments.amountPassenger));
+                arguments.flights,
+                arguments.user,
+                arguments.departureDate,
+                arguments.amountPassenger, arguments.destinationFrom, arguments.destinationTo, arguments.seatClass));
       case HotelBookingPage.route:
         final arguments = settings.arguments as HotelDetailArgument;
         return MaterialPageRoute(
@@ -69,16 +72,29 @@ class AppNavigator {
         final arguments = settings.arguments as FlightsArgument;
         return MaterialPageRoute(
             builder: (BuildContext _) => FlightFindPage(
-                arguments.flights, arguments.user, arguments.departureDate, arguments.amountPassenger));
+                arguments.flights,
+                arguments.user,
+                arguments.departureDate,
+                arguments.amountPassenger, arguments.destinationFrom, arguments.destinationTo, arguments.seatClass));
       case FlightDetailPage.route:
         final arguments = settings.arguments as FlightFindArgument;
         return MaterialPageRoute(
-            builder: (BuildContext _) => FlightDetailPage(arguments.flight, arguments.user, arguments.departureDate, arguments.amountPassenger, arguments.price));
+            builder: (BuildContext _) => FlightDetailPage(
+                arguments.flight,
+                arguments.user,
+                arguments.departureDate,
+                arguments.amountPassenger,
+                arguments.price,
+                arguments.destinationFrom, arguments.destinationTo, arguments.seatClass));
       case FlightBookingPage.route:
         final arguments = settings.arguments as FlightFindArgument;
         return MaterialPageRoute(
             builder: (BuildContext _) => FlightBookingPage(
-                arguments.flight, arguments.user, arguments.departureDate, arguments.amountPassenger, arguments.price));
+                arguments.flight,
+                arguments.user,
+                arguments.departureDate,
+                arguments.amountPassenger,
+                arguments.price));
       case HotelSearchPage.route:
         final arguments = settings.arguments as User;
         return MaterialPageRoute(
