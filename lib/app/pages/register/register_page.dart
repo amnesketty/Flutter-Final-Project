@@ -81,14 +81,11 @@ class _RegisterViewState extends ViewState<RegisterPage, RegisterController> {
                               controller.controllerEmail.text,
                               controller.controllerPhone.text, 
                               controller.controllerPassword.text);
-                            do {
-                              await Future.delayed(const Duration(milliseconds: 100));
-                            } while (controller.isLoading);
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) => 
-                                  PopUpDialog(function: () {controller.navigateToLoginPage();}, message: "success", tipePopUpDialog: "registerSuccess", popUpButton: "registerSuccess")
-                              );
+                            // showDialog(
+                            //     context: context,
+                            //     builder: (BuildContext context) => 
+                            //       PopUpDialog(function: () {controller.navigateToLoginPage();}, message: "success", tipePopUpDialog: "registerSuccess", popUpButton: "registerSuccess")
+                            //   );
                           },
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
