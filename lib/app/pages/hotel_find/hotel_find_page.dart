@@ -32,6 +32,7 @@ class _HotelFindViewState
         key: globalKey,
         appBar: AppBar(
           backgroundColor: const Color(0XFFE67E22),
+          foregroundColor: Colors.white,
           title: const Text('List of Hotels in '),
         ),
         backgroundColor: const Color(0XFFD3D3D3),

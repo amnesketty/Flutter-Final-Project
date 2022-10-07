@@ -33,6 +33,7 @@ class _HotelDetailViewState
       key: globalKey,
       appBar: AppBar(
         backgroundColor: const Color(0XFFE67E22),
+        foregroundColor: Colors.white,
         centerTitle: true,
         title: Text(widget.hotel.name),
       ),

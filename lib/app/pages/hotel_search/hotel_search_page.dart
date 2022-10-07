@@ -58,6 +58,7 @@ class _HotelSearchViewState
         appBar: AppBar(
           title: const Text('HOTELS'),
           backgroundColor: const Color(0XFFE67E22),
+          foregroundColor: Colors.white,
         ),
         backgroundColor: const Color(0XFFD3D3D3),
         body: ControlledWidgetBuilder<HotelSearchController>(

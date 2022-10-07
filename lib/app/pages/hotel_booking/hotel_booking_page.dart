@@ -38,6 +38,7 @@ class _HotelBookingViewState
         key: globalKey,
         appBar: AppBar(
           backgroundColor: const Color(0XFFE67E22),
+          foregroundColor: Colors.white,
           centerTitle: true,
           title: const Text('FILL IN DETAILS'),
         ),

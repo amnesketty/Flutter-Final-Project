@@ -29,6 +29,7 @@ class _HomeViewState extends ViewState<HomePage, HomeController> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: const Color(0XFFE67E22),
+          foregroundColor: Colors.white,
           title: const Text('LOUNGA'),
           actions: [
             ControlledWidgetBuilder<HomeController>(

@@ -28,7 +28,7 @@ class FlightSearchController extends Controller {
     'Yogyakarta (YIA)',
     'Medan (KNO)',
     'Jakarta (CGK)',
-    'Seamrang (SRG)',
+    'Semarang (SRG)',
     'Makassar (UPG)'
   ];
   List<String> get dropdownvalueDestination => _dropDownValueDestination;

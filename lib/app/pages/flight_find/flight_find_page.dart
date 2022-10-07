@@ -45,6 +45,7 @@ class _FlightFindViewState
         key: globalKey,
         appBar: AppBar(
           backgroundColor: const Color(0XFFE67E22),
+          foregroundColor: Colors.white,
           flexibleSpace: SafeArea(
               child: Column(
             children: [

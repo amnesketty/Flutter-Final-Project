@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:injector/injector.dart';
 import 'package:intl/intl.dart';
-
 import '../../../domain/entities/flight.dart';
-
 import '../../../domain/entities/user.dart';
 import '../../widgets/pop_up_dialog.dart';
 import '../../widgets/text_field.dart';
@@ -41,6 +38,7 @@ class _FlightBookingViewState
       key: globalKey,
       appBar: AppBar(
         backgroundColor: const Color(0XFFE67E22),
+        foregroundColor: Colors.white,
         shadowColor: Colors.transparent,
         centerTitle: true,
         title: const Text('FILL IN DETAILS'),
@@ -54,7 +52,7 @@ class _FlightBookingViewState
                     children: [
                       Container(
                           alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           width: MediaQuery.of(context).size.width * 1,
                           height: MediaQuery.of(context).size.height * 0.20,
                           color: const Color(0XFFE67E22),
@@ -182,7 +180,7 @@ class _FlightBookingViewState
                               ),
                               Text(
                                 'Total Price for ${widget.amountPassenger} passenger : ${widget.price * widget.amountPassenger}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
                               ),
@@ -273,9 +271,16 @@ class _FlightBookingViewState
                                             textLabel: "Id Card Number",
                                           ),
                                           SizedBox(
-                                              height: index == widget.amountPassenger - 1 ? MediaQuery.of(context).size.height * 0.3 : MediaQuery.of(context).size
-                                                      .height *
-                                                  0.05),
+                                              height: index ==
+                                                      widget.amountPassenger - 1
+                                                  ? MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.3
+                                                  : MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.05),
                                         ],
                                       );
                                     },

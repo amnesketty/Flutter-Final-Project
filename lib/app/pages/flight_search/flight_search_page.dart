@@ -55,6 +55,7 @@ class _FlightSearchViewState
         appBar: AppBar(
           title: const Text('Flights - One Way Trip'),
           backgroundColor: const Color(0XFFE67E22),
+          foregroundColor: Colors.white,
         ),
         backgroundColor: const Color(0XFFD3D3D3),
         body: ControlledWidgetBuilder<FlightSearchController>(
